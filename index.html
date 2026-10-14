@@ -17,26 +17,132 @@
             ></span>
             <span>Pokémon Paint</span>
           </div>
-        </header>
-
-        <section class="pokedex-section" aria-label="Pokémon disponibles">
           <label class="pokemon-search">
-            <span>Buscar Pokémon</span>
+            <span class="visually-hidden">Buscar Pokémon</span>
             <input
               id="pokemonSearch"
               type="search"
               placeholder="Nombre o número"
               autocomplete="off"
+              aria-label="Buscar Pokémon por nombre o número"
               aria-controls="pokemonGrid"
             />
           </label>
-          <div id="pokemonGrid" class="pokemon-grid" aria-live="polite"></div>
+        </header>
+
+        <nav class="home-tabs" role="tablist" aria-label="Vistas de la Pokédex">
+          <button
+            class="home-tab"
+            id="tab-progreso"
+            type="button"
+            role="tab"
+            aria-controls="panel-pokedex"
+            aria-selected="false"
+            tabindex="-1"
+            data-vista="a-medias"
+          >
+            <span>En curso</span>
+            <span id="progresoCantidad" class="home-tab-count">0</span>
+          </button>
+          <button
+            class="home-tab"
+            id="tab-regiones"
+            type="button"
+            role="tab"
+            aria-controls="panel-pokedex"
+            aria-selected="true"
+            tabindex="0"
+            data-vista="regiones"
+          >
+            Regiones
+          </button>
+          <button
+            class="home-tab"
+            id="tab-colecciones"
+            type="button"
+            role="tab"
+            aria-controls="panel-pokedex"
+            aria-selected="false"
+            tabindex="-1"
+            data-vista="colecciones"
+          >
+            Colecciones
+          </button>
+          <button
+            class="home-tab"
+            id="tab-pokedex"
+            type="button"
+            role="tab"
+            aria-controls="panel-pokedex"
+            aria-selected="false"
+            tabindex="-1"
+            data-vista="pokedex"
+          >
+            Pokédex completa
+          </button>
+        </nav>
+
+        <section
+          class="pokedex-section"
+          id="panel-pokedex"
+          role="tabpanel"
+          aria-labelledby="tab-regiones"
+          tabindex="0"
+        >
+          <nav
+            class="colecciones"
+            id="filtrosColeccion"
+            aria-label="Elegir región o colección"
+          >
+            <div class="coleccion-grupo" id="grupoRegiones">
+              <h2>Regiones</h2>
+              <div
+                class="coleccion-opciones"
+                id="coleccionRegiones"
+                role="group"
+                aria-label="Colecciones por región"
+              ></div>
+            </div>
+            <div class="coleccion-grupo" id="grupoTematicas" hidden>
+              <h2>Temáticas</h2>
+              <div
+                class="coleccion-opciones"
+                id="coleccionTematicas"
+                role="group"
+                aria-label="Colecciones temáticas"
+              ></div>
+            </div>
+          </nav>
+          <div id="coleccionDetalle" class="coleccion-detalle" hidden>
+            <button
+              id="volverColecciones"
+              class="coleccion-volver"
+              type="button"
+            >
+              <span aria-hidden="true">←</span>
+              <span>Volver a regiones</span>
+            </button>
+          </div>
+          <div class="coleccion-resumen" aria-live="polite" hidden>
+            <div>
+              <h1 id="coleccionTitulo">Pokédex completa</h1>
+              <p id="coleccionDescripcion">Elige una región o temática.</p>
+            </div>
+            <span id="coleccionCantidad">1.025 Pokémon</span>
+          </div>
+          <div
+            id="pokemonGrid"
+            class="pokemon-grid"
+            aria-live="polite"
+            hidden
+          ></div>
           <p id="errorHome" class="home-error" role="alert" hidden></p>
           <div
             id="cargaInfinita"
             class="carga-infinita"
             role="status"
             aria-live="polite"
+            hidden
           ></div>
         </section>
       </main>
