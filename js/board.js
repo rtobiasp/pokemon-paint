@@ -137,7 +137,7 @@ export function dibujarCelda(x, y) {
   }
   ctx.fillRect(posX, posY, e, e);
 
-  if (e >= 5) {
+  if (!modoGris && e >= 5) {
     ctx.lineWidth = 1;
     ctx.strokeStyle = modoGris && resaltada ? "#555555" : COLOR_BORDE_CELDA;
     ctx.strokeRect(posX + 0.5, posY + 0.5, e - 1, e - 1);
