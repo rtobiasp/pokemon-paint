@@ -183,8 +183,6 @@ function crearTarjetaColeccion(tipo, clave, coleccion, progresos) {
   nombre.textContent = coleccion.nombre;
   const metricas = document.createElement("span");
   metricas.className = "coleccion-metricas";
-  const total = document.createElement("span");
-  total.textContent = `${new Intl.NumberFormat("es-ES").format(numeros.length)} Pokémon`;
   const avance = document.createElement("span");
   avance.className = "coleccion-completados";
   avance.textContent = `${completados}/${numeros.length}`;
@@ -196,7 +194,7 @@ function crearTarjetaColeccion(tipo, clave, coleccion, progresos) {
     "aria-label",
     `${completados} de ${numeros.length} Pokémon completados`,
   );
-  metricas.append(total, avance);
+  metricas.append(avance);
   datos.append(nombre, metricas, barra);
   tarjeta.append(portada, datos);
   return tarjeta;
@@ -420,6 +418,12 @@ function crearTarjeta(pokemon, progresos) {
   mostrarProgresoEnMiniatura(imagen, progreso);
   imagen.src = pokemon.imagen;
   marco.appendChild(imagen);
+  if (completado) {
+    const marcaCompletado = document.createElement("span");
+    marcaCompletado.className = "pokemon-completado";
+    marcaCompletado.setAttribute("aria-hidden", "true");
+    marco.appendChild(marcaCompletado);
+  }
 
   const datos = document.createElement("span");
   datos.className = "pokemon-data";
@@ -429,25 +433,22 @@ function crearTarjeta(pokemon, progresos) {
   const nombre = document.createElement("span");
   nombre.className = "pokemon-name";
   nombre.textContent = nombreLegible(pokemon.nombre);
-  const estado = document.createElement("span");
-  estado.className = `pokemon-status${completado ? " completado" : enCurso ? " en-curso" : ""}`;
-  estado.textContent = completado
-    ? "Completado"
-    : enCurso
-      ? "En curso"
-      : "Por empezar";
-  datos.append(numero, nombre, estado);
+  datos.append(numero, nombre);
 
-  if (enCurso && progreso.total > 0) {
-    const barra = document.createElement("progress");
-    barra.max = progreso.total;
-    barra.value = pintadas;
-    const porcentaje = Math.max(
-      1,
-      Math.round((pintadas / progreso.total) * 100),
-    );
-    barra.setAttribute("aria-label", `${porcentaje}% completado`);
-    datos.appendChild(barra);
+  if (enCurso) {
+    const estado = document.createElement("span");
+    estado.className = "pokemon-status en-curso";
+    estado.textContent = "En progreso";
+    datos.appendChild(estado);
+
+    if (progreso.total > 0) {
+      const barra = document.createElement("progress");
+      barra.max = progreso.total;
+      barra.value = pintadas;
+      const porcentaje = Math.round((pintadas / progreso.total) * 100);
+      barra.setAttribute("aria-label", `${porcentaje}% completado`);
+      datos.appendChild(barra);
+    }
   }
 
   tarjeta.append(marco, datos);
