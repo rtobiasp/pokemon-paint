@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colorear Pokémon - Pokémon Paint</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <section class="game-view">
+        <header class="barra-superior">
+          <div class="marca">
+            <a
+              id="btnVolverHome"
+              class="btn-volver"
+              href="index.html"
+              aria-label="Volver a la Pokédex"
+              title="Volver a la Pokédex"
+              >←</a
+            >
+            <span class="marca-icono" aria-hidden="true"
+              ><i></i><i></i><i></i
+            ></span>
+            <div class="marca-texto">
+              <h1>Pokémon Paint</h1>
+              <p id="infoPokemon" class="info-pokemon"></p>
+              <div class="progreso-general">
+                <progress
+                  id="progresoBarra"
+                  max="1"
+                  value="0"
+                  aria-label="Progreso de coloreado"
+                ></progress>
+                <span id="progresoTexto">0 / 0</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="controles" aria-label="Cargar Pokémon">
+            <div class="pokeapi">
+              <button type="button" id="btnAleatorio">Aleatorio</button>
+              <label for="inputNumero">Nº Pokédex</label>
+              <input
+                type="number"
+                id="inputNumero"
+                min="1"
+                max="1025"
+                value="25"
+              />
+              <button type="button" id="btnPorNumero">Cargar</button>
+            </div>
+            <p id="errorPokemon" class="error" hidden></p>
+          </section>
+
+          <div class="toolbar-acciones">
+            <div class="historial-controles" aria-label="Historial de pintura">
+              <button
+                type="button"
+                id="btnDeshacer"
+                aria-label="Deshacer"
+                title="Deshacer (Ctrl+Z)"
+                disabled
+              >
+                ↶
+              </button>
+              <button
+                type="button"
+                id="btnRehacer"
+                aria-label="Rehacer"
+                title="Rehacer (Ctrl+Y)"
+                disabled
+              >
+                ↷
+              </button>
+            </div>
+            <div class="zoom" aria-label="Controles de zoom">
+              <button
+                type="button"
+                id="btnZoomMenos"
+                aria-label="Alejar"
+                title="Alejar"
+              >
+                −
+              </button>
+              <span id="zoomNivel">100%</span>
+              <button
+                type="button"
+                id="btnZoomMas"
+                aria-label="Acercar"
+                title="Acercar"
+              >
+                +
+              </button>
+              <button type="button" id="btnZoomAjustar">Ajustar</button>
+            </div>
+          </div>
+        </header>
+
+        <main class="tablero-contenedor" aria-label="Lienzo para colorear">
+          <div class="tablero-superficie">
+            <canvas
+              id="lienzoJuego"
+              aria-label="Imagen Pokémon para colorear"
+            ></canvas>
+          </div>
+        </main>
+
+        <div
+          id="efectoVictoria"
+          class="efecto-victoria"
+          aria-hidden="true"
+        ></div>
+        <section class="paleta-dock" aria-label="Paleta de colores">
+          <div id="paleta" class="paleta"></div>
+          <div id="mensaje-victoria" class="victoria" hidden>¡Completado!</div>
+        </section>
+        <div
+          id="avisoJuego"
+          class="aviso-juego"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+      </section>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

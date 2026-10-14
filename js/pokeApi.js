@@ -11,7 +11,32 @@ export async function obtenerPokemon(numero) {
   return {
     numero: datos.id,
     nombre: datos.name,
-    imagen: datos.sprites.front_default
+    imagen: datos.sprites.front_default,
+  };
+}
+
+export async function obtenerPaginaPokemon(pagina, cantidad = 12) {
+  const paginaSegura = Math.max(1, Math.floor(pagina));
+  const respuesta = await fetch(
+    `${URL_BASE_POKEAPI}?offset=${(paginaSegura - 1) * cantidad}&limit=${cantidad}`,
+  );
+  if (!respuesta.ok) {
+    throw new Error("No se pudo cargar la Pokédex");
+  }
+  const datos = await respuesta.json();
+  return {
+    total: Math.min(datos.count, TOTAL_POKEMON),
+    pokemon: datos.results
+      .map((resultado) => {
+        const numero = Number(resultado.url.match(/\/(\d+)\/$/)?.[1]);
+        if (!numero || numero > TOTAL_POKEMON) return null;
+        return {
+          numero,
+          nombre: resultado.name,
+          imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${numero}.png`,
+        };
+      })
+      .filter(Boolean),
   };
 }
 

@@ -5,7 +5,11 @@ import {
   totalCeldasPintables,
 } from "./state.js";
 import { cargarImagen, extraerMatriz } from "./imageProcessor.js";
-import { obtenerPokemon, obtenerPokemonAleatorio } from "./pokeApi.js";
+import {
+  obtenerPokemon,
+  obtenerPokemonAleatorio,
+  TOTAL_POKEMON,
+} from "./pokeApi.js";
 import {
   configurarLienzo,
   dibujarTablero,
@@ -44,6 +48,7 @@ const btnRehacer = document.getElementById("btnRehacer");
 const avisoJuego = document.getElementById("avisoJuego");
 const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
+const btnVolverHome = document.getElementById("btnVolverHome");
 
 let paneo = null;
 let espacioPulsado = false;
@@ -56,6 +61,10 @@ let frameGestoMultidedo = null;
 let victoriaEnCurso = false;
 let animacionEncuadre = null;
 let temporizadorConfeti = null;
+let pokemonActual = null;
+let temporizadorGuardado = null;
+
+const CLAVE_PROGRESO = "pokemon-paint-progreso";
 
 configurarLienzo(lienzo);
 
@@ -68,6 +77,68 @@ function pintarError(texto) {
   errorPokemon.hidden = texto === "";
 }
 
+function leerProgresosGuardados() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_PROGRESO) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function guardarProgresoActual() {
+  clearTimeout(temporizadorGuardado);
+  if (pokemonActual === null || !hayDibujo()) return;
+  const progreso = leerProgresosGuardados();
+  const pintadas = [];
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      const celda = state.matriz[y][x];
+      if (celda.numero !== 0 && celda.pintado) {
+        pintadas.push(y * state.ancho + x);
+      }
+    }
+  }
+  const total = totalCeldasPintables();
+  progreso[pokemonActual] = {
+    ancho: state.ancho,
+    alto: state.alto,
+    total,
+    pintadas,
+    completado: total > 0 && pintadas.length >= total,
+  };
+  try {
+    localStorage.setItem(CLAVE_PROGRESO, JSON.stringify(progreso));
+  } catch {
+    mostrarAviso("No se pudo guardar el progreso en este dispositivo.");
+  }
+}
+
+function programarGuardadoProgreso() {
+  clearTimeout(temporizadorGuardado);
+  temporizadorGuardado = setTimeout(guardarProgresoActual, 220);
+}
+
+function restaurarProgreso(numero) {
+  const guardado = leerProgresosGuardados()[numero];
+  if (
+    !guardado ||
+    guardado.ancho !== state.ancho ||
+    guardado.alto !== state.alto ||
+    !Array.isArray(guardado.pintadas)
+  ) {
+    return;
+  }
+  const pintadas = new Set(guardado.pintadas);
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      const celda = state.matriz[y][x];
+      if (celda.numero === 0) continue;
+      celda.pintado = pintadas.has(y * state.ancho + x);
+      if (celda.pintado) state.pintados[celda.numero]++;
+    }
+  }
+}
+
 function fijarCargando(cargando) {
   btnAleatorio.disabled = cargando;
   btnPorNumero.disabled = cargando;
@@ -77,11 +148,13 @@ function actualizarZoom() {
   zoomNivel.textContent = `${porcentajeZoom()}%`;
 }
 
-async function mostrarSprite(origen, etiqueta) {
+async function mostrarSprite(origen, pokemon) {
   cancelarCelebracion();
   victoriaEnCurso = false;
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
+  pokemonActual = pokemon.numero;
+  restaurarProgreso(pokemonActual);
   state.colorSeleccionado = siguienteColorIncompleto();
   crearPaleta(contenedorPaleta, mensajeVictoria);
   encajarZoom();
@@ -89,16 +162,17 @@ async function mostrarSprite(origen, etiqueta) {
   actualizarZoom();
   actualizarProgresoGlobal();
   actualizarControlesHistorial();
-  pintarInfo(etiqueta || "");
+  pintarInfo(`#${pokemon.numero} ${pokemon.nombre}`);
 }
 
 async function mostrarPokemon(promesa) {
+  guardarProgresoActual();
   fijarCargando(true);
   pintarError("");
   pintarInfo("Cargando...");
   try {
     const pokemon = await promesa;
-    await mostrarSprite(pokemon.imagen, `#${pokemon.numero} ${pokemon.nombre}`);
+    await mostrarSprite(pokemon.imagen, pokemon);
   } catch (fallo) {
     pintarInfo("");
     pintarError(
@@ -114,6 +188,7 @@ function refrescarTrasPintar() {
   actualizarProgreso(contenedorPaleta, mensajeVictoria);
   actualizarProgresoGlobal();
   actualizarControlesHistorial();
+  programarGuardadoProgreso();
   if (colorAnterior !== null && colorAnterior !== state.colorSeleccionado) {
     mostrarAviso(
       state.colorSeleccionado === null
@@ -161,6 +236,7 @@ function aplicarHistorial(accion) {
   sincronizarActivos(contenedorPaleta);
   actualizarProgresoGlobal();
   actualizarControlesHistorial();
+  programarGuardadoProgreso();
   if (mensajeVictoria.hidden) {
     cancelarCelebracion();
     victoriaEnCurso = false;
@@ -282,10 +358,6 @@ function escribiendo(evento) {
     destino && (destino.tagName === "INPUT" || destino.tagName === "TEXTAREA")
   );
 }
-
-btnAleatorio.addEventListener("click", () => {
-  mostrarPokemon(obtenerPokemonAleatorio());
-});
 
 btnPorNumero.addEventListener("click", () => {
   mostrarPokemon(obtenerPokemon(Number(inputNumero.value)));
@@ -577,6 +649,21 @@ lienzo.addEventListener("pointerup", finalizarPuntero);
 lienzo.addEventListener("pointercancel", finalizarPuntero);
 lienzo.addEventListener("lostpointercapture", finalizarPuntero);
 
-if (!hayDibujo()) {
+btnAleatorio.addEventListener("click", () => {
   mostrarPokemon(obtenerPokemonAleatorio());
+});
+
+const parametros = new URLSearchParams(window.location.search);
+const numeroPokemon = Number(parametros.get("pokemon"));
+const paginaOrigen = Math.max(1, Number(parametros.get("pagina")) || 1);
+btnVolverHome.href = `index.html?pagina=${paginaOrigen}`;
+window.addEventListener("pagehide", guardarProgresoActual);
+if (
+  Number.isInteger(numeroPokemon) &&
+  numeroPokemon > 0 &&
+  numeroPokemon <= TOTAL_POKEMON
+) {
+  mostrarPokemon(obtenerPokemon(numeroPokemon));
+} else {
+  mostrarPokemon(obtenerPokemon(25));
 }
