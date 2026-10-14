@@ -69,6 +69,12 @@ body {
   text-transform: capitalize;
   white-space: nowrap;
 }
+.progreso-general { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.progreso-general progress { width: 74px; height: 5px; appearance: none; border: 0; border-radius: 99px; background: #e5ebe7; }
+.progreso-general progress::-webkit-progress-bar { border-radius: 99px; background: #e5ebe7; }
+.progreso-general progress::-webkit-progress-value { border-radius: 99px; background: var(--accent); }
+.progreso-general progress::-moz-progress-bar { border-radius: 99px; background: var(--accent); }
+.progreso-general span { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
 .controles { min-width: 0; }
 .pokeapi {
   display: flex;
@@ -77,7 +83,7 @@ body {
   gap: 8px;
 }
 .pokeapi label { color: var(--muted); font-size: 12px; white-space: nowrap; }
-.pokeapi button, .zoom button {
+.pokeapi button, .zoom button, .historial-controles button {
   height: 36px;
   border: 1px solid var(--line);
   border-radius: 7px;
@@ -89,7 +95,7 @@ body {
   cursor: pointer;
 }
 .pokeapi button { padding: 0 13px; }
-.pokeapi button:hover, .zoom button:hover { border-color: #aebdb3; background: #f5f8f6; }
+.pokeapi button:hover, .zoom button:hover, .historial-controles button:hover:not(:disabled) { border-color: #aebdb3; background: #f5f8f6; }
 .pokeapi button:disabled { opacity: 0.6; cursor: wait; }
 #btnPorNumero { border-color: var(--accent); background: var(--accent); color: #fff; }
 #btnPorNumero:hover { background: var(--accent-dark); }
@@ -103,6 +109,10 @@ body {
   font: inherit;
 }
 .error { margin: 4px 0 0; color: #b42318; font-size: 12px; font-weight: 700; text-align: center; }
+.toolbar-acciones { display: flex; align-items: center; gap: 10px; }
+.historial-controles { display: flex; align-items: center; gap: 4px; }
+.historial-controles button { width: 34px; padding: 0; font-size: 19px; }
+.historial-controles button:disabled { color: #aab5ad; cursor: not-allowed; }
 .zoom { display: flex; align-items: center; gap: 6px; }
 .zoom button { min-width: 36px; padding: 0 10px; }
 .zoom button:first-child, .zoom button:nth-of-type(2) { width: 36px; padding: 0; font-size: 20px; }
@@ -192,7 +202,9 @@ canvas {
 }
 .color-btn.activo { border-color: var(--ink); box-shadow: 0 0 0 2px var(--accent); }
 .color-btn.completado { border-color: #31a56d; opacity: 0.78; }
+.color-btn:disabled { cursor: default; }
 .color-btn .num { font-size: 17px; line-height: 1; }
+.color-btn .restantes { margin-top: 2px; font-size: 9px; line-height: 1; font-variant-numeric: tabular-nums; }
 .color-btn .num::after { content: ""; }
 .color-btn.completado .num::after { content: " ✓"; }
 .color-btn .mini-bar {
@@ -204,6 +216,21 @@ canvas {
   background: rgba(255, 255, 255, 0.45);
 }
 .color-btn .mini-bar i { display: block; width: 0%; height: 100%; background: #fff; }
+.aviso-juego {
+  position: fixed;
+  z-index: 5;
+  bottom: calc(94px + env(safe-area-inset-bottom));
+  left: 50%;
+  padding: 9px 15px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(25, 40, 31, 0.22);
+  white-space: nowrap;
+}
 
 @media (max-width: 760px) {
   .barra-superior {
@@ -214,6 +241,9 @@ canvas {
   }
   .marca { grid-area: marca; }
   .controles { grid-area: controles; }
+  .toolbar-acciones { grid-area: zoom; gap: 5px; }
+  .historial-controles { gap: 2px; }
+  .historial-controles button { width: 28px; height: 32px; font-size: 17px; }
   .zoom { grid-area: zoom; gap: 4px; }
   .zoom button { height: 32px; min-width: 32px; padding: 0 7px; font-size: 12px; }
   .zoom button:first-child, .zoom button:nth-of-type(2) { width: 32px; font-size: 18px; }
@@ -227,5 +257,21 @@ canvas {
   .paleta { gap: 7px; }
   .color-btn { width: 52px; height: 54px; flex-basis: 52px; }
   .color-btn .num { font-size: 14px; }
+  .color-btn .restantes { font-size: 8px; }
   .color-btn .mini-bar { height: 4px; }
+  .aviso-juego { bottom: calc(86px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 430px) {
+  .barra-superior { gap: 8px 6px; padding-right: 8px; padding-left: 8px; }
+  .marca { gap: 7px; }
+  .marca-icono { width: 28px; height: 28px; }
+  .marca h1 { font-size: 15px; }
+  .toolbar-acciones { gap: 3px; }
+  .historial-controles button,
+  .zoom button:first-child,
+  .zoom button:nth-of-type(2) { width: 26px; min-width: 26px; }
+  .zoom { gap: 2px; }
+  .zoom span { min-width: 32px; }
+  .zoom button { padding: 0 6px; }
 }

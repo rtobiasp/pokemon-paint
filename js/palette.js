@@ -1,9 +1,15 @@
-import { state, totalCeldasPintables, siguienteColorIncompleto } from "./state.js";
+import {
+  state,
+  totalCeldasPintables,
+  siguienteColorIncompleto,
+} from "./state.js";
 import { resaltarSeleccion } from "./board.js";
 
 export function crearPaleta(contenedor, victoria) {
   contenedor.innerHTML = "";
-  const numeros = Object.keys(state.paletaInversa).map(Number).sort((a, b) => a - b);
+  const numeros = Object.keys(state.paletaInversa)
+    .map(Number)
+    .sort((a, b) => a - b);
   numeros.forEach((numero) => {
     const boton = document.createElement("button");
     boton.type = "button";
@@ -15,12 +21,16 @@ export function crearPaleta(contenedor, victoria) {
     etiqueta.className = "num";
     etiqueta.textContent = numero;
 
+    const restantes = document.createElement("span");
+    restantes.className = "restantes";
+
     const barra = document.createElement("span");
     barra.className = "mini-bar";
     const relleno = document.createElement("i");
     barra.appendChild(relleno);
 
     boton.appendChild(etiqueta);
+    boton.appendChild(restantes);
     boton.appendChild(barra);
 
     boton.addEventListener("click", () => {
@@ -42,7 +52,17 @@ export function crearPaleta(contenedor, victoria) {
 export function sincronizarActivos(contenedor) {
   contenedor.querySelectorAll(".color-btn").forEach((boton) => {
     const numero = Number(boton.dataset.numero);
-    boton.classList.toggle("activo", state.colorSeleccionado === numero);
+    const activo = state.colorSeleccionado === numero;
+    const eraActivo = boton.classList.contains("activo");
+    boton.classList.toggle("activo", activo);
+    boton.setAttribute("aria-pressed", String(activo));
+    if (activo && !eraActivo) {
+      boton.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+        behavior: "smooth",
+      });
+    }
   });
 }
 
@@ -53,7 +73,15 @@ export function actualizarProgreso(contenedor, victoria) {
     const numero = Number(boton.dataset.numero);
     const objetivo = state.totales[numero] || 0;
     const hecho = state.pintados[numero] || 0;
-    boton.querySelector(".mini-bar i").style.width = objetivo === 0 ? "0%" : `${Math.round((hecho / objetivo) * 100)}%`;
+    const pendientes = Math.max(0, objetivo - hecho);
+    boton.querySelector(".restantes").textContent = pendientes;
+    boton.setAttribute(
+      "aria-label",
+      `Color ${numero}: ${pendientes} casillas restantes`,
+    );
+    boton.disabled = pendientes === 0;
+    boton.querySelector(".mini-bar i").style.width =
+      objetivo === 0 ? "0%" : `${Math.round((hecho / objetivo) * 100)}%`;
     boton.classList.toggle("completado", objetivo > 0 && hecho >= objetivo);
   });
 
@@ -61,7 +89,8 @@ export function actualizarProgreso(contenedor, victoria) {
 
   if (
     state.colorSeleccionado !== null &&
-    (state.pintados[state.colorSeleccionado] || 0) >= (state.totales[state.colorSeleccionado] || 0)
+    (state.pintados[state.colorSeleccionado] || 0) >=
+      (state.totales[state.colorSeleccionado] || 0)
   ) {
     state.colorSeleccionado = siguienteColorIncompleto();
     sincronizarActivos(contenedor);

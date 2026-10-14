@@ -1,15 +1,27 @@
-import { state, hayDibujo } from "./state.js";
+import {
+  state,
+  hayDibujo,
+  siguienteColorIncompleto,
+  totalCeldasPintables,
+} from "./state.js";
 import { cargarImagen, extraerMatriz } from "./imageProcessor.js";
 import { obtenerPokemon, obtenerPokemonAleatorio } from "./pokeApi.js";
 import {
   configurarLienzo,
   dibujarTablero,
   intentarPintar,
+  deshacerPintado,
+  rehacerPintado,
   zoomAnclado,
+  zoomAescala,
   encajarZoom,
   porcentajeZoom,
 } from "./board.js";
-import { crearPaleta, actualizarProgreso } from "./palette.js";
+import {
+  crearPaleta,
+  actualizarProgreso,
+  sincronizarActivos,
+} from "./palette.js";
 import { PASO_ZOOM } from "./config.js";
 
 const lienzo = document.getElementById("lienzoJuego");
@@ -24,10 +36,20 @@ const btnZoomMenos = document.getElementById("btnZoomMenos");
 const btnZoomMas = document.getElementById("btnZoomMas");
 const btnZoomAjustar = document.getElementById("btnZoomAjustar");
 const zoomNivel = document.getElementById("zoomNivel");
+const progresoBarra = document.getElementById("progresoBarra");
+const progresoTexto = document.getElementById("progresoTexto");
+const btnDeshacer = document.getElementById("btnDeshacer");
+const btnRehacer = document.getElementById("btnRehacer");
+const avisoJuego = document.getElementById("avisoJuego");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
 
 let paneo = null;
 let espacioPulsado = false;
+let temporizadorAviso = null;
+const punterosTactiles = new Map();
+let inicioToque = null;
+let gestoMultidedo = null;
+let huboMultidedo = false;
 
 configurarLienzo(lienzo);
 
@@ -52,11 +74,13 @@ function actualizarZoom() {
 async function mostrarSprite(origen, etiqueta) {
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
-  state.colorSeleccionado = null;
+  state.colorSeleccionado = siguienteColorIncompleto();
   crearPaleta(contenedorPaleta, mensajeVictoria);
   encajarZoom();
   dibujarTablero();
   actualizarZoom();
+  actualizarProgresoGlobal();
+  actualizarControlesHistorial();
   pintarInfo(etiqueta || "");
 }
 
@@ -78,7 +102,75 @@ async function mostrarPokemon(promesa) {
 }
 
 function refrescarTrasPintar() {
+  const colorAnterior = state.colorSeleccionado;
   actualizarProgreso(contenedorPaleta, mensajeVictoria);
+  actualizarProgresoGlobal();
+  actualizarControlesHistorial();
+  if (colorAnterior !== null && colorAnterior !== state.colorSeleccionado) {
+    mostrarAviso(
+      state.colorSeleccionado === null
+        ? "¡Imagen completada!"
+        : `¡Color ${colorAnterior} completado!`,
+    );
+  }
+}
+
+function actualizarProgresoGlobal() {
+  const total = totalCeldasPintables();
+  const pintadas = Object.values(state.pintados).reduce(
+    (suma, cantidad) => suma + cantidad,
+    0,
+  );
+  progresoBarra.max = Math.max(1, total);
+  progresoBarra.value = pintadas;
+  progresoTexto.textContent = `${pintadas} / ${total}`;
+}
+
+function actualizarControlesHistorial() {
+  btnDeshacer.disabled = state.historialPintado.length === 0;
+  btnRehacer.disabled = state.historialRehacer.length === 0;
+}
+
+function mostrarAviso(texto) {
+  avisoJuego.textContent = texto;
+  avisoJuego.hidden = false;
+  clearTimeout(temporizadorAviso);
+  temporizadorAviso = setTimeout(() => {
+    avisoJuego.hidden = true;
+  }, 1800);
+}
+
+function aplicarHistorial(accion) {
+  if (!accion()) {
+    return;
+  }
+  actualizarProgreso(contenedorPaleta, mensajeVictoria);
+  sincronizarActivos(contenedorPaleta);
+  actualizarProgresoGlobal();
+  actualizarControlesHistorial();
+}
+
+btnDeshacer.addEventListener("click", () => aplicarHistorial(deshacerPintado));
+btnRehacer.addEventListener("click", () => aplicarHistorial(rehacerPintado));
+
+window.addEventListener("keydown", (evento) => {
+  if (escribiendo(evento) || (!evento.ctrlKey && !evento.metaKey)) {
+    return;
+  }
+  if (evento.code === "KeyZ") {
+    evento.preventDefault();
+    aplicarHistorial(evento.shiftKey ? rehacerPintado : deshacerPintado);
+  } else if (evento.code === "KeyY") {
+    evento.preventDefault();
+    aplicarHistorial(rehacerPintado);
+  }
+});
+
+function escribiendo(evento) {
+  const destino = evento.target;
+  return (
+    destino && (destino.tagName === "INPUT" || destino.tagName === "TEXTAREA")
+  );
 }
 
 btnAleatorio.addEventListener("click", () => {
@@ -135,17 +227,10 @@ lienzo.addEventListener(
   { passive: false },
 );
 
-function esEscribiendo(evento) {
-  const destino = evento.target;
-  return (
-    destino && (destino.tagName === "INPUT" || destino.tagName === "TEXTAREA")
-  );
-}
-
 window.addEventListener(
   "keydown",
   (evento) => {
-    if (evento.code !== "Space" || esEscribiendo(evento)) {
+    if (evento.code !== "Space" || escribiendo(evento)) {
       return;
     }
     evento.preventDefault();
@@ -179,9 +264,27 @@ function actualizarCursor() {
 }
 
 lienzo.addEventListener("pointerdown", (evento) => {
-  if (!evento.isPrimary) {
+  if (evento.pointerType === "touch") {
+    lienzo.setPointerCapture(evento.pointerId);
+    punterosTactiles.set(evento.pointerId, {
+      x: evento.clientX,
+      y: evento.clientY,
+    });
+    if (punterosTactiles.size === 2) {
+      iniciarGestoMultidedo();
+      return;
+    }
+    if (punterosTactiles.size === 1) {
+      inicioToque = {
+        x: evento.clientX,
+        y: evento.clientY,
+        inicioPintado: false,
+      };
+      state.pintando = true;
+    }
     return;
   }
+  if (!evento.isPrimary) return;
   if (evento.button === 1 || (evento.button === 0 && espacioPulsado)) {
     evento.preventDefault();
     lienzo.setPointerCapture(evento.pointerId);
@@ -204,10 +307,82 @@ lienzo.addEventListener("pointerdown", (evento) => {
   }
 });
 
+function obtenerGestoMultidedo() {
+  const puntos = [...punterosTactiles.values()].slice(0, 2);
+  if (puntos.length < 2) return null;
+  return {
+    x: (puntos[0].x + puntos[1].x) / 2,
+    y: (puntos[0].y + puntos[1].y) / 2,
+    distancia: Math.hypot(puntos[1].x - puntos[0].x, puntos[1].y - puntos[0].y),
+  };
+}
+
+function iniciarGestoMultidedo() {
+  const gesto = obtenerGestoMultidedo();
+  gestoMultidedo = {
+    ...gesto,
+    distanciaInicial: gesto.distancia,
+    escalaInicial: state.escala,
+  };
+  inicioToque = null;
+  state.pintando = false;
+  paneo = null;
+  huboMultidedo = true;
+}
+
+function actualizarGestoMultidedo() {
+  const actual = obtenerGestoMultidedo();
+  if (!actual || !gestoMultidedo) return;
+  const escalaObjetivo =
+    gestoMultidedo.distanciaInicial > 0
+      ? (gestoMultidedo.escalaInicial * actual.distancia) /
+        gestoMultidedo.distanciaInicial
+      : state.escala;
+  const escalaAnterior = state.escala;
+  zoomAescala(escalaObjetivo, gestoMultidedo.x, gestoMultidedo.y);
+  if (state.escala !== escalaAnterior) actualizarZoom();
+  contenedorTablero.scrollLeft -= actual.x - gestoMultidedo.x;
+  contenedorTablero.scrollTop -= actual.y - gestoMultidedo.y;
+  gestoMultidedo = {
+    ...actual,
+    distanciaInicial: gestoMultidedo.distanciaInicial,
+    escalaInicial: gestoMultidedo.escalaInicial,
+  };
+}
+
 lienzo.addEventListener("pointermove", (evento) => {
   if (paneo) {
     contenedorTablero.scrollLeft = paneo.izquierda - (evento.clientX - paneo.x);
     contenedorTablero.scrollTop = paneo.arriba - (evento.clientY - paneo.y);
+    return;
+  }
+  if (
+    evento.pointerType === "touch" &&
+    punterosTactiles.has(evento.pointerId)
+  ) {
+    punterosTactiles.set(evento.pointerId, {
+      x: evento.clientX,
+      y: evento.clientY,
+    });
+    if (punterosTactiles.size >= 2) {
+      if (!gestoMultidedo) iniciarGestoMultidedo();
+      else actualizarGestoMultidedo();
+      return;
+    }
+    if (huboMultidedo || !inicioToque) return;
+    if (
+      !inicioToque.inicioPintado &&
+      Math.hypot(
+        evento.clientX - inicioToque.x,
+        evento.clientY - inicioToque.y,
+      ) > 2
+    ) {
+      inicioToque.inicioPintado = true;
+      if (intentarPintar({ clientX: inicioToque.x, clientY: inicioToque.y })) {
+        refrescarTrasPintar();
+      }
+    }
+    if (state.pintando && intentarPintar(evento)) refrescarTrasPintar();
     return;
   }
   if (state.pintando && intentarPintar(evento)) {
@@ -215,7 +390,34 @@ lienzo.addEventListener("pointermove", (evento) => {
   }
 });
 
-function finalizarPuntero() {
+function finalizarPuntero(evento) {
+  if (evento.pointerType === "touch") {
+    if (!punterosTactiles.has(evento.pointerId)) return;
+    if (
+      evento.type === "pointerup" &&
+      punterosTactiles.size === 1 &&
+      !huboMultidedo &&
+      inicioToque &&
+      !inicioToque.inicioPintado &&
+      intentarPintar(evento)
+    ) {
+      refrescarTrasPintar();
+    }
+    punterosTactiles.delete(evento.pointerId);
+    if (punterosTactiles.size === 0) {
+      state.pintando = false;
+      inicioToque = null;
+      gestoMultidedo = null;
+      huboMultidedo = false;
+    } else if (punterosTactiles.size === 1) {
+      state.pintando = false;
+      inicioToque = null;
+      gestoMultidedo = null;
+      huboMultidedo = true;
+    }
+    actualizarCursor();
+    return;
+  }
   state.pintando = false;
   paneo = null;
   actualizarCursor();

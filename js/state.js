@@ -6,11 +6,13 @@ export const state = {
   paletaInversa: {},
   totales: {},
   pintados: {},
+  historialPintado: [],
+  historialRehacer: [],
   colorSeleccionado: null,
   pintando: false,
   ancho: 0,
   alto: 0,
-  escala: ESCALA_BASE
+  escala: ESCALA_BASE,
 };
 
 export function reiniciarEstado() {
@@ -19,6 +21,8 @@ export function reiniciarEstado() {
   state.paletaInversa = {};
   state.totales = {};
   state.pintados = {};
+  state.historialPintado = [];
+  state.historialRehacer = [];
   state.colorSeleccionado = null;
   state.pintando = false;
   state.ancho = 0;
@@ -31,10 +35,19 @@ export function hayDibujo() {
 }
 
 export function totalCeldasPintables() {
-  return Object.values(state.totales).reduce((acumulado, valor) => acumulado + valor, 0);
+  return Object.values(state.totales).reduce(
+    (acumulado, valor) => acumulado + valor,
+    0,
+  );
 }
 
 export function siguienteColorIncompleto() {
-  const numeros = Object.keys(state.totales).map(Number).sort((a, b) => a - b);
-  return numeros.find((numero) => (state.pintados[numero] || 0) < state.totales[numero]) ?? null;
+  const numeros = Object.keys(state.totales)
+    .map(Number)
+    .sort((a, b) => a - b);
+  return (
+    numeros.find(
+      (numero) => (state.pintados[numero] || 0) < state.totales[numero],
+    ) ?? null
+  );
 }

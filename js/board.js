@@ -56,6 +56,13 @@ export function zoomAnclado(factor, clienteX, clienteY) {
   contenedor.scrollTop = lienzoY + proporcionY * lienzo.height - viewportY;
 }
 
+export function zoomAescala(escala, clienteX, clienteY) {
+  const escalaNueva = limitarEscala(escala);
+  if (escalaNueva !== state.escala) {
+    zoomAnclado(escalaNueva / state.escala, clienteX, clienteY);
+  }
+}
+
 export function encajarZoom() {
   const contenedor = lienzo.closest(".tablero-contenedor");
   const anchoDisponible =
@@ -176,6 +183,38 @@ export function intentarPintar(evento) {
   }
   celda.pintado = true;
   state.pintados[celda.numero]++;
+  state.historialPintado.push(posicion);
+  state.historialRehacer = [];
   dibujarCelda(posicion.x, posicion.y);
+  return true;
+}
+
+function cambiarPintado(posicion, pintado) {
+  const celda = state.matriz[posicion.y]?.[posicion.x];
+  if (!celda || celda.numero === 0 || celda.pintado === pintado) {
+    return false;
+  }
+  celda.pintado = pintado;
+  state.pintados[celda.numero] += pintado ? 1 : -1;
+  dibujarCelda(posicion.x, posicion.y);
+  return true;
+}
+
+export function deshacerPintado() {
+  const posicion = state.historialPintado.pop();
+  if (!posicion || !cambiarPintado(posicion, false)) {
+    return false;
+  }
+  state.historialRehacer.push(posicion);
+  state.colorSeleccionado = state.matriz[posicion.y][posicion.x].numero;
+  return true;
+}
+
+export function rehacerPintado() {
+  const posicion = state.historialRehacer.pop();
+  if (!posicion || !cambiarPintado(posicion, true)) {
+    return false;
+  }
+  state.historialPintado.push(posicion);
   return true;
 }
