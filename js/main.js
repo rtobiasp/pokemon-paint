@@ -42,6 +42,7 @@ const progresoTexto = document.getElementById("progresoTexto");
 const btnDeshacer = document.getElementById("btnDeshacer");
 const btnRehacer = document.getElementById("btnRehacer");
 const avisoJuego = document.getElementById("avisoJuego");
+const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
 
 let paneo = null;
@@ -52,6 +53,9 @@ let inicioToque = null;
 let gestoMultidedo = null;
 let huboMultidedo = false;
 let frameGestoMultidedo = null;
+let victoriaEnCurso = false;
+let animacionEncuadre = null;
+let temporizadorConfeti = null;
 
 configurarLienzo(lienzo);
 
@@ -74,6 +78,8 @@ function actualizarZoom() {
 }
 
 async function mostrarSprite(origen, etiqueta) {
+  cancelarCelebracion();
+  victoriaEnCurso = false;
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
   state.colorSeleccionado = siguienteColorIncompleto();
@@ -115,6 +121,11 @@ function refrescarTrasPintar() {
         : `¡Color ${colorAnterior} completado!`,
     );
   }
+  if (!mensajeVictoria.hidden) {
+    celebrarVictoria();
+  } else {
+    victoriaEnCurso = false;
+  }
 }
 
 function actualizarProgresoGlobal() {
@@ -150,6 +161,103 @@ function aplicarHistorial(accion) {
   sincronizarActivos(contenedorPaleta);
   actualizarProgresoGlobal();
   actualizarControlesHistorial();
+  if (mensajeVictoria.hidden) {
+    cancelarCelebracion();
+    victoriaEnCurso = false;
+  } else {
+    celebrarVictoria();
+  }
+}
+
+function centrarLienzo() {
+  const rectTablero = contenedorTablero.getBoundingClientRect();
+  const rectLienzo = lienzo.getBoundingClientRect();
+  const centroX =
+    rectTablero.left +
+    contenedorTablero.clientLeft +
+    contenedorTablero.clientWidth / 2;
+  const centroY =
+    rectTablero.top +
+    contenedorTablero.clientTop +
+    contenedorTablero.clientHeight / 2;
+  contenedorTablero.scrollLeft +=
+    rectLienzo.left + rectLienzo.width / 2 - centroX;
+  contenedorTablero.scrollTop +=
+    rectLienzo.top + rectLienzo.height / 2 - centroY;
+}
+
+function crearConfeti() {
+  clearTimeout(temporizadorConfeti);
+  efectoVictoria.replaceChildren();
+  const colores = ["#198754", "#f3c84b", "#e86e59", "#4a90c2", "#ec7caa"];
+  const reducido = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const cantidad = reducido ? 12 : 54;
+  for (let indice = 0; indice < cantidad; indice++) {
+    const particula = document.createElement("span");
+    particula.className = "particula-confeti";
+    particula.style.left = `${Math.random() * 100}%`;
+    particula.style.backgroundColor = colores[indice % colores.length];
+    particula.style.setProperty(
+      "--deriva",
+      `${Math.round(Math.random() * 180 - 90)}px`,
+    );
+    particula.style.setProperty(
+      "--giro",
+      `${Math.round(Math.random() * 900 - 450)}deg`,
+    );
+    particula.style.setProperty(
+      "--retardo",
+      `${Math.round(Math.random() * 300)}ms`,
+    );
+    efectoVictoria.appendChild(particula);
+  }
+  temporizadorConfeti = setTimeout(
+    () => efectoVictoria.replaceChildren(),
+    2600,
+  );
+}
+
+function cancelarCelebracion() {
+  animacionEncuadre?.cancel();
+  animacionEncuadre = null;
+  clearTimeout(temporizadorConfeti);
+  efectoVictoria.replaceChildren();
+  lienzo.style.transform = "";
+}
+
+function celebrarVictoria() {
+  if (victoriaEnCurso) return;
+  victoriaEnCurso = true;
+  const escalaAnterior = state.escala;
+  encajarZoom();
+  dibujarTablero();
+  actualizarZoom();
+  centrarLienzo();
+
+  const escalaInicial = escalaAnterior / state.escala;
+  const movimientoReducido = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (
+    !movimientoReducido &&
+    escalaInicial > 1.01 &&
+    typeof lienzo.animate === "function"
+  ) {
+    animacionEncuadre = lienzo.animate(
+      [
+        {
+          transform: `scale(${escalaInicial})`,
+          filter: "brightness(1) saturate(1)",
+        },
+        { transform: "scale(1)", filter: "brightness(1.08) saturate(1.3)" },
+        { transform: "scale(1)", filter: "brightness(1) saturate(1)" },
+      ],
+      { duration: 1150, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" },
+    );
+  }
+  crearConfeti();
 }
 
 btnDeshacer.addEventListener("click", () => aplicarHistorial(deshacerPintado));

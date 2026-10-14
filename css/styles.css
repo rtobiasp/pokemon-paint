@@ -185,9 +185,9 @@ canvas {
 .color-btn {
   position: relative;
   display: flex;
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -203,8 +203,8 @@ canvas {
 .color-btn.activo { border-color: var(--ink); box-shadow: 0 0 0 2px var(--accent); }
 .color-btn.completado { border-color: #31a56d; opacity: 0.78; }
 .color-btn:disabled { cursor: default; }
-.color-btn .num { font-size: 17px; line-height: 1; }
-.color-btn .restantes { margin-top: 2px; font-size: 9px; line-height: 1; font-variant-numeric: tabular-nums; }
+.color-btn .num { font-size: 19px; line-height: 1; }
+.color-btn .restantes { margin-top: 3px; font-size: 10px; line-height: 1; font-variant-numeric: tabular-nums; }
 .color-btn .num::after { content: ""; }
 .color-btn.completado .num::after { content: " ✓"; }
 .color-btn .mini-bar {
@@ -231,6 +231,30 @@ canvas {
   box-shadow: 0 4px 16px rgba(25, 40, 31, 0.22);
   white-space: nowrap;
 }
+.efecto-victoria {
+  position: fixed;
+  z-index: 6;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.particula-confeti {
+  position: absolute;
+  top: -18px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: caer-confeti 2s var(--retardo) cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
+}
+@keyframes caer-confeti {
+  0% { opacity: 0; transform: translate3d(0, -12px, 0) rotate(0); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(var(--deriva), 105vh, 0) rotate(var(--giro)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .particula-confeti { animation-duration: 900ms; }
+}
 
 @media (max-width: 760px) {
   .barra-superior {
@@ -255,10 +279,10 @@ canvas {
   .paleta-dock { padding: 6px 10px calc(6px + env(safe-area-inset-bottom)); }
   .victoria { right: 10px; font-size: 10px; }
   .paleta { gap: 7px; }
-  .color-btn { width: 52px; height: 54px; flex-basis: 52px; }
-  .color-btn .num { font-size: 14px; }
-  .color-btn .restantes { font-size: 8px; }
-  .color-btn .mini-bar { height: 4px; }
+  .color-btn { width: 64px; height: 66px; flex-basis: 64px; }
+  .color-btn .num { font-size: 17px; }
+  .color-btn .restantes { font-size: 9px; }
+  .color-btn .mini-bar { height: 5px; }
   .aviso-juego { bottom: calc(86px + env(safe-area-inset-bottom)); }
 }
 
