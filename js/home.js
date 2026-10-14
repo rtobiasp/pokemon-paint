@@ -1,28 +1,35 @@
-import {
-  obtenerPaginaPokemon,
-  obtenerPokemonAleatorio,
-  TOTAL_POKEMON,
-} from "./pokeApi.js";
+import { obtenerPaginaPokemon, TOTAL_POKEMON } from "./pokeApi.js";
 
 const grid = document.getElementById("pokemonGrid");
 const resumen = document.getElementById("resumenPagina");
-const etiquetaPagina = document.getElementById("paginaEtiqueta");
-const textoPagina = document.getElementById("paginaActual");
-const btnAnterior = document.getElementById("btnPaginaAnterior");
-const btnSiguiente = document.getElementById("btnPaginaSiguiente");
-const btnAleatorio = document.getElementById("btnAleatorioHome");
 const errorHome = document.getElementById("errorHome");
+const cargaInfinita = document.getElementById("cargaInfinita");
 
 const TAMANO_PAGINA = 12;
 const CLAVE_PROGRESO = "pokemon-paint-progreso";
+const UMBRAL_TRANSPARENCIA = 128;
 const parametros = new URLSearchParams(window.location.search);
+const pokemonSolicitado = Number(parametros.get("pokemon"));
 const paginaSolicitada = Number(parametros.get("pagina"));
-let paginaActual =
-  Number.isInteger(paginaSolicitada) && paginaSolicitada > 0
+const pokemonRestaurado =
+  Number.isInteger(pokemonSolicitado) &&
+  pokemonSolicitado > 0 &&
+  pokemonSolicitado <= TOTAL_POKEMON
+    ? pokemonSolicitado
+    : null;
+const paginaInicial = pokemonRestaurado
+  ? Math.ceil(pokemonRestaurado / TAMANO_PAGINA)
+  : Number.isInteger(paginaSolicitada) && paginaSolicitada > 0
     ? paginaSolicitada
     : 1;
+let paginaActual = Math.min(
+  Math.max(0, paginaInicial - 1),
+  Math.ceil(TOTAL_POKEMON / TAMANO_PAGINA) - 1,
+);
 let totalPokemons = TOTAL_POKEMON;
 let pokemons = [];
+let cargando = false;
+let cargaFinalizada = false;
 
 function leerProgresos() {
   try {
@@ -39,6 +46,82 @@ function nombreLegible(nombre) {
     .join(" ");
 }
 
+function mostrarProgresoEnMiniatura(imagen, progreso) {
+  const pintadas = progreso?.pintadas;
+  if (progreso?.completado) return;
+  if (!Array.isArray(pintadas) || pintadas.length === 0) {
+    imagen.classList.add("sin-colorear");
+    return;
+  }
+
+  imagen.addEventListener(
+    "load",
+    () => {
+      const lienzo = document.createElement("canvas");
+      lienzo.width = imagen.naturalWidth;
+      lienzo.height = imagen.naturalHeight;
+      const contexto = lienzo.getContext("2d", { willReadFrequently: true });
+      if (!contexto) return;
+      contexto.drawImage(imagen, 0, 0);
+
+      let datos;
+      try {
+        datos = contexto.getImageData(0, 0, lienzo.width, lienzo.height);
+      } catch {
+        imagen.classList.add("sin-colorear");
+        return;
+      }
+
+      let minimoX = lienzo.width;
+      let minimoY = lienzo.height;
+      let maximoX = -1;
+      let maximoY = -1;
+      for (let y = 0; y < lienzo.height; y++) {
+        for (let x = 0; x < lienzo.width; x++) {
+          const alfa = datos.data[(y * lienzo.width + x) * 4 + 3];
+          if (alfa < UMBRAL_TRANSPARENCIA) continue;
+          minimoX = Math.min(minimoX, x);
+          minimoY = Math.min(minimoY, y);
+          maximoX = Math.max(maximoX, x);
+          maximoY = Math.max(maximoY, y);
+        }
+      }
+
+      const ancho = maximoX - minimoX + 1;
+      const alto = maximoY - minimoY + 1;
+      if (ancho !== progreso.ancho || alto !== progreso.alto) {
+        imagen.classList.add("sin-colorear");
+        return;
+      }
+
+      const indicesPintados = new Set(pintadas);
+      for (let y = 0; y < alto; y++) {
+        for (let x = 0; x < ancho; x++) {
+          if (indicesPintados.has(y * ancho + x)) continue;
+          const indice = ((y + minimoY) * lienzo.width + x + minimoX) * 4;
+          const gris = Math.round(
+            datos.data[indice] * 0.299 +
+              datos.data[indice + 1] * 0.587 +
+              datos.data[indice + 2] * 0.114,
+          );
+          datos.data[indice] = gris;
+          datos.data[indice + 1] = gris;
+          datos.data[indice + 2] = gris;
+        }
+      }
+      contexto.putImageData(datos, 0, 0);
+      lienzo.className = imagen.className;
+      lienzo.setAttribute("role", "img");
+      lienzo.setAttribute("aria-label", imagen.alt || "");
+      imagen.replaceWith(lienzo);
+    },
+    { once: true },
+  );
+  if (imagen.complete && imagen.naturalWidth > 0) {
+    imagen.dispatchEvent(new Event("load"));
+  }
+}
+
 function crearTarjeta(pokemon, progresos) {
   const progreso = progresos[pokemon.numero];
   const pintadas = progreso?.pintadas?.length || 0;
@@ -46,7 +129,8 @@ function crearTarjeta(pokemon, progresos) {
   const enCurso = !completado && pintadas > 0;
   const tarjeta = document.createElement("a");
   tarjeta.className = "pokemon-card";
-  tarjeta.href = `pintar.html?pokemon=${pokemon.numero}&pagina=${paginaActual}`;
+  tarjeta.dataset.pokemon = String(pokemon.numero);
+  tarjeta.href = `pintar.html?pokemon=${pokemon.numero}`;
   tarjeta.setAttribute(
     "aria-label",
     `#${pokemon.numero} ${nombreLegible(pokemon.nombre)}, ${completado ? "completado" : enCurso ? "en curso" : "por empezar"}`,
@@ -55,9 +139,12 @@ function crearTarjeta(pokemon, progresos) {
   const marco = document.createElement("span");
   marco.className = "pokemon-art";
   const imagen = document.createElement("img");
-  imagen.src = pokemon.imagen;
   imagen.alt = "";
   imagen.loading = "lazy";
+  imagen.crossOrigin = "anonymous";
+  imagen.classList.add("pokemon-thumbnail");
+  mostrarProgresoEnMiniatura(imagen, progreso);
+  imagen.src = pokemon.imagen;
   marco.appendChild(imagen);
 
   const datos = document.createElement("span");
@@ -100,55 +187,82 @@ function mostrarTarjetas() {
   );
 }
 
-async function cargarPagina(pagina = paginaActual) {
+async function cargarMasPokemon() {
+  if (cargando || cargaFinalizada) return;
+  const pagina = paginaActual + 1;
   const ultimaPagina = Math.ceil(totalPokemons / TAMANO_PAGINA);
-  paginaActual = Math.min(Math.max(1, pagina), ultimaPagina);
+  if (pagina > ultimaPagina) {
+    cargaFinalizada = true;
+    cargaInfinita.textContent = "Has llegado al final.";
+    return;
+  }
+
+  cargando = true;
   grid.setAttribute("aria-busy", "true");
-  resumen.textContent = "Cargando colección...";
+  cargaInfinita.textContent = pokemons.length
+    ? "Cargando más Pokémon..."
+    : "Cargando colección...";
   errorHome.hidden = true;
-  btnAnterior.disabled = true;
-  btnSiguiente.disabled = true;
   try {
-    const resultado = await obtenerPaginaPokemon(paginaActual, TAMANO_PAGINA);
+    const resultado = await obtenerPaginaPokemon(pagina, TAMANO_PAGINA);
     totalPokemons = resultado.total;
-    pokemons = resultado.pokemon;
-    if (pokemons.length === 0 && paginaActual > 1) {
-      return cargarPagina(paginaActual - 1);
+    if (resultado.pokemon.length === 0) {
+      cargaFinalizada = true;
+      cargaInfinita.textContent = "Has llegado al final.";
+      return;
     }
-    const primero = (paginaActual - 1) * TAMANO_PAGINA + 1;
-    const ultimo = Math.min(primero + pokemons.length - 1, totalPokemons);
-    resumen.textContent = `${primero}–${ultimo} de ${totalPokemons}`;
-    etiquetaPagina.textContent = `Página ${paginaActual}`;
-    textoPagina.textContent = String(paginaActual);
-    btnAnterior.disabled = paginaActual === 1;
-    btnSiguiente.disabled = ultimo >= totalPokemons;
-    mostrarTarjetas();
+    paginaActual = pagina;
+    pokemons.push(...resultado.pokemon);
+    resumen.textContent = `${pokemons.length} de ${totalPokemons} Pokémon`;
+    grid.append(
+      ...resultado.pokemon.map((pokemon) =>
+        crearTarjeta(pokemon, leerProgresos()),
+      ),
+    );
+    if (
+      pokemonRestaurado &&
+      resultado.pokemon.some(({ numero }) => numero === pokemonRestaurado)
+    ) {
+      requestAnimationFrame(() => {
+        grid
+          .querySelector(`[data-pokemon="${pokemonRestaurado}"]`)
+          ?.scrollIntoView({ block: "center" });
+      });
+    }
+    if (paginaActual >= Math.ceil(totalPokemons / TAMANO_PAGINA)) {
+      cargaFinalizada = true;
+      cargaInfinita.textContent = "Has llegado al final.";
+    } else {
+      cargaInfinita.textContent = "";
+    }
   } catch {
-    resumen.textContent = "";
     errorHome.textContent =
       "No se pudo cargar la Pokédex. Comprueba tu conexión e inténtalo de nuevo.";
     errorHome.hidden = false;
-    grid.replaceChildren();
   } finally {
     grid.removeAttribute("aria-busy");
+    cargando = false;
   }
 }
 
-btnAnterior.addEventListener("click", () => cargarPagina(paginaActual - 1));
-btnSiguiente.addEventListener("click", () => cargarPagina(paginaActual + 1));
-btnAleatorio.addEventListener("click", async () => {
-  btnAleatorio.disabled = true;
-  try {
-    const pokemon = await obtenerPokemonAleatorio();
-    window.location.href = `pintar.html?pokemon=${pokemon.numero}&pagina=${paginaActual}`;
-  } catch {
-    errorHome.textContent =
-      "No se pudo elegir un Pokémon. Comprueba tu conexión e inténtalo de nuevo.";
-    errorHome.hidden = false;
-  } finally {
-    btnAleatorio.disabled = false;
-  }
-});
+if ("IntersectionObserver" in window) {
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      if (entradas.some((entrada) => entrada.isIntersecting)) {
+        cargarMasPokemon();
+      }
+    },
+    { root: document.querySelector(".home-view"), rootMargin: "500px 0px" },
+  );
+  observador.observe(cargaInfinita);
+} else {
+  document.querySelector(".home-view").addEventListener("scroll", () => {
+    if (cargaInfinita.getBoundingClientRect().top < window.innerHeight + 500) {
+      cargarMasPokemon();
+    }
+  });
+}
+
 window.addEventListener("pageshow", mostrarTarjetas);
 
-cargarPagina();
+cargarMasPokemon();

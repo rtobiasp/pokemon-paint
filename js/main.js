@@ -154,6 +154,7 @@ async function mostrarSprite(origen, pokemon) {
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
   pokemonActual = pokemon.numero;
+  btnVolverHome.href = `index.html?pokemon=${pokemonActual}`;
   restaurarProgreso(pokemonActual);
   state.colorSeleccionado = siguienteColorIncompleto();
   crearPaleta(contenedorPaleta, mensajeVictoria);
@@ -655,8 +656,7 @@ btnAleatorio.addEventListener("click", () => {
 
 const parametros = new URLSearchParams(window.location.search);
 const numeroPokemon = Number(parametros.get("pokemon"));
-const paginaOrigen = Math.max(1, Number(parametros.get("pagina")) || 1);
-btnVolverHome.href = `index.html?pagina=${paginaOrigen}`;
+btnVolverHome.href = "index.html";
 window.addEventListener("pagehide", guardarProgresoActual);
 if (
   Number.isInteger(numeroPokemon) &&

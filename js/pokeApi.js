@@ -33,7 +33,7 @@ export async function obtenerPaginaPokemon(pagina, cantidad = 12) {
         return {
           numero,
           nombre: resultado.name,
-          imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${numero}.png`,
+          imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numero}.png`,
         };
       })
       .filter(Boolean),

@@ -17,44 +17,22 @@
             ></span>
             <span>Pokémon Paint</span>
           </div>
-          <div class="home-heading">
-            <span class="home-eyebrow">TU POKÉDEX PARA COLOREAR</span>
-            <h1>Elige tu próximo Pokémon</h1>
-            <p>Una colección de sprites, un color cada vez.</p>
-          </div>
-          <button type="button" id="btnAleatorioHome" class="home-random">
-            Sorpréndeme
-          </button>
         </header>
 
         <section class="pokedex-section" aria-label="Pokémon disponibles">
           <div class="pokedex-toolbar">
             <div>
-              <h2>Pokédex</h2>
               <p id="resumenPagina">Cargando colección...</p>
             </div>
-            <div class="pokedex-page-label" id="paginaEtiqueta">Página 1</div>
           </div>
           <div id="pokemonGrid" class="pokemon-grid" aria-live="polite"></div>
           <p id="errorHome" class="home-error" role="alert" hidden></p>
-          <nav class="paginacion" aria-label="Paginación de Pokémon">
-            <button
-              type="button"
-              id="btnPaginaAnterior"
-              aria-label="Página anterior"
-              disabled
-            >
-              ←
-            </button>
-            <span id="paginaActual">1</span>
-            <button
-              type="button"
-              id="btnPaginaSiguiente"
-              aria-label="Página siguiente"
-            >
-              →
-            </button>
-          </nav>
+          <div
+            id="cargaInfinita"
+            class="carga-infinita"
+            role="status"
+            aria-live="polite"
+          ></div>
         </section>
       </main>
     </div>
