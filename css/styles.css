@@ -183,7 +183,7 @@ body {
   gap: 8px;
 }
 .pokeapi label { color: var(--muted); font-size: 12px; white-space: nowrap; }
-.pokeapi button, .zoom button, .historial-controles button {
+.pokeapi button, .zoom button, .historial-controles button, .toolbar-acciones > button {
   height: 36px;
   border: 1px solid var(--line);
   border-radius: 7px;
@@ -195,7 +195,7 @@ body {
   cursor: pointer;
 }
 .pokeapi button { padding: 0 13px; }
-.pokeapi button:hover, .zoom button:hover, .historial-controles button:hover:not(:disabled) { border-color: #aebdb3; background: #f5f8f6; }
+.pokeapi button:hover, .zoom button:hover, .historial-controles button:hover:not(:disabled), .toolbar-acciones > button:hover:not(:disabled) { border-color: #aebdb3; background: #f5f8f6; }
 .pokeapi button:disabled { opacity: 0.6; cursor: wait; }
 #btnPorNumero { border-color: var(--accent); background: var(--accent); color: #fff; }
 #btnPorNumero:hover { background: var(--accent-dark); }
@@ -210,6 +210,7 @@ body {
 }
 .error { margin: 4px 0 0; color: #b42318; font-size: 12px; font-weight: 700; text-align: center; }
 .toolbar-acciones { display: flex; align-items: center; gap: 10px; }
+.toolbar-acciones > button { width: 36px; padding: 0; font-size: 20px; }
 .historial-controles { display: flex; align-items: center; gap: 4px; }
 .historial-controles button { width: 34px; padding: 0; font-size: 19px; }
 .historial-controles button:disabled { color: #aab5ad; cursor: not-allowed; }
@@ -387,6 +388,7 @@ canvas {
   .zoom button { height: 32px; min-width: 32px; padding: 0 7px; font-size: 12px; }
   .zoom button:first-child, .zoom button:nth-of-type(2) { width: 32px; font-size: 18px; }
   .zoom span { min-width: 38px; font-size: 11px; }
+  .toolbar-acciones > button { width: 32px; height: 32px; }
   .pokeapi { justify-content: flex-start; gap: 6px; }
   .pokeapi button { height: 34px; padding: 0 9px; font-size: 12px; }
   .pokeapi label { font-size: 11px; }
@@ -416,6 +418,7 @@ canvas {
   .marca h1 { font-size: 15px; }
   .toolbar-acciones { gap: 3px; }
   .historial-controles button,
+  .toolbar-acciones > button,
   .zoom button:first-child,
   .zoom button:nth-of-type(2) { width: 26px; min-width: 26px; }
   .zoom { gap: 2px; }

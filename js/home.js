@@ -1,7 +1,6 @@
 import { obtenerPaginaPokemon, TOTAL_POKEMON } from "./pokeApi.js";
 
 const grid = document.getElementById("pokemonGrid");
-const resumen = document.getElementById("resumenPagina");
 const errorHome = document.getElementById("errorHome");
 const cargaInfinita = document.getElementById("cargaInfinita");
 
@@ -213,7 +212,6 @@ async function cargarMasPokemon() {
     }
     paginaActual = pagina;
     pokemons.push(...resultado.pokemon);
-    resumen.textContent = `${pokemons.length} de ${totalPokemons} Pokémon`;
     grid.append(
       ...resultado.pokemon.map((pokemon) =>
         crearTarjeta(pokemon, leerProgresos()),

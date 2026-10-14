@@ -38,6 +38,7 @@ const progresoBarra = document.getElementById("progresoBarra");
 const progresoTexto = document.getElementById("progresoTexto");
 const btnDeshacer = document.getElementById("btnDeshacer");
 const btnRehacer = document.getElementById("btnRehacer");
+const btnReiniciar = document.getElementById("btnReiniciar");
 const avisoJuego = document.getElementById("avisoJuego");
 const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
@@ -92,6 +93,15 @@ function guardarProgresoActual() {
     }
   }
   const total = totalCeldasPintables();
+  if (pintadas.length === 0) {
+    delete progreso[pokemonActual];
+    try {
+      localStorage.setItem(CLAVE_PROGRESO, JSON.stringify(progreso));
+    } catch {
+      mostrarAviso("No se pudo guardar el progreso en este dispositivo.");
+    }
+    return;
+  }
   progreso[pokemonActual] = {
     ancho: state.ancho,
     alto: state.alto,
@@ -142,6 +152,7 @@ async function mostrarSprite(origen, pokemon) {
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
   pokemonActual = pokemon.numero;
+  btnReiniciar.disabled = false;
   btnVolverHome.href = `index.html?pokemon=${pokemonActual}`;
   restaurarProgreso(pokemonActual);
   state.colorSeleccionado = siguienteColorIncompleto();
@@ -203,6 +214,36 @@ function actualizarProgresoGlobal() {
 function actualizarControlesHistorial() {
   btnDeshacer.disabled = state.historialPintado.length === 0;
   btnRehacer.disabled = state.historialRehacer.length === 0;
+}
+
+function reiniciarProgresoPokemon() {
+  if (
+    pokemonActual === null ||
+    !hayDibujo() ||
+    !window.confirm(`¿Reiniciar el progreso de ${infoPokemon.textContent}?`)
+  ) {
+    return;
+  }
+  clearTimeout(temporizadorGuardado);
+  for (const fila of state.matriz) {
+    for (const celda of fila) {
+      celda.pintado = false;
+    }
+  }
+  for (const numero of Object.keys(state.pintados)) {
+    state.pintados[numero] = 0;
+  }
+  state.historialPintado = [];
+  state.historialRehacer = [];
+  state.colorSeleccionado = siguienteColorIncompleto();
+  cancelarCelebracion();
+  victoriaEnCurso = false;
+  dibujarTablero();
+  actualizarProgreso(contenedorPaleta, mensajeVictoria);
+  sincronizarActivos(contenedorPaleta);
+  actualizarProgresoGlobal();
+  actualizarControlesHistorial();
+  guardarProgresoActual();
 }
 
 function mostrarAviso(texto) {
@@ -324,6 +365,7 @@ function celebrarVictoria() {
 
 btnDeshacer.addEventListener("click", () => aplicarHistorial(deshacerPintado));
 btnRehacer.addEventListener("click", () => aplicarHistorial(rehacerPintado));
+btnReiniciar.addEventListener("click", reiniciarProgresoPokemon);
 
 window.addEventListener("keydown", (evento) => {
   if (escribiendo(evento) || (!evento.ctrlKey && !evento.metaKey)) {
