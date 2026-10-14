@@ -1,4 +1,8 @@
-export const ESCALA = 28;
+export const ESCALA_BASE = 28;
+export const ESCALA_MINIMA = 3;
+export const ESCALA_MAXIMA = 128;
+export const PASO_ZOOM = 1.25;
+export const UMBRAL_NUMERO = 14;
 export const UMBRAL_TRANSPARENCIA = 128;
 export const COLOR_FONDO_CELDA = "#ffffff";
 export const COLOR_BORDE_CELDA = "#e0e0e0";

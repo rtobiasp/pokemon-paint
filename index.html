@@ -7,32 +7,69 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header class="cabecera">
-      <h1>Pokémon Paint</h1>
-      <p>Colorea el sprite por números</p>
-    </header>
+    <div class="app-shell">
+      <header class="barra-superior">
+        <div class="marca">
+          <span class="marca-icono" aria-hidden="true"
+            ><i></i><i></i><i></i
+          ></span>
+          <div class="marca-texto">
+            <h1>Pokémon Paint</h1>
+            <p id="infoPokemon" class="info-pokemon"></p>
+          </div>
+        </div>
 
-    <section class="controles">
-      <div class="pokeapi">
-        <button type="button" id="btnAleatorio">Aleatorio</button>
-        <label>
-          Nº Pokédex
-          <input type="number" id="inputNumero" min="1" max="1025" value="25" />
-        </label>
-        <button type="button" id="btnPorNumero">Cargar</button>
-      </div>
-      <p id="infoPokemon" class="info-pokemon"></p>
-      <p id="errorPokemon" class="error" hidden></p>
-    </section>
+        <section class="controles" aria-label="Cargar Pokémon">
+          <div class="pokeapi">
+            <button type="button" id="btnAleatorio">Aleatorio</button>
+            <label for="inputNumero">Nº Pokédex</label>
+            <input
+              type="number"
+              id="inputNumero"
+              min="1"
+              max="1025"
+              value="25"
+            />
+            <button type="button" id="btnPorNumero">Cargar</button>
+          </div>
+          <p id="errorPokemon" class="error" hidden></p>
+        </section>
 
-    <div id="paleta" class="paleta"></div>
+        <div class="zoom" aria-label="Controles de zoom">
+          <button
+            type="button"
+            id="btnZoomMenos"
+            aria-label="Alejar"
+            title="Alejar"
+          >
+            −
+          </button>
+          <span id="zoomNivel">100%</span>
+          <button
+            type="button"
+            id="btnZoomMas"
+            aria-label="Acercar"
+            title="Acercar"
+          >
+            +
+          </button>
+          <button type="button" id="btnZoomAjustar">Ajustar</button>
+        </div>
+      </header>
 
-    <div class="tablero-contenedor">
-      <canvas id="lienzoJuego"></canvas>
-    </div>
+      <main class="tablero-contenedor" aria-label="Lienzo para colorear">
+        <div class="tablero-superficie">
+          <canvas
+            id="lienzoJuego"
+            aria-label="Imagen Pokémon para colorear"
+          ></canvas>
+        </div>
+      </main>
 
-    <div id="mensaje-victoria" class="victoria" hidden>
-      ¡Completado! ¡Buen trabajo!
+      <section class="paleta-dock" aria-label="Paleta de colores">
+        <div id="paleta" class="paleta"></div>
+        <div id="mensaje-victoria" class="victoria" hidden>¡Completado!</div>
+      </section>
     </div>
 
     <script type="module" src="js/main.js"></script>

@@ -1,3 +1,5 @@
+import { ESCALA_BASE } from "./config.js";
+
 export const state = {
   matriz: [],
   paletaColores: {},
@@ -7,7 +9,8 @@ export const state = {
   colorSeleccionado: null,
   pintando: false,
   ancho: 0,
-  alto: 0
+  alto: 0,
+  escala: ESCALA_BASE
 };
 
 export function reiniciarEstado() {
@@ -20,6 +23,7 @@ export function reiniciarEstado() {
   state.pintando = false;
   state.ancho = 0;
   state.alto = 0;
+  state.escala = ESCALA_BASE;
 }
 
 export function hayDibujo() {

@@ -1,9 +1,12 @@
 import {
-  ESCALA,
+  ESCALA_BASE,
+  ESCALA_MINIMA,
+  ESCALA_MAXIMA,
   COLOR_FONDO_CELDA,
   COLOR_BORDE_CELDA,
   COLOR_NUMERO,
-  COLOR_FONDO_RESALTADO
+  COLOR_FONDO_RESALTADO,
+  UMBRAL_NUMERO,
 } from "./config.js";
 import { state } from "./state.js";
 
@@ -15,6 +18,63 @@ export function configurarLienzo(elemento) {
   ctx = elemento.getContext("2d");
 }
 
+export function grisDe(rgb, factor) {
+  const valores = rgb.slice(4, -1).split(",").map(Number);
+  const luminosidad = Math.round(
+    0.299 * valores[0] + 0.587 * valores[1] + 0.114 * valores[2],
+  );
+  const tono = Math.max(0, Math.min(255, Math.round(luminosidad * factor)));
+  return `rgb(${tono},${tono},${tono})`;
+}
+
+function limitarEscala(valor) {
+  return Math.min(ESCALA_MAXIMA, Math.max(ESCALA_MINIMA, Math.round(valor)));
+}
+
+export function zoomAnclado(factor, clienteX, clienteY) {
+  const contenedor = lienzo.closest(".tablero-contenedor");
+  const rect = lienzo.getBoundingClientRect();
+  const rectContenedor = contenedor.getBoundingClientRect();
+  const proporcionX = rect.width ? (clienteX - rect.left) / rect.width : 0.5;
+  const proporcionY = rect.height ? (clienteY - rect.top) / rect.height : 0.5;
+  const viewportX = clienteX - rectContenedor.left - contenedor.clientLeft;
+  const viewportY = clienteY - rectContenedor.top - contenedor.clientTop;
+  state.escala = limitarEscala(state.escala * factor);
+  dibujarTablero();
+  const rectLienzoNuevo = lienzo.getBoundingClientRect();
+  const lienzoX =
+    rectLienzoNuevo.left -
+    rectContenedor.left -
+    contenedor.clientLeft +
+    contenedor.scrollLeft;
+  const lienzoY =
+    rectLienzoNuevo.top -
+    rectContenedor.top -
+    contenedor.clientTop +
+    contenedor.scrollTop;
+  contenedor.scrollLeft = lienzoX + proporcionX * lienzo.width - viewportX;
+  contenedor.scrollTop = lienzoY + proporcionY * lienzo.height - viewportY;
+}
+
+export function encajarZoom() {
+  const contenedor = lienzo.closest(".tablero-contenedor");
+  const anchoDisponible =
+    contenedor.clientWidth || contenedor.getBoundingClientRect().width;
+  const altoDisponible =
+    contenedor.clientHeight || contenedor.getBoundingClientRect().height;
+  state.escala = limitarEscala(
+    Math.min(
+      Math.floor(anchoDisponible / state.ancho),
+      Math.floor(altoDisponible / state.alto),
+      ESCALA_BASE,
+    ),
+  );
+}
+
+export function porcentajeZoom() {
+  return Math.round((state.escala / ESCALA_BASE) * 100);
+}
+
 function esResaltada(celda) {
   return (
     state.colorSeleccionado !== null &&
@@ -24,8 +84,8 @@ function esResaltada(celda) {
 }
 
 export function dibujarTablero() {
-  lienzo.width = state.ancho * ESCALA;
-  lienzo.height = state.alto * ESCALA;
+  lienzo.width = Math.max(1, Math.round(state.ancho * state.escala));
+  lienzo.height = Math.max(1, Math.round(state.alto * state.escala));
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (let y = 0; y < state.alto; y++) {
@@ -37,40 +97,44 @@ export function dibujarTablero() {
 
 export function dibujarCelda(x, y) {
   const celda = state.matriz[y][x];
-  const posX = x * ESCALA;
-  const posY = y * ESCALA;
+  const e = state.escala;
+  const posX = x * e;
+  const posY = y * e;
 
   if (celda.numero === 0) {
-    ctx.clearRect(posX, posY, ESCALA, ESCALA);
+    ctx.clearRect(posX, posY, e, e);
     return;
   }
 
   if (celda.pintado) {
     ctx.fillStyle = celda.color;
-    ctx.fillRect(posX, posY, ESCALA, ESCALA);
+    ctx.fillRect(posX, posY, e, e);
     return;
   }
 
-  if (esResaltada(celda)) {
-    ctx.fillStyle = COLOR_FONDO_RESALTADO;
-    ctx.fillRect(posX, posY, ESCALA, ESCALA);
+  const resaltada = esResaltada(celda);
+  const modoGris = e < UMBRAL_NUMERO;
+
+  if (modoGris) {
+    ctx.fillStyle = resaltada
+      ? grisDe(celda.color, 0.55)
+      : grisDe(celda.color, 1);
+  } else {
+    ctx.fillStyle = resaltada ? COLOR_FONDO_RESALTADO : COLOR_FONDO_CELDA;
+  }
+  ctx.fillRect(posX, posY, e, e);
+
+  if (e >= 5) {
     ctx.lineWidth = 1;
-    ctx.strokeStyle = COLOR_BORDE_CELDA;
-    ctx.strokeRect(posX + 0.5, posY + 0.5, ESCALA - 1, ESCALA - 1);
-    ctx.fillStyle = COLOR_NUMERO;
-    ctx.font = `${ESCALA * 0.45}px sans-serif`;
-    ctx.fillText(celda.numero, posX + ESCALA / 2, posY + ESCALA / 2);
-    return;
+    ctx.strokeStyle = modoGris && resaltada ? "#555555" : COLOR_BORDE_CELDA;
+    ctx.strokeRect(posX + 0.5, posY + 0.5, e - 1, e - 1);
   }
 
-  ctx.fillStyle = COLOR_FONDO_CELDA;
-  ctx.fillRect(posX, posY, ESCALA, ESCALA);
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = COLOR_BORDE_CELDA;
-  ctx.strokeRect(posX + 0.5, posY + 0.5, ESCALA - 1, ESCALA - 1);
-  ctx.fillStyle = COLOR_NUMERO;
-  ctx.font = `${ESCALA * 0.45}px sans-serif`;
-  ctx.fillText(celda.numero, posX + ESCALA / 2, posY + ESCALA / 2);
+  if (!modoGris) {
+    ctx.fillStyle = COLOR_NUMERO;
+    ctx.font = `${e * 0.45}px sans-serif`;
+    ctx.fillText(celda.numero, posX + e / 2, posY + e / 2);
+  }
 }
 
 export function resaltarSeleccion() {
@@ -88,9 +152,10 @@ export function celdaDesdeEvento(evento) {
   const rect = lienzo.getBoundingClientRect();
   const escalaX = lienzo.width / rect.width;
   const escalaY = lienzo.height / rect.height;
-  const punto = evento.touches && evento.touches.length > 0 ? evento.touches[0] : evento;
-  const x = Math.floor(((punto.clientX - rect.left) * escalaX) / ESCALA);
-  const y = Math.floor(((punto.clientY - rect.top) * escalaY) / ESCALA);
+  const punto =
+    evento.touches && evento.touches.length > 0 ? evento.touches[0] : evento;
+  const x = Math.floor(((punto.clientX - rect.left) * escalaX) / state.escala);
+  const y = Math.floor(((punto.clientY - rect.top) * escalaY) / state.escala);
   if (y < 0 || y >= state.alto || x < 0 || x >= state.ancho) {
     return null;
   }
