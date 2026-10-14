@@ -12,6 +12,7 @@ import { state } from "./state.js";
 
 let lienzo = null;
 let ctx = null;
+const cacheGris = new Map();
 
 export function configurarLienzo(elemento) {
   lienzo = elemento;
@@ -19,12 +20,17 @@ export function configurarLienzo(elemento) {
 }
 
 export function grisDe(rgb, factor) {
+  const clave = `${rgb}|${factor}`;
+  const guardado = cacheGris.get(clave);
+  if (guardado) return guardado;
   const valores = rgb.slice(4, -1).split(",").map(Number);
   const luminosidad = Math.round(
     0.299 * valores[0] + 0.587 * valores[1] + 0.114 * valores[2],
   );
   const tono = Math.max(0, Math.min(255, Math.round(luminosidad * factor)));
-  return `rgb(${tono},${tono},${tono})`;
+  const resultado = `rgb(${tono},${tono},${tono})`;
+  cacheGris.set(clave, resultado);
+  return resultado;
 }
 
 function limitarEscala(valor) {

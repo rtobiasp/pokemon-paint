@@ -50,6 +50,7 @@ const punterosTactiles = new Map();
 let inicioToque = null;
 let gestoMultidedo = null;
 let huboMultidedo = false;
+let frameGestoMultidedo = null;
 
 configurarLienzo(lienzo);
 
@@ -350,6 +351,21 @@ function actualizarGestoMultidedo() {
   };
 }
 
+function programarGestoMultidedo() {
+  if (frameGestoMultidedo !== null) return;
+  frameGestoMultidedo = requestAnimationFrame(() => {
+    frameGestoMultidedo = null;
+    actualizarGestoMultidedo();
+  });
+}
+
+function procesarGestoPendiente() {
+  if (frameGestoMultidedo === null) return;
+  cancelAnimationFrame(frameGestoMultidedo);
+  frameGestoMultidedo = null;
+  actualizarGestoMultidedo();
+}
+
 lienzo.addEventListener("pointermove", (evento) => {
   if (paneo) {
     contenedorTablero.scrollLeft = paneo.izquierda - (evento.clientX - paneo.x);
@@ -366,7 +382,7 @@ lienzo.addEventListener("pointermove", (evento) => {
     });
     if (punterosTactiles.size >= 2) {
       if (!gestoMultidedo) iniciarGestoMultidedo();
-      else actualizarGestoMultidedo();
+      else programarGestoMultidedo();
       return;
     }
     if (huboMultidedo || !inicioToque) return;
@@ -393,6 +409,13 @@ lienzo.addEventListener("pointermove", (evento) => {
 function finalizarPuntero(evento) {
   if (evento.pointerType === "touch") {
     if (!punterosTactiles.has(evento.pointerId)) return;
+    if (evento.type === "pointerup") {
+      punterosTactiles.set(evento.pointerId, {
+        x: evento.clientX,
+        y: evento.clientY,
+      });
+    }
+    procesarGestoPendiente();
     if (
       evento.type === "pointerup" &&
       punterosTactiles.size === 1 &&
