@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#174733" />
-    <title>Pokémon Paint - Pokédex para colorear</title>
+    <meta name="theme-color" content="#252941" />
+    <meta
+      name="description"
+      content="Explora la Pokédex y colorea Pokémon píxel a píxel. Guarda tu progreso y completa colecciones a tu ritmo."
+    />
+    <title>PintaDex | Pokédex para colorear</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,10 +24,8 @@
       <main class="home-view">
         <header class="home-header">
           <div class="home-marca">
-            <span class="marca-icono" aria-hidden="true"
-              ><i></i><i></i><i></i
-            ></span>
-            <span>Pokémon Paint</span>
+            <img class="marca-icono" src="favicon.svg" alt="" />
+            <span>PintaDex</span>
           </div>
           <label class="pokemon-search">
             <span class="visually-hidden">Buscar Pokémon</span>
@@ -152,6 +156,12 @@
           ></div>
         </section>
       </main>
+      <footer class="home-footer">
+        Proyecto de fans sin afiliación oficial con Pokémon o Nintendo. Datos de
+        <a href="https://pokeapi.co/" target="_blank" rel="noreferrer"
+          >PokéAPI</a
+        >.
+      </footer>
     </div>
     <script type="module" src="js/home.js"></script>
   </body>

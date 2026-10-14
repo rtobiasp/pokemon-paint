@@ -154,6 +154,8 @@ body {
 .pokemon-card progress[hidden] { display: none; }
 .home-error { margin: 20px 0; color: #b42318; font-size: 13px; text-align: center; }
 .carga-infinita { min-height: 48px; display: grid; place-items: center; color: var(--muted); font-size: 12px; }
+.home-footer { max-width: 1168px; margin: 0 auto; padding: 0 24px 24px; color: var(--muted); font-size: 11px; text-align: center; }
+.home-footer a { color: var(--accent-dark); }
 
 /* A handheld-console palette ties the Pokédex and coloring canvas together. */
 .home-view {
@@ -173,10 +175,6 @@ body {
   font-size: 10px;
   line-height: 1.8;
 }
-.home-marca .marca-icono { filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.2)); }
-.marca-icono i:first-child { background: var(--water); }
-.marca-icono i:nth-child(2) { background: var(--electric); }
-.marca-icono i:last-child { background: var(--accent); }
 .pokemon-search input {
   min-height: 42px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -440,17 +438,12 @@ canvas {
   gap: 11px;
 }
 .marca-icono {
-  display: grid;
+  display: block;
   width: 34px;
   height: 34px;
   flex: none;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
-  transform: rotate(-7deg);
+  object-fit: contain;
 }
-.marca-icono i { display: block; border-radius: 3px; background: #f3c84b; }
-.marca-icono i:first-child { background: var(--accent); }
-.marca-icono i:last-child { background: #e86e59; }
 .marca-texto { min-width: 0; }
 .marca h1 { margin: 0; font-size: 17px; line-height: 1.1; }
 .info-pokemon {
