@@ -313,9 +313,16 @@ canvas {
   overflow: hidden;
   margin-top: 4px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.32);
 }
-.color-btn .mini-bar i { display: block; width: 0%; height: 100%; background: #fff; }
+.color-btn .mini-bar i {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+}
 .aviso-juego {
   position: fixed;
   z-index: 5;

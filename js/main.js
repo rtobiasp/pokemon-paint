@@ -5,11 +5,7 @@ import {
   totalCeldasPintables,
 } from "./state.js";
 import { cargarImagen, extraerMatriz } from "./imageProcessor.js";
-import {
-  obtenerPokemon,
-  obtenerPokemonAleatorio,
-  TOTAL_POKEMON,
-} from "./pokeApi.js";
+import { obtenerPokemon, TOTAL_POKEMON } from "./pokeApi.js";
 import {
   configurarLienzo,
   dibujarTablero,
@@ -32,9 +28,6 @@ import { PASO_ZOOM } from "./config.js";
 const lienzo = document.getElementById("lienzoJuego");
 const contenedorPaleta = document.getElementById("paleta");
 const mensajeVictoria = document.getElementById("mensaje-victoria");
-const btnAleatorio = document.getElementById("btnAleatorio");
-const btnPorNumero = document.getElementById("btnPorNumero");
-const inputNumero = document.getElementById("inputNumero");
 const infoPokemon = document.getElementById("infoPokemon");
 const errorPokemon = document.getElementById("errorPokemon");
 const btnZoomMenos = document.getElementById("btnZoomMenos");
@@ -139,11 +132,6 @@ function restaurarProgreso(numero) {
   }
 }
 
-function fijarCargando(cargando) {
-  btnAleatorio.disabled = cargando;
-  btnPorNumero.disabled = cargando;
-}
-
 function actualizarZoom() {
   zoomNivel.textContent = `${porcentajeZoom()}%`;
 }
@@ -168,7 +156,6 @@ async function mostrarSprite(origen, pokemon) {
 
 async function mostrarPokemon(promesa) {
   guardarProgresoActual();
-  fijarCargando(true);
   pintarError("");
   pintarInfo("Cargando...");
   try {
@@ -179,8 +166,6 @@ async function mostrarPokemon(promesa) {
     pintarError(
       "No se pudo cargar el Pokémon. Revisa tu conexión o el número.",
     );
-  } finally {
-    fijarCargando(false);
   }
 }
 
@@ -359,10 +344,6 @@ function escribiendo(evento) {
     destino && (destino.tagName === "INPUT" || destino.tagName === "TEXTAREA")
   );
 }
-
-btnPorNumero.addEventListener("click", () => {
-  mostrarPokemon(obtenerPokemon(Number(inputNumero.value)));
-});
 
 function centroVisible() {
   const rect = contenedorTablero.getBoundingClientRect();
@@ -649,10 +630,6 @@ function finalizarPuntero(evento) {
 lienzo.addEventListener("pointerup", finalizarPuntero);
 lienzo.addEventListener("pointercancel", finalizarPuntero);
 lienzo.addEventListener("lostpointercapture", finalizarPuntero);
-
-btnAleatorio.addEventListener("click", () => {
-  mostrarPokemon(obtenerPokemonAleatorio());
-});
 
 const parametros = new URLSearchParams(window.location.search);
 const numeroPokemon = Number(parametros.get("pokemon"));
