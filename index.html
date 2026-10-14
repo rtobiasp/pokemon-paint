@@ -13,22 +13,16 @@
     </header>
 
     <section class="controles">
-      <label class="subida">
-        <strong>Sube tu Pixel Art (16x16 o 32x32 px):</strong>
-        <input type="file" id="subirImagen" accept="image/png, image/gif" />
-      </label>
-      <div class="ejemplos">
-        <span>Prueba con:</span>
-        <button type="button" data-sprite="assets/sprites/pikachu-16.png">
-          Pikachu
-        </button>
-        <button type="button" data-sprite="assets/sprites/bulbasaur-16.png">
-          Bulbasaur
-        </button>
-        <button type="button" data-sprite="assets/sprites/charmander.png">
-          Charmander
-        </button>
+      <div class="pokeapi">
+        <button type="button" id="btnAleatorio">Aleatorio</button>
+        <label>
+          Nº Pokédex
+          <input type="number" id="inputNumero" min="1" max="1025" value="25" />
+        </label>
+        <button type="button" id="btnPorNumero">Cargar</button>
       </div>
+      <p id="infoPokemon" class="info-pokemon"></p>
+      <p id="errorPokemon" class="error" hidden></p>
     </section>
 
     <div id="paleta" class="paleta"></div>

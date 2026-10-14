@@ -1,40 +1,68 @@
 import { state, hayDibujo } from "./state.js";
 import { cargarImagen, extraerMatriz } from "./imageProcessor.js";
+import { obtenerPokemon, obtenerPokemonAleatorio } from "./pokeApi.js";
 import { configurarLienzo, dibujarTablero, intentarPintar } from "./board.js";
 import { crearPaleta, actualizarProgreso } from "./palette.js";
 
-const input = document.getElementById("subirImagen");
 const lienzo = document.getElementById("lienzoJuego");
 const contenedorPaleta = document.getElementById("paleta");
 const mensajeVictoria = document.getElementById("mensaje-victoria");
-const botonesEjemplo = document.querySelectorAll("[data-sprite]");
+const btnAleatorio = document.getElementById("btnAleatorio");
+const btnPorNumero = document.getElementById("btnPorNumero");
+const inputNumero = document.getElementById("inputNumero");
+const infoPokemon = document.getElementById("infoPokemon");
+const errorPokemon = document.getElementById("errorPokemon");
 
 configurarLienzo(lienzo);
 
-async function mostrarSprite(origen) {
+function pintarInfo(texto) {
+  infoPokemon.textContent = texto;
+}
+
+function pintarError(texto) {
+  errorPokemon.textContent = texto;
+  errorPokemon.hidden = texto === "";
+}
+
+function fijarCargando(cargando) {
+  btnAleatorio.disabled = cargando;
+  btnPorNumero.disabled = cargando;
+}
+
+async function mostrarSprite(origen, etiqueta) {
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
   state.colorSeleccionado = null;
   crearPaleta(contenedorPaleta, mensajeVictoria);
   dibujarTablero();
+  pintarInfo(etiqueta || "");
+}
+
+async function mostrarPokemon(promesa) {
+  fijarCargando(true);
+  pintarError("");
+  pintarInfo("Cargando...");
+  try {
+    const pokemon = await promesa;
+    await mostrarSprite(pokemon.imagen, `#${pokemon.numero} ${pokemon.nombre}`);
+  } catch (fallo) {
+    pintarInfo("");
+    pintarError("No se pudo cargar el Pokémon. Revisa tu conexión o el número.");
+  } finally {
+    fijarCargando(false);
+  }
 }
 
 function refrescarTrasPintar() {
   actualizarProgreso(contenedorPaleta, mensajeVictoria);
 }
 
-input.addEventListener("change", (evento) => {
-  const archivo = evento.target.files[0];
-  if (!archivo) {
-    return;
-  }
-  mostrarSprite(URL.createObjectURL(archivo));
+btnAleatorio.addEventListener("click", () => {
+  mostrarPokemon(obtenerPokemonAleatorio());
 });
 
-botonesEjemplo.forEach((boton) => {
-  boton.addEventListener("click", () => {
-    mostrarSprite(boton.dataset.sprite);
-  });
+btnPorNumero.addEventListener("click", () => {
+  mostrarPokemon(obtenerPokemon(Number(inputNumero.value)));
 });
 
 lienzo.addEventListener("mousedown", (evento) => {
@@ -74,5 +102,5 @@ lienzo.addEventListener("touchend", () => {
 });
 
 if (!hayDibujo()) {
-  mostrarSprite("assets/sprites/pikachu-16.png");
+  mostrarPokemon(obtenerPokemonAleatorio());
 }

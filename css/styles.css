@@ -23,16 +23,20 @@ body {
   gap: 10px;
   align-items: center;
 }
-.ejemplos { display: flex; gap: 8px; align-items: center; }
-.ejemplos button {
-  border: 1px solid #ddd;
-  background: #ffcb05;
+.pokeapi { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.pokeapi button {
+  border: 1px solid #2a75bb;
+  background: #2a75bb;
+  color: #fff;
   border-radius: 6px;
   padding: 6px 12px;
   font-weight: 700;
   cursor: pointer;
 }
-.ejemplos button:hover { filter: brightness(0.95); }
+.pokeapi button:disabled { opacity: 0.6; cursor: wait; }
+.pokeapi input { width: 80px; padding: 5px 8px; border-radius: 6px; border: 1px solid #ccc; }
+.info-pokemon { margin: 0; font-weight: 700; text-transform: capitalize; min-height: 1.2em; }
+.error { margin: 0; color: #c00; font-weight: 700; }
 .paleta {
   display: flex;
   gap: 10px;
