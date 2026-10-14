@@ -175,6 +175,16 @@ export function celdaDesdeEvento(evento) {
   return { x, y };
 }
 
+export function celdaEsPintable(evento) {
+  if (state.colorSeleccionado === null || state.matriz.length === 0) {
+    return false;
+  }
+  const posicion = celdaDesdeEvento(evento);
+  if (!posicion) return false;
+  const celda = state.matriz[posicion.y][posicion.x];
+  return !celda.pintado && celda.numero === state.colorSeleccionado;
+}
+
 export function intentarPintar(evento) {
   if (state.colorSeleccionado === null || state.matriz.length === 0) {
     return false;

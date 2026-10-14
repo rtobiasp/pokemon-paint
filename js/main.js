@@ -9,6 +9,7 @@ import { obtenerPokemon, obtenerPokemonAleatorio } from "./pokeApi.js";
 import {
   configurarLienzo,
   dibujarTablero,
+  celdaEsPintable,
   intentarPintar,
   deshacerPintado,
   rehacerPintado,
@@ -279,9 +280,12 @@ lienzo.addEventListener("pointerdown", (evento) => {
       inicioToque = {
         x: evento.clientX,
         y: evento.clientY,
+        modo: celdaEsPintable(evento) ? "pintar" : "pendiente-paneo",
+        izquierda: contenedorTablero.scrollLeft,
+        arriba: contenedorTablero.scrollTop,
         inicioPintado: false,
       };
-      state.pintando = true;
+      state.pintando = inicioToque.modo === "pintar";
     }
     return;
   }
@@ -386,13 +390,25 @@ lienzo.addEventListener("pointermove", (evento) => {
       return;
     }
     if (huboMultidedo || !inicioToque) return;
-    if (
-      !inicioToque.inicioPintado &&
-      Math.hypot(
-        evento.clientX - inicioToque.x,
-        evento.clientY - inicioToque.y,
-      ) > 2
-    ) {
+    const movimientoX = evento.clientX - inicioToque.x;
+    const movimientoY = evento.clientY - inicioToque.y;
+    const distanciaMovimiento = Math.hypot(movimientoX, movimientoY);
+    if (inicioToque.modo === "pendiente-paneo" && distanciaMovimiento > 7) {
+      inicioToque.modo = "paneo";
+      state.pintando = false;
+      paneo = {
+        x: inicioToque.x,
+        y: inicioToque.y,
+        izquierda: inicioToque.izquierda,
+        arriba: inicioToque.arriba,
+      };
+    }
+    if (inicioToque.modo === "paneo") {
+      contenedorTablero.scrollLeft = paneo.izquierda - movimientoX;
+      contenedorTablero.scrollTop = paneo.arriba - movimientoY;
+      return;
+    }
+    if (!inicioToque.inicioPintado && distanciaMovimiento > 2) {
       inicioToque.inicioPintado = true;
       if (intentarPintar({ clientX: inicioToque.x, clientY: inicioToque.y })) {
         refrescarTrasPintar();
@@ -421,6 +437,7 @@ function finalizarPuntero(evento) {
       punterosTactiles.size === 1 &&
       !huboMultidedo &&
       inicioToque &&
+      inicioToque.modo === "pintar" &&
       !inicioToque.inicioPintado &&
       intentarPintar(evento)
     ) {
@@ -429,11 +446,13 @@ function finalizarPuntero(evento) {
     punterosTactiles.delete(evento.pointerId);
     if (punterosTactiles.size === 0) {
       state.pintando = false;
+      paneo = null;
       inicioToque = null;
       gestoMultidedo = null;
       huboMultidedo = false;
     } else if (punterosTactiles.size === 1) {
       state.pintando = false;
+      paneo = null;
       inicioToque = null;
       gestoMultidedo = null;
       huboMultidedo = true;
