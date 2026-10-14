@@ -20,6 +20,16 @@
         </header>
 
         <section class="pokedex-section" aria-label="Pokémon disponibles">
+          <label class="pokemon-search">
+            <span>Buscar Pokémon</span>
+            <input
+              id="pokemonSearch"
+              type="search"
+              placeholder="Nombre o número"
+              autocomplete="off"
+              aria-controls="pokemonGrid"
+            />
+          </label>
           <div id="pokemonGrid" class="pokemon-grid" aria-live="polite"></div>
           <p id="errorHome" class="home-error" role="alert" hidden></p>
           <div

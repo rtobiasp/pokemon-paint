@@ -1,8 +1,13 @@
-import { obtenerPaginaPokemon, TOTAL_POKEMON } from "./pokeApi.js";
+import {
+  obtenerCatalogoPokemon,
+  obtenerPaginaPokemon,
+  TOTAL_POKEMON,
+} from "./pokeApi.js";
 
 const grid = document.getElementById("pokemonGrid");
 const errorHome = document.getElementById("errorHome");
 const cargaInfinita = document.getElementById("cargaInfinita");
+const buscador = document.getElementById("pokemonSearch");
 
 const TAMANO_PAGINA = 12;
 const CLAVE_PROGRESO = "pokemon-paint-progreso";
@@ -29,6 +34,8 @@ let totalPokemons = TOTAL_POKEMON;
 let pokemons = [];
 let cargando = false;
 let cargaFinalizada = false;
+let versionListado = 0;
+let consultaActual = "";
 
 function leerProgresos() {
   try {
@@ -43,6 +50,14 @@ function nombreLegible(nombre) {
     .split("-")
     .map((parte) => parte.charAt(0).toUpperCase() + parte.slice(1))
     .join(" ");
+}
+
+function normalizarBusqueda(valor) {
+  return valor
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/-/g, " ")
+    .toLocaleLowerCase();
 }
 
 function mostrarProgresoEnMiniatura(imagen, progreso) {
@@ -188,6 +203,7 @@ function mostrarTarjetas() {
 
 async function cargarMasPokemon() {
   if (cargando || cargaFinalizada) return;
+  const version = versionListado;
   const pagina = paginaActual + 1;
   const ultimaPagina = Math.ceil(totalPokemons / TAMANO_PAGINA);
   if (pagina > ultimaPagina) {
@@ -203,23 +219,43 @@ async function cargarMasPokemon() {
     : "Cargando colección...";
   errorHome.hidden = true;
   try {
-    const resultado = await obtenerPaginaPokemon(pagina, TAMANO_PAGINA);
-    totalPokemons = resultado.total;
-    if (resultado.pokemon.length === 0) {
+    let paginaPokemon;
+    if (consultaActual) {
+      const catalogo = await obtenerCatalogoPokemon();
+      if (version !== versionListado) return;
+      const consulta = normalizarBusqueda(consultaActual);
+      const coincidencias = catalogo.filter(({ nombre, numero }) =>
+        normalizarBusqueda(nombre).includes(consulta) ||
+        String(numero).includes(consulta),
+      );
+      totalPokemons = coincidencias.length;
+      paginaPokemon = coincidencias.slice(
+        (pagina - 1) * TAMANO_PAGINA,
+        pagina * TAMANO_PAGINA,
+      );
+    } else {
+      const resultado = await obtenerPaginaPokemon(pagina, TAMANO_PAGINA);
+      if (version !== versionListado) return;
+      totalPokemons = resultado.total;
+      paginaPokemon = resultado.pokemon;
+    }
+    if (paginaPokemon.length === 0) {
       cargaFinalizada = true;
-      cargaInfinita.textContent = "Has llegado al final.";
+      cargaInfinita.textContent = totalPokemons
+        ? "Has llegado al final."
+        : "No se encontraron Pokémon.";
       return;
     }
     paginaActual = pagina;
-    pokemons.push(...resultado.pokemon);
+    pokemons.push(...paginaPokemon);
     grid.append(
-      ...resultado.pokemon.map((pokemon) =>
+      ...paginaPokemon.map((pokemon) =>
         crearTarjeta(pokemon, leerProgresos()),
       ),
     );
     if (
       pokemonRestaurado &&
-      resultado.pokemon.some(({ numero }) => numero === pokemonRestaurado)
+      paginaPokemon.some(({ numero }) => numero === pokemonRestaurado)
     ) {
       requestAnimationFrame(() => {
         grid
@@ -234,14 +270,31 @@ async function cargarMasPokemon() {
       cargaInfinita.textContent = "";
     }
   } catch {
-    errorHome.textContent =
-      "No se pudo cargar la Pokédex. Comprueba tu conexión e inténtalo de nuevo.";
-    errorHome.hidden = false;
+    if (version === versionListado) {
+      errorHome.textContent =
+        "No se pudo cargar la Pokédex. Comprueba tu conexión e inténtalo de nuevo.";
+      errorHome.hidden = false;
+    }
   } finally {
     grid.removeAttribute("aria-busy");
     cargando = false;
+    if (version !== versionListado) cargarMasPokemon();
   }
 }
+
+buscador.addEventListener("input", () => {
+  versionListado++;
+  consultaActual = buscador.value.trim().toLocaleLowerCase().replace(/^#/, "");
+  paginaActual = 0;
+  totalPokemons = TOTAL_POKEMON;
+  pokemons = [];
+  cargaFinalizada = false;
+  grid.replaceChildren();
+  errorHome.hidden = true;
+  cargaInfinita.textContent = consultaActual ? "Buscando Pokémon..." : "";
+  document.querySelector(".home-view").scrollTo({ top: 0 });
+  cargarMasPokemon();
+});
 
 if ("IntersectionObserver" in window) {
   const observador = new IntersectionObserver(

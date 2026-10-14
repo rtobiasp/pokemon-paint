@@ -1,6 +1,7 @@
 export const TOTAL_POKEMON = 1025;
 
 const URL_BASE_POKEAPI = "https://pokeapi.co/api/v2/pokemon";
+let catalogoPokemon;
 
 export async function obtenerPokemon(numero) {
   const respuesta = await fetch(`${URL_BASE_POKEAPI}/${numero}`);
@@ -38,6 +39,36 @@ export async function obtenerPaginaPokemon(pagina, cantidad = 12) {
       })
       .filter(Boolean),
   };
+}
+
+export async function obtenerCatalogoPokemon() {
+  if (!catalogoPokemon) {
+    catalogoPokemon = fetch(`${URL_BASE_POKEAPI}?limit=${TOTAL_POKEMON}`)
+      .then((respuesta) => {
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar el catálogo de Pokémon");
+        }
+        return respuesta.json();
+      })
+      .then((datos) =>
+        datos.results
+          .map((resultado) => {
+            const numero = Number(resultado.url.match(/\/(\d+)\/$/)?.[1]);
+            if (!numero || numero > TOTAL_POKEMON) return null;
+            return {
+              numero,
+              nombre: resultado.name,
+              imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numero}.png`,
+            };
+          })
+          .filter(Boolean),
+      )
+      .catch((error) => {
+        catalogoPokemon = undefined;
+        throw error;
+      });
+  }
+  return catalogoPokemon;
 }
 
 export function numeroAleatorio() {

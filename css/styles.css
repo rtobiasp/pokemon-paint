@@ -60,6 +60,9 @@ body {
 }
 .home-marca .marca-icono { width: 28px; height: 28px; }
 .pokedex-section { max-width: 1168px; margin: 0 auto; padding: 16px 24px 18px; }
+.pokemon-search { display: grid; max-width: 960px; gap: 6px; margin: 0 auto 14px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.pokemon-search input { width: 100%; min-height: 42px; padding: 0 12px; border: 1px solid #cbd6ce; border-radius: 7px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.pokemon-search input:focus-visible { outline: 3px solid #f3c84b; outline-offset: 2px; }
 .pokedex-toolbar { display: flex; min-height: 40px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .pokedex-toolbar h2 { margin: 0; font-size: 19px; }
 .pokedex-toolbar p { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
