@@ -1,44 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokémon Paint - Colorear por Números</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header class="cabecera">
-    <h1>Pokémon Paint</h1>
-    <p>Colorea el sprite por números</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Paint - Colorear por Números</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="cabecera">
+      <h1>Pokémon Paint</h1>
+      <p>Colorea el sprite por números</p>
+    </header>
 
-  <section class="controles">
-    <label class="subida">
-      <strong>Sube tu Pixel Art (16x16 o 32x32 px):</strong>
-      <input type="file" id="subirImagen" accept="image/png, image/gif">
-    </label>
-    <div class="ejemplos">
-      <span>Prueba con:</span>
-      <button type="button" data-sprite="assets/sprites/pikachu-16.png">Pikachu</button>
-      <button type="button" data-sprite="assets/sprites/bulbasaur-16.png">Bulbasaur</button>
+    <section class="controles">
+      <label class="subida">
+        <strong>Sube tu Pixel Art (16x16 o 32x32 px):</strong>
+        <input type="file" id="subirImagen" accept="image/png, image/gif" />
+      </label>
+      <div class="ejemplos">
+        <span>Prueba con:</span>
+        <button type="button" data-sprite="assets/sprites/pikachu-16.png">
+          Pikachu
+        </button>
+        <button type="button" data-sprite="assets/sprites/bulbasaur-16.png">
+          Bulbasaur
+        </button>
+        <button type="button" data-sprite="assets/sprites/charmander.png">
+          Charmander
+        </button>
+      </div>
+    </section>
+
+    <div id="paleta" class="paleta"></div>
+
+    <div class="tablero-contenedor">
+      <canvas id="lienzoJuego"></canvas>
     </div>
-  </section>
 
-  <section id="progreso-global" class="progreso-global" hidden>
-    <div class="progreso-barra">
-      <div id="progreso-relleno" class="progreso-relleno"></div>
+    <div id="mensaje-victoria" class="victoria" hidden>
+      ¡Completado! ¡Buen trabajo!
     </div>
-    <span id="progreso-texto" class="progreso-texto">0%</span>
-  </section>
 
-  <div id="paleta" class="paleta"></div>
-
-  <div class="tablero-contenedor">
-    <canvas id="lienzoJuego"></canvas>
-  </div>
-
-  <div id="mensaje-victoria" class="victoria" hidden>¡Completado! ¡Buen trabajo!</div>
-
-  <script type="module" src="js/main.js"></script>
-</body>
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>

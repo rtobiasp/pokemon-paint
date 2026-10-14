@@ -30,10 +30,6 @@ export function totalCeldasPintables() {
   return Object.values(state.totales).reduce((acumulado, valor) => acumulado + valor, 0);
 }
 
-export function totalCeldasPintadas() {
-  return Object.values(state.pintados).reduce((acumulado, valor) => acumulado + valor, 0);
-}
-
 export function siguienteColorIncompleto() {
   const numeros = Object.keys(state.totales).map(Number).sort((a, b) => a - b);
   return numeros.find((numero) => (state.pintados[numero] || 0) < state.totales[numero]) ?? null;

@@ -3,8 +3,7 @@ import {
   COLOR_FONDO_CELDA,
   COLOR_BORDE_CELDA,
   COLOR_NUMERO,
-  ALPHA_RESALTADO,
-  ANCHO_BORDE_RESALTADO
+  COLOR_FONDO_RESALTADO
 } from "./config.js";
 import { state } from "./state.js";
 
@@ -14,11 +13,6 @@ let ctx = null;
 export function configurarLienzo(elemento) {
   lienzo = elemento;
   ctx = elemento.getContext("2d");
-}
-
-function aRgba(rgb, alpha) {
-  const valores = rgb.replace("rgb(", "").replace(")", "").split(",").map(Number);
-  return `rgba(${valores[0]},${valores[1]},${valores[2]},${alpha})`;
 }
 
 function esResaltada(celda) {
@@ -58,13 +52,13 @@ export function dibujarCelda(x, y) {
   }
 
   if (esResaltada(celda)) {
-    ctx.fillStyle = aRgba(celda.color, ALPHA_RESALTADO);
+    ctx.fillStyle = COLOR_FONDO_RESALTADO;
     ctx.fillRect(posX, posY, ESCALA, ESCALA);
-    ctx.strokeStyle = celda.color;
-    ctx.lineWidth = ANCHO_BORDE_RESALTADO;
-    ctx.strokeRect(posX, posY, ESCALA, ESCALA);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = COLOR_BORDE_CELDA;
+    ctx.strokeRect(posX + 0.5, posY + 0.5, ESCALA - 1, ESCALA - 1);
     ctx.fillStyle = COLOR_NUMERO;
-    ctx.font = `bold ${ESCALA * 0.5}px sans-serif`;
+    ctx.font = `${ESCALA * 0.45}px sans-serif`;
     ctx.fillText(celda.numero, posX + ESCALA / 2, posY + ESCALA / 2);
     return;
   }
@@ -73,7 +67,7 @@ export function dibujarCelda(x, y) {
   ctx.fillRect(posX, posY, ESCALA, ESCALA);
   ctx.lineWidth = 1;
   ctx.strokeStyle = COLOR_BORDE_CELDA;
-  ctx.strokeRect(posX, posY, ESCALA, ESCALA);
+  ctx.strokeRect(posX + 0.5, posY + 0.5, ESCALA - 1, ESCALA - 1);
   ctx.fillStyle = COLOR_NUMERO;
   ctx.font = `${ESCALA * 0.45}px sans-serif`;
   ctx.fillText(celda.numero, posX + ESCALA / 2, posY + ESCALA / 2);

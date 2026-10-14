@@ -33,27 +33,6 @@ body {
   cursor: pointer;
 }
 .ejemplos button:hover { filter: brightness(0.95); }
-.progreso-global {
-  width: min(800px, 92vw);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.progreso-barra {
-  flex: 1;
-  height: 12px;
-  background: #e5e5ec;
-  border-radius: 999px;
-  overflow: hidden;
-}
-.progreso-relleno {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #3b82f6, #22c55e);
-  transition: width 0.2s ease;
-}
-.progreso-texto { font-weight: 700; min-width: 110px; text-align: right; }
 .paleta {
   display: flex;
   gap: 10px;
@@ -80,7 +59,6 @@ body {
   padding: 2px;
 }
 .color-btn .num { font-size: 18px; line-height: 1; }
-.color-btn .cuenta { font-size: 11px; line-height: 1.2; }
 .color-btn .mini-bar {
   width: 90%;
   height: 5px;
@@ -93,8 +71,17 @@ body {
 .color-btn.activo { border-color: #000; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(0,0,0,0.25); }
 .color-btn.completado { outline: 3px solid #22c55e; opacity: 0.85; }
 .color-btn.completado .num::after { content: " ✓"; }
-.tablero-contenedor { max-width: 94vw; overflow: auto; padding-bottom: 20px; }
+.tablero-contenedor {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  padding-bottom: 20px;
+}
 canvas {
+  margin: auto;
+  max-width: 100%;
+  height: auto;
   background: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   cursor: crosshair;

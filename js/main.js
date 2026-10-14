@@ -6,18 +6,8 @@ import { crearPaleta, actualizarProgreso } from "./palette.js";
 const input = document.getElementById("subirImagen");
 const lienzo = document.getElementById("lienzoJuego");
 const contenedorPaleta = document.getElementById("paleta");
-const seccionProgreso = document.getElementById("progreso-global");
-const rellenoProgreso = document.getElementById("progreso-relleno");
-const textoProgreso = document.getElementById("progreso-texto");
 const mensajeVictoria = document.getElementById("mensaje-victoria");
 const botonesEjemplo = document.querySelectorAll("[data-sprite]");
-
-const elementosProgreso = {
-  seccion: seccionProgreso,
-  relleno: rellenoProgreso,
-  texto: textoProgreso,
-  victoria: mensajeVictoria
-};
 
 configurarLienzo(lienzo);
 
@@ -25,12 +15,12 @@ async function mostrarSprite(origen) {
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
   state.colorSeleccionado = null;
-  crearPaleta(contenedorPaleta, elementosProgreso);
+  crearPaleta(contenedorPaleta, mensajeVictoria);
   dibujarTablero();
 }
 
 function refrescarTrasPintar() {
-  actualizarProgreso(contenedorPaleta, elementosProgreso);
+  actualizarProgreso(contenedorPaleta, mensajeVictoria);
 }
 
 input.addEventListener("change", (evento) => {
