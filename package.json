@@ -1,0 +1,23 @@
+{
+  "name": "pintadex",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "cap:add:android": "npm run build && cap add android",
+    "android": "npm run build && cap sync android",
+    "android:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.4.3",
+    "@capacitor/core": "8.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.4.3",
+    "typescript": "5.9.3"
+  }
+}
