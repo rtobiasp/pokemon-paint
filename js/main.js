@@ -52,6 +52,9 @@ let inicioToque = null;
 let gestoMultidedo = null;
 let huboMultidedo = false;
 let frameGestoMultidedo = null;
+let frameZoomRueda = null;
+let deltaZoomRueda = 0;
+let puntoZoomRueda = null;
 let victoriaEnCurso = false;
 let animacionEncuadre = null;
 let temporizadorConfeti = null;
@@ -424,11 +427,23 @@ lienzo.addEventListener(
       return;
     }
     evento.preventDefault();
-    zoomAncladoEtiqueta(
-      evento.deltaY < 0 ? PASO_ZOOM : 1 / PASO_ZOOM,
-      evento.clientX,
-      evento.clientY,
-    );
+    deltaZoomRueda += evento.deltaY;
+    puntoZoomRueda = { x: evento.clientX, y: evento.clientY };
+    if (frameZoomRueda !== null) return;
+    frameZoomRueda = requestAnimationFrame(() => {
+      frameZoomRueda = null;
+      const delta = deltaZoomRueda;
+      const punto = puntoZoomRueda;
+      deltaZoomRueda = 0;
+      puntoZoomRueda = null;
+      if (delta !== 0 && punto) {
+        zoomAncladoEtiqueta(
+          delta < 0 ? PASO_ZOOM : 1 / PASO_ZOOM,
+          punto.x,
+          punto.y,
+        );
+      }
+    });
   },
   { passive: false },
 );

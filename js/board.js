@@ -13,6 +13,7 @@ import { state } from "./state.js";
 let lienzo = null;
 let ctx = null;
 const cacheGris = new Map();
+let temporizadorRedibujado = null;
 
 export function configurarLienzo(elemento) {
   lienzo = elemento;
@@ -41,25 +42,41 @@ export function zoomAnclado(factor, clienteX, clienteY) {
   const contenedor = lienzo.closest(".tablero-contenedor");
   const rect = lienzo.getBoundingClientRect();
   const rectContenedor = contenedor.getBoundingClientRect();
-  const proporcionX = rect.width ? (clienteX - rect.left) / rect.width : 0.5;
-  const proporcionY = rect.height ? (clienteY - rect.top) / rect.height : 0.5;
+  const lienzoX = rect.left + lienzo.clientLeft;
+  const lienzoY = rect.top + lienzo.clientTop;
+  const proporcionX = lienzo.clientWidth
+    ? (clienteX - lienzoX) / lienzo.clientWidth
+    : 0.5;
+  const proporcionY = lienzo.clientHeight
+    ? (clienteY - lienzoY) / lienzo.clientHeight
+    : 0.5;
   const viewportX = clienteX - rectContenedor.left - contenedor.clientLeft;
   const viewportY = clienteY - rectContenedor.top - contenedor.clientTop;
-  state.escala = limitarEscala(state.escala * factor);
-  dibujarTablero();
+  const escalaNueva = limitarEscala(state.escala * factor);
+  if (escalaNueva === state.escala) return;
+  state.escala = escalaNueva;
+  lienzo.style.boxSizing = "content-box";
+  lienzo.style.width = `${state.ancho * state.escala}px`;
+  lienzo.style.height = `${state.alto * state.escala}px`;
+  clearTimeout(temporizadorRedibujado);
+  temporizadorRedibujado = setTimeout(dibujarTablero, 100);
   const rectLienzoNuevo = lienzo.getBoundingClientRect();
-  const lienzoX =
+  const nuevoLienzoX =
     rectLienzoNuevo.left -
     rectContenedor.left -
     contenedor.clientLeft +
-    contenedor.scrollLeft;
-  const lienzoY =
+    contenedor.scrollLeft +
+    lienzo.clientLeft;
+  const nuevoLienzoY =
     rectLienzoNuevo.top -
     rectContenedor.top -
     contenedor.clientTop +
-    contenedor.scrollTop;
-  contenedor.scrollLeft = lienzoX + proporcionX * lienzo.width - viewportX;
-  contenedor.scrollTop = lienzoY + proporcionY * lienzo.height - viewportY;
+    contenedor.scrollTop +
+    lienzo.clientTop;
+  contenedor.scrollLeft =
+    nuevoLienzoX + proporcionX * lienzo.clientWidth - viewportX;
+  contenedor.scrollTop =
+    nuevoLienzoY + proporcionY * lienzo.clientHeight - viewportY;
 }
 
 export function zoomAescala(escala, clienteX, clienteY) {
@@ -97,6 +114,11 @@ function esResaltada(celda) {
 }
 
 export function dibujarTablero() {
+  clearTimeout(temporizadorRedibujado);
+  temporizadorRedibujado = null;
+  lienzo.style.boxSizing = "";
+  lienzo.style.width = "";
+  lienzo.style.height = "";
   lienzo.width = Math.max(1, Math.round(state.ancho * state.escala));
   lienzo.height = Math.max(1, Math.round(state.alto * state.escala));
   ctx.textAlign = "center";
@@ -163,12 +185,16 @@ export function resaltarSeleccion() {
 
 export function celdaDesdeEvento(evento) {
   const rect = lienzo.getBoundingClientRect();
-  const escalaX = lienzo.width / rect.width;
-  const escalaY = lienzo.height / rect.height;
   const punto =
     evento.touches && evento.touches.length > 0 ? evento.touches[0] : evento;
-  const x = Math.floor(((punto.clientX - rect.left) * escalaX) / state.escala);
-  const y = Math.floor(((punto.clientY - rect.top) * escalaY) / state.escala);
+  const x = Math.floor(
+    ((punto.clientX - rect.left - lienzo.clientLeft) / lienzo.clientWidth) *
+      state.ancho,
+  );
+  const y = Math.floor(
+    ((punto.clientY - rect.top - lienzo.clientTop) / lienzo.clientHeight) *
+      state.alto,
+  );
   if (y < 0 || y >= state.alto || x < 0 || x >= state.ancho) {
     return null;
   }
