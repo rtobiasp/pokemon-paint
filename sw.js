@@ -1,4 +1,4 @@
-const CACHE_VERSION = "pintadex-v3";
+const CACHE_VERSION = "pintadex-v5";
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const APP_FILES = [
   "index.html",

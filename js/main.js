@@ -5,7 +5,11 @@ import {
   totalCeldasPintables,
 } from "./state.js";
 import { cargarImagen, extraerMatriz } from "./imageProcessor.js";
-import { obtenerPokemon, TOTAL_POKEMON } from "./pokeApi.js";
+import {
+  obtenerCatalogoPokemon,
+  obtenerPokemon,
+  TOTAL_POKEMON,
+} from "./pokeApi.js";
 import {
   configurarLienzo,
   dibujarTablero,
@@ -60,6 +64,15 @@ const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
 const btnVolverHome = document.getElementById("btnVolverHome");
 const btnPantallaCompleta = document.getElementById("btnPantallaCompleta");
+const btnReplayTab = document.getElementById("btnReplayTab");
+const replaySheet = document.getElementById("replaySheet");
+const replayCanvas = document.getElementById("replayCanvas");
+const replayProgress = document.getElementById("replayProgress");
+const replayProgressText = document.getElementById("replayProgressText");
+const btnReplayPlay = document.getElementById("btnReplayPlay");
+const replayRecommendationList = document.getElementById(
+  "replayRecommendationList",
+);
 
 initBotonPantallaCompleta(btnPantallaCompleta, {
   alFallar: (texto) => mostrarAviso(texto),
@@ -81,6 +94,9 @@ let animacionEncuadre = null;
 let temporizadorConfeti = null;
 let pokemonActual = null;
 let temporizadorGuardado = null;
+let replaySteps = [];
+let replayIndex = 0;
+let replayFrame = null;
 
 const CLAVE_PROGRESO = "pokemon-paint-progreso";
 
@@ -366,10 +382,160 @@ function refrescarTrasPintar() {
   }
   if (!mensajeVictoria.hidden) {
     celebrarVictoria();
+    abrirReproductor(true);
   } else {
     victoriaEnCurso = false;
   }
 }
+
+function obtenerPasosReproduccion() {
+  const historial = state.historialPintado.flat();
+  const indicesConHistorial = new Set(
+    historial.map(({ x, y }) => y * state.ancho + x),
+  );
+  const pasos = [];
+  const indicesIncluidos = new Set();
+
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      const celda = state.matriz[y][x];
+      const indice = y * state.ancho + x;
+      if (
+        celda.pintado &&
+        celda.numero !== 0 &&
+        !indicesConHistorial.has(indice)
+      ) {
+        pasos.push({ x, y, color: celda.color });
+        indicesIncluidos.add(indice);
+      }
+    }
+  }
+
+  for (const { x, y } of historial) {
+    const celda = state.matriz[y]?.[x];
+    const indice = y * state.ancho + x;
+    if (celda?.pintado && !indicesIncluidos.has(indice)) {
+      pasos.push({ x, y, color: celda.color });
+      indicesIncluidos.add(indice);
+    }
+  }
+  return pasos;
+}
+
+function prepararLienzoReproduccion() {
+  replayCanvas.width = state.ancho;
+  replayCanvas.height = state.alto;
+  const contexto = replayCanvas.getContext("2d");
+  contexto.imageSmoothingEnabled = false;
+  contexto.fillStyle = "#fffefa";
+  contexto.fillRect(0, 0, state.ancho, state.alto);
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      if (state.matriz[y][x].numero === 0) continue;
+      contexto.fillStyle = "#dce2e8";
+      contexto.fillRect(x, y, 1, 1);
+    }
+  }
+  replayIndex = 0;
+  actualizarProgresoReproduccion();
+}
+
+function actualizarProgresoReproduccion() {
+  replayProgress.max = Math.max(1, replaySteps.length);
+  replayProgress.value = replayIndex;
+  replayProgressText.textContent = `${replayIndex} / ${replaySteps.length}`;
+}
+
+function dibujarFrameReproduccion() {
+  const contexto = replayCanvas.getContext("2d");
+  const cantidad = Math.max(1, Math.ceil(replaySteps.length / 180));
+  const final = Math.min(replaySteps.length, replayIndex + cantidad);
+  for (; replayIndex < final; replayIndex++) {
+    const paso = replaySteps[replayIndex];
+    contexto.fillStyle = paso.color;
+    contexto.fillRect(paso.x, paso.y, 1, 1);
+  }
+  actualizarProgresoReproduccion();
+  if (replayIndex >= replaySteps.length) {
+    replayFrame = null;
+    btnReplayPlay.textContent = "Repetir";
+    btnReplayPlay.setAttribute("aria-label", "Repetir reproducción");
+    return;
+  }
+  replayFrame = requestAnimationFrame(dibujarFrameReproduccion);
+}
+
+function iniciarReproduccion() {
+  if (!replaySteps.length || replayFrame !== null) return;
+  if (replayIndex >= replaySteps.length) prepararLienzoReproduccion();
+  btnReplayPlay.textContent = "Pausar";
+  btnReplayPlay.setAttribute("aria-label", "Pausar reproducción");
+  replayFrame = requestAnimationFrame(dibujarFrameReproduccion);
+}
+
+function abrirReproductor(reproducir = false) {
+  replaySteps = obtenerPasosReproduccion();
+  prepararLienzoReproduccion();
+  replaySheet.classList.add("abierta");
+  replaySheet.setAttribute("aria-hidden", "false");
+  btnReplayTab.setAttribute("aria-expanded", "true");
+  btnReplayTab.hidden = false;
+  btnReplayPlay.textContent = "Reproducir";
+  btnReplayPlay.setAttribute("aria-label", "Reproducir proceso");
+  actualizarRecomendaciones();
+  if (reproducir) iniciarReproduccion();
+}
+
+function cerrarReproductor() {
+  if (replayFrame !== null) cancelAnimationFrame(replayFrame);
+  replayFrame = null;
+  replaySheet.classList.remove("abierta");
+  replaySheet.setAttribute("aria-hidden", "true");
+  btnReplayTab.setAttribute("aria-expanded", "false");
+}
+
+async function actualizarRecomendaciones() {
+  try {
+    const catalogo = await obtenerCatalogoPokemon();
+    const progreso = leerProgresosGuardados();
+    const recomendaciones = [];
+    for (let salto = 1; salto < TOTAL_POKEMON && recomendaciones.length < 3; salto++) {
+      const numero = ((pokemonActual - 1 + salto) % TOTAL_POKEMON) + 1;
+      if (numero === pokemonActual || progreso[numero]?.completado) continue;
+      const pokemon = catalogo.find((entrada) => entrada.numero === numero);
+      if (pokemon) recomendaciones.push(pokemon);
+    }
+    replayRecommendationList.replaceChildren();
+    for (const pokemon of recomendaciones) {
+      const enlace = document.createElement("a");
+      enlace.className = "replay-recommendation";
+      enlace.href = `pintar.html?pokemon=${pokemon.numero}`;
+      const imagen = document.createElement("img");
+      imagen.src = pokemon.imagen;
+      imagen.alt = "";
+      imagen.loading = "lazy";
+      const texto = document.createElement("span");
+      texto.textContent = `#${pokemon.numero} ${pokemon.nombre}`;
+      enlace.append(imagen, texto);
+      replayRecommendationList.appendChild(enlace);
+    }
+  } catch {
+    replayRecommendationList.replaceChildren();
+  }
+}
+
+btnReplayTab.addEventListener("click", () => abrirReproductor(true));
+document.getElementById("btnReplayClose").addEventListener("click", cerrarReproductor);
+btnReplayPlay.addEventListener("click", () => {
+  if (replayFrame !== null) {
+    cancelAnimationFrame(replayFrame);
+    replayFrame = null;
+    btnReplayPlay.textContent = "Continuar";
+    btnReplayPlay.setAttribute("aria-label", "Continuar reproducción");
+    return;
+  }
+  iniciarReproduccion();
+});
 
 function actualizarProgresoGlobal() {
   const total = totalCeldasPintables();
@@ -387,6 +553,7 @@ function actualizarControlesHistorial() {
   btnRehacer.disabled = state.historialRehacer.length === 0;
   btnCompletarColor.disabled = !hayDibujo() || state.colorSeleccionado === null;
   btnExportarDibujo.disabled = mensajeVictoria.hidden;
+  btnReplayTab.hidden = mensajeVictoria.hidden;
   btnCompartirDibujo.disabled =
     mensajeVictoria.hidden || btnCompartirDibujo.hidden;
 }

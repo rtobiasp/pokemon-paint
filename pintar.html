@@ -148,6 +148,9 @@
               >
                 PNG
               </button>
+              <button type="button" id="btnReplayTab" hidden>
+                Ver proceso
+              </button>
               <button
                 type="button"
                 id="btnCompartirDibujo"
@@ -185,6 +188,27 @@
           <div id="paleta" class="paleta"></div>
           <div id="mensaje-victoria" class="victoria" hidden>¡Completado!</div>
         </section>
+            <section id="replaySheet" class="replay-sheet" aria-label="Proceso de coloreado" aria-hidden="true">
+              <div class="replay-sheet-header">
+                <div>
+                  <p class="replay-eyebrow">Tu obra, paso a paso</p>
+                  <h2 id="replayTitle">Así lo pintaste</h2>
+                </div>
+                <button type="button" id="btnReplayClose" aria-label="Cerrar proceso" title="Cerrar">×</button>
+              </div>
+              <div class="replay-player">
+                <canvas id="replayCanvas" aria-label="Reproducción acelerada del coloreado"></canvas>
+                <div class="replay-controls">
+                  <button type="button" id="btnReplayPlay" aria-label="Pausar reproducción">Pausar</button>
+                  <progress id="replayProgress" max="1" value="0" aria-label="Progreso de la reproducción"></progress>
+                  <span id="replayProgressText">0 / 0</span>
+                </div>
+              </div>
+              <section class="replay-recommendations" aria-labelledby="replayRecommendationsTitle">
+                <h3 id="replayRecommendationsTitle">¿Cuál pintamos ahora?</h3>
+                <div id="replayRecommendationList" class="replay-recommendation-list"></div>
+              </section>
+            </section>
         <p id="ayudaTeclado" class="visually-hidden">
           Usa las flechas para moverte por las casillas. Pulsa Intro o espacio
           para colorear. Pulsa del 1 al 9 para seleccionar un color.
