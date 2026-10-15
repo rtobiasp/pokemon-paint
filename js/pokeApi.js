@@ -1,49 +1,13 @@
+// Fuente de datos 100% local: ya no se llama a PokéAPI ni a raw.githubusercontent.
+// Los datos se congelaron con `node scripts/download-assets.mjs` en data/pokemon.json
+// y las imágenes viven en assets/sprites/<numero>.png.
 export const TOTAL_POKEMON = 1025;
 
-const URL_BASE_POKEAPI = "https://pokeapi.co/api/v2/pokemon";
 let catalogoPokemon;
-
-export async function obtenerPokemon(numero) {
-  const respuesta = await fetch(`${URL_BASE_POKEAPI}/${numero}`);
-  if (!respuesta.ok) {
-    throw new Error(`No existe el Pokémon número ${numero}`);
-  }
-  const datos = await respuesta.json();
-  return {
-    numero: datos.id,
-    nombre: datos.name,
-    imagen: datos.sprites.front_default,
-  };
-}
-
-export async function obtenerPaginaPokemon(pagina, cantidad = 12) {
-  const paginaSegura = Math.max(1, Math.floor(pagina));
-  const respuesta = await fetch(
-    `${URL_BASE_POKEAPI}?offset=${(paginaSegura - 1) * cantidad}&limit=${cantidad}`,
-  );
-  if (!respuesta.ok) {
-    throw new Error("No se pudo cargar la Pokédex");
-  }
-  const datos = await respuesta.json();
-  return {
-    total: Math.min(datos.count, TOTAL_POKEMON),
-    pokemon: datos.results
-      .map((resultado) => {
-        const numero = Number(resultado.url.match(/\/(\d+)\/$/)?.[1]);
-        if (!numero || numero > TOTAL_POKEMON) return null;
-        return {
-          numero,
-          nombre: resultado.name,
-          imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numero}.png`,
-        };
-      })
-      .filter(Boolean),
-  };
-}
 
 export async function obtenerCatalogoPokemon() {
   if (!catalogoPokemon) {
-    catalogoPokemon = fetch(`${URL_BASE_POKEAPI}?limit=${TOTAL_POKEMON}`)
+    catalogoPokemon = fetch("data/pokemon.json")
       .then((respuesta) => {
         if (!respuesta.ok) {
           throw new Error("No se pudo cargar el catálogo de Pokémon");
@@ -51,17 +15,22 @@ export async function obtenerCatalogoPokemon() {
         return respuesta.json();
       })
       .then((datos) =>
-        datos.results
-          .map((resultado) => {
-            const numero = Number(resultado.url.match(/\/(\d+)\/$/)?.[1]);
-            if (!numero || numero > TOTAL_POKEMON) return null;
-            return {
-              numero,
-              nombre: resultado.name,
-              imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numero}.png`,
-            };
-          })
-          .filter(Boolean),
+        Array.isArray(datos) ? datos : datos.pokemon || [],
+      )
+      .then((lista) =>
+        lista
+          .filter(
+            (p) =>
+              Number.isInteger(p.numero) &&
+              p.numero > 0 &&
+              p.numero <= TOTAL_POKEMON &&
+              typeof p.nombre === "string",
+          )
+          .map((p) => ({
+            numero: p.numero,
+            nombre: p.nombre,
+            imagen: `assets/sprites/${p.numero}.png`,
+          })),
       )
       .catch((error) => {
         catalogoPokemon = undefined;
@@ -69,6 +38,25 @@ export async function obtenerCatalogoPokemon() {
       });
   }
   return catalogoPokemon;
+}
+
+export async function obtenerPokemon(numero) {
+  const catalogo = await obtenerCatalogoPokemon();
+  const pokemon = catalogo.find((p) => p.numero === Number(numero));
+  if (!pokemon) {
+    throw new Error(`No existe el Pokémon número ${numero}`);
+  }
+  return pokemon;
+}
+
+export async function obtenerPaginaPokemon(pagina, cantidad = 12) {
+  const paginaSegura = Math.max(1, Math.floor(pagina));
+  const catalogo = await obtenerCatalogoPokemon();
+  const inicio = (paginaSegura - 1) * cantidad;
+  return {
+    total: Math.min(catalogo.length, TOTAL_POKEMON),
+    pokemon: catalogo.slice(inicio, inicio + cantidad),
+  };
 }
 
 export function numeroAleatorio() {

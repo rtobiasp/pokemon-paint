@@ -1,6 +1,17 @@
 # PintaDex
 
-Pokédex para explorar colecciones y colorear sprites Pokémon píxel a píxel. Es un sitio estático hecho con HTML, CSS y JavaScript nativo; consulta los datos de PokéAPI y guarda el progreso localmente en el navegador.
+Pokédex para explorar colecciones y colorear sprites Pokémon píxel a píxel. Es un sitio estático hecho con HTML, CSS y JavaScript nativo; funciona **sin conexión**: los datos, sprites y fuentes están vendorizados en el repo y el progreso se guarda localmente en el navegador.
+
+## Assets locales
+
+`data/pokemon.json`, `assets/sprites/*.png` (1025) y `fonts/*.woff2` se generan una sola vez desde la red y luego la app no hace ninguna petición externa:
+
+```sh
+npm run assets        # descarga catálogo + sprites + fuentes (requiere red una vez)
+npm run assets:check  # verifica en local, sin red
+```
+
+La app Android empaqueta estos ficheros vía `npm run build` (los copia a `www/`).
 
 ## Publicación
 
@@ -32,4 +43,4 @@ APK(s)**. Para sincronizar cambios posteriores de la web con Android, ejecuta
 
 ## Créditos
 
-Proyecto de fans sin afiliación oficial con Pokémon o Nintendo. Los datos proceden de [PokéAPI](https://pokeapi.co/) y las imágenes son sprites de Pokémon disponibles en [PokeAPI/sprites](https://github.com/PokeAPI/sprites).
+Proyecto de fans sin afiliación oficial con Pokémon o Nintendo. Los datos y sprites están congelados de PokéAPI / PokeAPI/sprites (ver `scripts/download-assets.mjs`) para funcionar sin conexión.

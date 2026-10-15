@@ -171,7 +171,7 @@ function crearTarjetaColeccion(tipo, clave, coleccion, progresos) {
   const portada = document.createElement("span");
   portada.className = "coleccion-portada";
   const imagen = document.createElement("img");
-  imagen.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${coleccion.portada}.png`;
+  imagen.src = `assets/sprites/${coleccion.portada}.png`;
   imagen.alt = "";
   imagen.loading = "lazy";
   portada.appendChild(imagen);
@@ -413,7 +413,6 @@ function crearTarjeta(pokemon, progresos) {
   const imagen = document.createElement("img");
   imagen.alt = "";
   imagen.loading = "lazy";
-  imagen.crossOrigin = "anonymous";
   imagen.classList.add("pokemon-thumbnail");
   mostrarProgresoEnMiniatura(imagen, progreso);
   imagen.src = pokemon.imagen;

@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html pintar.html favicon.svg site.webmanifest _site/
-          cp -R css js _site/
+          cp -R css js assets data fonts _site/
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,5127 @@
+[
+  {
+    "numero": 1,
+    "nombre": "bulbasaur",
+    "imagen": "assets/sprites/1.png"
+  },
+  {
+    "numero": 2,
+    "nombre": "ivysaur",
+    "imagen": "assets/sprites/2.png"
+  },
+  {
+    "numero": 3,
+    "nombre": "venusaur",
+    "imagen": "assets/sprites/3.png"
+  },
+  {
+    "numero": 4,
+    "nombre": "charmander",
+    "imagen": "assets/sprites/4.png"
+  },
+  {
+    "numero": 5,
+    "nombre": "charmeleon",
+    "imagen": "assets/sprites/5.png"
+  },
+  {
+    "numero": 6,
+    "nombre": "charizard",
+    "imagen": "assets/sprites/6.png"
+  },
+  {
+    "numero": 7,
+    "nombre": "squirtle",
+    "imagen": "assets/sprites/7.png"
+  },
+  {
+    "numero": 8,
+    "nombre": "wartortle",
+    "imagen": "assets/sprites/8.png"
+  },
+  {
+    "numero": 9,
+    "nombre": "blastoise",
+    "imagen": "assets/sprites/9.png"
+  },
+  {
+    "numero": 10,
+    "nombre": "caterpie",
+    "imagen": "assets/sprites/10.png"
+  },
+  {
+    "numero": 11,
+    "nombre": "metapod",
+    "imagen": "assets/sprites/11.png"
+  },
+  {
+    "numero": 12,
+    "nombre": "butterfree",
+    "imagen": "assets/sprites/12.png"
+  },
+  {
+    "numero": 13,
+    "nombre": "weedle",
+    "imagen": "assets/sprites/13.png"
+  },
+  {
+    "numero": 14,
+    "nombre": "kakuna",
+    "imagen": "assets/sprites/14.png"
+  },
+  {
+    "numero": 15,
+    "nombre": "beedrill",
+    "imagen": "assets/sprites/15.png"
+  },
+  {
+    "numero": 16,
+    "nombre": "pidgey",
+    "imagen": "assets/sprites/16.png"
+  },
+  {
+    "numero": 17,
+    "nombre": "pidgeotto",
+    "imagen": "assets/sprites/17.png"
+  },
+  {
+    "numero": 18,
+    "nombre": "pidgeot",
+    "imagen": "assets/sprites/18.png"
+  },
+  {
+    "numero": 19,
+    "nombre": "rattata",
+    "imagen": "assets/sprites/19.png"
+  },
+  {
+    "numero": 20,
+    "nombre": "raticate",
+    "imagen": "assets/sprites/20.png"
+  },
+  {
+    "numero": 21,
+    "nombre": "spearow",
+    "imagen": "assets/sprites/21.png"
+  },
+  {
+    "numero": 22,
+    "nombre": "fearow",
+    "imagen": "assets/sprites/22.png"
+  },
+  {
+    "numero": 23,
+    "nombre": "ekans",
+    "imagen": "assets/sprites/23.png"
+  },
+  {
+    "numero": 24,
+    "nombre": "arbok",
+    "imagen": "assets/sprites/24.png"
+  },
+  {
+    "numero": 25,
+    "nombre": "pikachu",
+    "imagen": "assets/sprites/25.png"
+  },
+  {
+    "numero": 26,
+    "nombre": "raichu",
+    "imagen": "assets/sprites/26.png"
+  },
+  {
+    "numero": 27,
+    "nombre": "sandshrew",
+    "imagen": "assets/sprites/27.png"
+  },
+  {
+    "numero": 28,
+    "nombre": "sandslash",
+    "imagen": "assets/sprites/28.png"
+  },
+  {
+    "numero": 29,
+    "nombre": "nidoran-f",
+    "imagen": "assets/sprites/29.png"
+  },
+  {
+    "numero": 30,
+    "nombre": "nidorina",
+    "imagen": "assets/sprites/30.png"
+  },
+  {
+    "numero": 31,
+    "nombre": "nidoqueen",
+    "imagen": "assets/sprites/31.png"
+  },
+  {
+    "numero": 32,
+    "nombre": "nidoran-m",
+    "imagen": "assets/sprites/32.png"
+  },
+  {
+    "numero": 33,
+    "nombre": "nidorino",
+    "imagen": "assets/sprites/33.png"
+  },
+  {
+    "numero": 34,
+    "nombre": "nidoking",
+    "imagen": "assets/sprites/34.png"
+  },
+  {
+    "numero": 35,
+    "nombre": "clefairy",
+    "imagen": "assets/sprites/35.png"
+  },
+  {
+    "numero": 36,
+    "nombre": "clefable",
+    "imagen": "assets/sprites/36.png"
+  },
+  {
+    "numero": 37,
+    "nombre": "vulpix",
+    "imagen": "assets/sprites/37.png"
+  },
+  {
+    "numero": 38,
+    "nombre": "ninetales",
+    "imagen": "assets/sprites/38.png"
+  },
+  {
+    "numero": 39,
+    "nombre": "jigglypuff",
+    "imagen": "assets/sprites/39.png"
+  },
+  {
+    "numero": 40,
+    "nombre": "wigglytuff",
+    "imagen": "assets/sprites/40.png"
+  },
+  {
+    "numero": 41,
+    "nombre": "zubat",
+    "imagen": "assets/sprites/41.png"
+  },
+  {
+    "numero": 42,
+    "nombre": "golbat",
+    "imagen": "assets/sprites/42.png"
+  },
+  {
+    "numero": 43,
+    "nombre": "oddish",
+    "imagen": "assets/sprites/43.png"
+  },
+  {
+    "numero": 44,
+    "nombre": "gloom",
+    "imagen": "assets/sprites/44.png"
+  },
+  {
+    "numero": 45,
+    "nombre": "vileplume",
+    "imagen": "assets/sprites/45.png"
+  },
+  {
+    "numero": 46,
+    "nombre": "paras",
+    "imagen": "assets/sprites/46.png"
+  },
+  {
+    "numero": 47,
+    "nombre": "parasect",
+    "imagen": "assets/sprites/47.png"
+  },
+  {
+    "numero": 48,
+    "nombre": "venonat",
+    "imagen": "assets/sprites/48.png"
+  },
+  {
+    "numero": 49,
+    "nombre": "venomoth",
+    "imagen": "assets/sprites/49.png"
+  },
+  {
+    "numero": 50,
+    "nombre": "diglett",
+    "imagen": "assets/sprites/50.png"
+  },
+  {
+    "numero": 51,
+    "nombre": "dugtrio",
+    "imagen": "assets/sprites/51.png"
+  },
+  {
+    "numero": 52,
+    "nombre": "meowth",
+    "imagen": "assets/sprites/52.png"
+  },
+  {
+    "numero": 53,
+    "nombre": "persian",
+    "imagen": "assets/sprites/53.png"
+  },
+  {
+    "numero": 54,
+    "nombre": "psyduck",
+    "imagen": "assets/sprites/54.png"
+  },
+  {
+    "numero": 55,
+    "nombre": "golduck",
+    "imagen": "assets/sprites/55.png"
+  },
+  {
+    "numero": 56,
+    "nombre": "mankey",
+    "imagen": "assets/sprites/56.png"
+  },
+  {
+    "numero": 57,
+    "nombre": "primeape",
+    "imagen": "assets/sprites/57.png"
+  },
+  {
+    "numero": 58,
+    "nombre": "growlithe",
+    "imagen": "assets/sprites/58.png"
+  },
+  {
+    "numero": 59,
+    "nombre": "arcanine",
+    "imagen": "assets/sprites/59.png"
+  },
+  {
+    "numero": 60,
+    "nombre": "poliwag",
+    "imagen": "assets/sprites/60.png"
+  },
+  {
+    "numero": 61,
+    "nombre": "poliwhirl",
+    "imagen": "assets/sprites/61.png"
+  },
+  {
+    "numero": 62,
+    "nombre": "poliwrath",
+    "imagen": "assets/sprites/62.png"
+  },
+  {
+    "numero": 63,
+    "nombre": "abra",
+    "imagen": "assets/sprites/63.png"
+  },
+  {
+    "numero": 64,
+    "nombre": "kadabra",
+    "imagen": "assets/sprites/64.png"
+  },
+  {
+    "numero": 65,
+    "nombre": "alakazam",
+    "imagen": "assets/sprites/65.png"
+  },
+  {
+    "numero": 66,
+    "nombre": "machop",
+    "imagen": "assets/sprites/66.png"
+  },
+  {
+    "numero": 67,
+    "nombre": "machoke",
+    "imagen": "assets/sprites/67.png"
+  },
+  {
+    "numero": 68,
+    "nombre": "machamp",
+    "imagen": "assets/sprites/68.png"
+  },
+  {
+    "numero": 69,
+    "nombre": "bellsprout",
+    "imagen": "assets/sprites/69.png"
+  },
+  {
+    "numero": 70,
+    "nombre": "weepinbell",
+    "imagen": "assets/sprites/70.png"
+  },
+  {
+    "numero": 71,
+    "nombre": "victreebel",
+    "imagen": "assets/sprites/71.png"
+  },
+  {
+    "numero": 72,
+    "nombre": "tentacool",
+    "imagen": "assets/sprites/72.png"
+  },
+  {
+    "numero": 73,
+    "nombre": "tentacruel",
+    "imagen": "assets/sprites/73.png"
+  },
+  {
+    "numero": 74,
+    "nombre": "geodude",
+    "imagen": "assets/sprites/74.png"
+  },
+  {
+    "numero": 75,
+    "nombre": "graveler",
+    "imagen": "assets/sprites/75.png"
+  },
+  {
+    "numero": 76,
+    "nombre": "golem",
+    "imagen": "assets/sprites/76.png"
+  },
+  {
+    "numero": 77,
+    "nombre": "ponyta",
+    "imagen": "assets/sprites/77.png"
+  },
+  {
+    "numero": 78,
+    "nombre": "rapidash",
+    "imagen": "assets/sprites/78.png"
+  },
+  {
+    "numero": 79,
+    "nombre": "slowpoke",
+    "imagen": "assets/sprites/79.png"
+  },
+  {
+    "numero": 80,
+    "nombre": "slowbro",
+    "imagen": "assets/sprites/80.png"
+  },
+  {
+    "numero": 81,
+    "nombre": "magnemite",
+    "imagen": "assets/sprites/81.png"
+  },
+  {
+    "numero": 82,
+    "nombre": "magneton",
+    "imagen": "assets/sprites/82.png"
+  },
+  {
+    "numero": 83,
+    "nombre": "farfetchd",
+    "imagen": "assets/sprites/83.png"
+  },
+  {
+    "numero": 84,
+    "nombre": "doduo",
+    "imagen": "assets/sprites/84.png"
+  },
+  {
+    "numero": 85,
+    "nombre": "dodrio",
+    "imagen": "assets/sprites/85.png"
+  },
+  {
+    "numero": 86,
+    "nombre": "seel",
+    "imagen": "assets/sprites/86.png"
+  },
+  {
+    "numero": 87,
+    "nombre": "dewgong",
+    "imagen": "assets/sprites/87.png"
+  },
+  {
+    "numero": 88,
+    "nombre": "grimer",
+    "imagen": "assets/sprites/88.png"
+  },
+  {
+    "numero": 89,
+    "nombre": "muk",
+    "imagen": "assets/sprites/89.png"
+  },
+  {
+    "numero": 90,
+    "nombre": "shellder",
+    "imagen": "assets/sprites/90.png"
+  },
+  {
+    "numero": 91,
+    "nombre": "cloyster",
+    "imagen": "assets/sprites/91.png"
+  },
+  {
+    "numero": 92,
+    "nombre": "gastly",
+    "imagen": "assets/sprites/92.png"
+  },
+  {
+    "numero": 93,
+    "nombre": "haunter",
+    "imagen": "assets/sprites/93.png"
+  },
+  {
+    "numero": 94,
+    "nombre": "gengar",
+    "imagen": "assets/sprites/94.png"
+  },
+  {
+    "numero": 95,
+    "nombre": "onix",
+    "imagen": "assets/sprites/95.png"
+  },
+  {
+    "numero": 96,
+    "nombre": "drowzee",
+    "imagen": "assets/sprites/96.png"
+  },
+  {
+    "numero": 97,
+    "nombre": "hypno",
+    "imagen": "assets/sprites/97.png"
+  },
+  {
+    "numero": 98,
+    "nombre": "krabby",
+    "imagen": "assets/sprites/98.png"
+  },
+  {
+    "numero": 99,
+    "nombre": "kingler",
+    "imagen": "assets/sprites/99.png"
+  },
+  {
+    "numero": 100,
+    "nombre": "voltorb",
+    "imagen": "assets/sprites/100.png"
+  },
+  {
+    "numero": 101,
+    "nombre": "electrode",
+    "imagen": "assets/sprites/101.png"
+  },
+  {
+    "numero": 102,
+    "nombre": "exeggcute",
+    "imagen": "assets/sprites/102.png"
+  },
+  {
+    "numero": 103,
+    "nombre": "exeggutor",
+    "imagen": "assets/sprites/103.png"
+  },
+  {
+    "numero": 104,
+    "nombre": "cubone",
+    "imagen": "assets/sprites/104.png"
+  },
+  {
+    "numero": 105,
+    "nombre": "marowak",
+    "imagen": "assets/sprites/105.png"
+  },
+  {
+    "numero": 106,
+    "nombre": "hitmonlee",
+    "imagen": "assets/sprites/106.png"
+  },
+  {
+    "numero": 107,
+    "nombre": "hitmonchan",
+    "imagen": "assets/sprites/107.png"
+  },
+  {
+    "numero": 108,
+    "nombre": "lickitung",
+    "imagen": "assets/sprites/108.png"
+  },
+  {
+    "numero": 109,
+    "nombre": "koffing",
+    "imagen": "assets/sprites/109.png"
+  },
+  {
+    "numero": 110,
+    "nombre": "weezing",
+    "imagen": "assets/sprites/110.png"
+  },
+  {
+    "numero": 111,
+    "nombre": "rhyhorn",
+    "imagen": "assets/sprites/111.png"
+  },
+  {
+    "numero": 112,
+    "nombre": "rhydon",
+    "imagen": "assets/sprites/112.png"
+  },
+  {
+    "numero": 113,
+    "nombre": "chansey",
+    "imagen": "assets/sprites/113.png"
+  },
+  {
+    "numero": 114,
+    "nombre": "tangela",
+    "imagen": "assets/sprites/114.png"
+  },
+  {
+    "numero": 115,
+    "nombre": "kangaskhan",
+    "imagen": "assets/sprites/115.png"
+  },
+  {
+    "numero": 116,
+    "nombre": "horsea",
+    "imagen": "assets/sprites/116.png"
+  },
+  {
+    "numero": 117,
+    "nombre": "seadra",
+    "imagen": "assets/sprites/117.png"
+  },
+  {
+    "numero": 118,
+    "nombre": "goldeen",
+    "imagen": "assets/sprites/118.png"
+  },
+  {
+    "numero": 119,
+    "nombre": "seaking",
+    "imagen": "assets/sprites/119.png"
+  },
+  {
+    "numero": 120,
+    "nombre": "staryu",
+    "imagen": "assets/sprites/120.png"
+  },
+  {
+    "numero": 121,
+    "nombre": "starmie",
+    "imagen": "assets/sprites/121.png"
+  },
+  {
+    "numero": 122,
+    "nombre": "mr-mime",
+    "imagen": "assets/sprites/122.png"
+  },
+  {
+    "numero": 123,
+    "nombre": "scyther",
+    "imagen": "assets/sprites/123.png"
+  },
+  {
+    "numero": 124,
+    "nombre": "jynx",
+    "imagen": "assets/sprites/124.png"
+  },
+  {
+    "numero": 125,
+    "nombre": "electabuzz",
+    "imagen": "assets/sprites/125.png"
+  },
+  {
+    "numero": 126,
+    "nombre": "magmar",
+    "imagen": "assets/sprites/126.png"
+  },
+  {
+    "numero": 127,
+    "nombre": "pinsir",
+    "imagen": "assets/sprites/127.png"
+  },
+  {
+    "numero": 128,
+    "nombre": "tauros",
+    "imagen": "assets/sprites/128.png"
+  },
+  {
+    "numero": 129,
+    "nombre": "magikarp",
+    "imagen": "assets/sprites/129.png"
+  },
+  {
+    "numero": 130,
+    "nombre": "gyarados",
+    "imagen": "assets/sprites/130.png"
+  },
+  {
+    "numero": 131,
+    "nombre": "lapras",
+    "imagen": "assets/sprites/131.png"
+  },
+  {
+    "numero": 132,
+    "nombre": "ditto",
+    "imagen": "assets/sprites/132.png"
+  },
+  {
+    "numero": 133,
+    "nombre": "eevee",
+    "imagen": "assets/sprites/133.png"
+  },
+  {
+    "numero": 134,
+    "nombre": "vaporeon",
+    "imagen": "assets/sprites/134.png"
+  },
+  {
+    "numero": 135,
+    "nombre": "jolteon",
+    "imagen": "assets/sprites/135.png"
+  },
+  {
+    "numero": 136,
+    "nombre": "flareon",
+    "imagen": "assets/sprites/136.png"
+  },
+  {
+    "numero": 137,
+    "nombre": "porygon",
+    "imagen": "assets/sprites/137.png"
+  },
+  {
+    "numero": 138,
+    "nombre": "omanyte",
+    "imagen": "assets/sprites/138.png"
+  },
+  {
+    "numero": 139,
+    "nombre": "omastar",
+    "imagen": "assets/sprites/139.png"
+  },
+  {
+    "numero": 140,
+    "nombre": "kabuto",
+    "imagen": "assets/sprites/140.png"
+  },
+  {
+    "numero": 141,
+    "nombre": "kabutops",
+    "imagen": "assets/sprites/141.png"
+  },
+  {
+    "numero": 142,
+    "nombre": "aerodactyl",
+    "imagen": "assets/sprites/142.png"
+  },
+  {
+    "numero": 143,
+    "nombre": "snorlax",
+    "imagen": "assets/sprites/143.png"
+  },
+  {
+    "numero": 144,
+    "nombre": "articuno",
+    "imagen": "assets/sprites/144.png"
+  },
+  {
+    "numero": 145,
+    "nombre": "zapdos",
+    "imagen": "assets/sprites/145.png"
+  },
+  {
+    "numero": 146,
+    "nombre": "moltres",
+    "imagen": "assets/sprites/146.png"
+  },
+  {
+    "numero": 147,
+    "nombre": "dratini",
+    "imagen": "assets/sprites/147.png"
+  },
+  {
+    "numero": 148,
+    "nombre": "dragonair",
+    "imagen": "assets/sprites/148.png"
+  },
+  {
+    "numero": 149,
+    "nombre": "dragonite",
+    "imagen": "assets/sprites/149.png"
+  },
+  {
+    "numero": 150,
+    "nombre": "mewtwo",
+    "imagen": "assets/sprites/150.png"
+  },
+  {
+    "numero": 151,
+    "nombre": "mew",
+    "imagen": "assets/sprites/151.png"
+  },
+  {
+    "numero": 152,
+    "nombre": "chikorita",
+    "imagen": "assets/sprites/152.png"
+  },
+  {
+    "numero": 153,
+    "nombre": "bayleef",
+    "imagen": "assets/sprites/153.png"
+  },
+  {
+    "numero": 154,
+    "nombre": "meganium",
+    "imagen": "assets/sprites/154.png"
+  },
+  {
+    "numero": 155,
+    "nombre": "cyndaquil",
+    "imagen": "assets/sprites/155.png"
+  },
+  {
+    "numero": 156,
+    "nombre": "quilava",
+    "imagen": "assets/sprites/156.png"
+  },
+  {
+    "numero": 157,
+    "nombre": "typhlosion",
+    "imagen": "assets/sprites/157.png"
+  },
+  {
+    "numero": 158,
+    "nombre": "totodile",
+    "imagen": "assets/sprites/158.png"
+  },
+  {
+    "numero": 159,
+    "nombre": "croconaw",
+    "imagen": "assets/sprites/159.png"
+  },
+  {
+    "numero": 160,
+    "nombre": "feraligatr",
+    "imagen": "assets/sprites/160.png"
+  },
+  {
+    "numero": 161,
+    "nombre": "sentret",
+    "imagen": "assets/sprites/161.png"
+  },
+  {
+    "numero": 162,
+    "nombre": "furret",
+    "imagen": "assets/sprites/162.png"
+  },
+  {
+    "numero": 163,
+    "nombre": "hoothoot",
+    "imagen": "assets/sprites/163.png"
+  },
+  {
+    "numero": 164,
+    "nombre": "noctowl",
+    "imagen": "assets/sprites/164.png"
+  },
+  {
+    "numero": 165,
+    "nombre": "ledyba",
+    "imagen": "assets/sprites/165.png"
+  },
+  {
+    "numero": 166,
+    "nombre": "ledian",
+    "imagen": "assets/sprites/166.png"
+  },
+  {
+    "numero": 167,
+    "nombre": "spinarak",
+    "imagen": "assets/sprites/167.png"
+  },
+  {
+    "numero": 168,
+    "nombre": "ariados",
+    "imagen": "assets/sprites/168.png"
+  },
+  {
+    "numero": 169,
+    "nombre": "crobat",
+    "imagen": "assets/sprites/169.png"
+  },
+  {
+    "numero": 170,
+    "nombre": "chinchou",
+    "imagen": "assets/sprites/170.png"
+  },
+  {
+    "numero": 171,
+    "nombre": "lanturn",
+    "imagen": "assets/sprites/171.png"
+  },
+  {
+    "numero": 172,
+    "nombre": "pichu",
+    "imagen": "assets/sprites/172.png"
+  },
+  {
+    "numero": 173,
+    "nombre": "cleffa",
+    "imagen": "assets/sprites/173.png"
+  },
+  {
+    "numero": 174,
+    "nombre": "igglybuff",
+    "imagen": "assets/sprites/174.png"
+  },
+  {
+    "numero": 175,
+    "nombre": "togepi",
+    "imagen": "assets/sprites/175.png"
+  },
+  {
+    "numero": 176,
+    "nombre": "togetic",
+    "imagen": "assets/sprites/176.png"
+  },
+  {
+    "numero": 177,
+    "nombre": "natu",
+    "imagen": "assets/sprites/177.png"
+  },
+  {
+    "numero": 178,
+    "nombre": "xatu",
+    "imagen": "assets/sprites/178.png"
+  },
+  {
+    "numero": 179,
+    "nombre": "mareep",
+    "imagen": "assets/sprites/179.png"
+  },
+  {
+    "numero": 180,
+    "nombre": "flaaffy",
+    "imagen": "assets/sprites/180.png"
+  },
+  {
+    "numero": 181,
+    "nombre": "ampharos",
+    "imagen": "assets/sprites/181.png"
+  },
+  {
+    "numero": 182,
+    "nombre": "bellossom",
+    "imagen": "assets/sprites/182.png"
+  },
+  {
+    "numero": 183,
+    "nombre": "marill",
+    "imagen": "assets/sprites/183.png"
+  },
+  {
+    "numero": 184,
+    "nombre": "azumarill",
+    "imagen": "assets/sprites/184.png"
+  },
+  {
+    "numero": 185,
+    "nombre": "sudowoodo",
+    "imagen": "assets/sprites/185.png"
+  },
+  {
+    "numero": 186,
+    "nombre": "politoed",
+    "imagen": "assets/sprites/186.png"
+  },
+  {
+    "numero": 187,
+    "nombre": "hoppip",
+    "imagen": "assets/sprites/187.png"
+  },
+  {
+    "numero": 188,
+    "nombre": "skiploom",
+    "imagen": "assets/sprites/188.png"
+  },
+  {
+    "numero": 189,
+    "nombre": "jumpluff",
+    "imagen": "assets/sprites/189.png"
+  },
+  {
+    "numero": 190,
+    "nombre": "aipom",
+    "imagen": "assets/sprites/190.png"
+  },
+  {
+    "numero": 191,
+    "nombre": "sunkern",
+    "imagen": "assets/sprites/191.png"
+  },
+  {
+    "numero": 192,
+    "nombre": "sunflora",
+    "imagen": "assets/sprites/192.png"
+  },
+  {
+    "numero": 193,
+    "nombre": "yanma",
+    "imagen": "assets/sprites/193.png"
+  },
+  {
+    "numero": 194,
+    "nombre": "wooper",
+    "imagen": "assets/sprites/194.png"
+  },
+  {
+    "numero": 195,
+    "nombre": "quagsire",
+    "imagen": "assets/sprites/195.png"
+  },
+  {
+    "numero": 196,
+    "nombre": "espeon",
+    "imagen": "assets/sprites/196.png"
+  },
+  {
+    "numero": 197,
+    "nombre": "umbreon",
+    "imagen": "assets/sprites/197.png"
+  },
+  {
+    "numero": 198,
+    "nombre": "murkrow",
+    "imagen": "assets/sprites/198.png"
+  },
+  {
+    "numero": 199,
+    "nombre": "slowking",
+    "imagen": "assets/sprites/199.png"
+  },
+  {
+    "numero": 200,
+    "nombre": "misdreavus",
+    "imagen": "assets/sprites/200.png"
+  },
+  {
+    "numero": 201,
+    "nombre": "unown",
+    "imagen": "assets/sprites/201.png"
+  },
+  {
+    "numero": 202,
+    "nombre": "wobbuffet",
+    "imagen": "assets/sprites/202.png"
+  },
+  {
+    "numero": 203,
+    "nombre": "girafarig",
+    "imagen": "assets/sprites/203.png"
+  },
+  {
+    "numero": 204,
+    "nombre": "pineco",
+    "imagen": "assets/sprites/204.png"
+  },
+  {
+    "numero": 205,
+    "nombre": "forretress",
+    "imagen": "assets/sprites/205.png"
+  },
+  {
+    "numero": 206,
+    "nombre": "dunsparce",
+    "imagen": "assets/sprites/206.png"
+  },
+  {
+    "numero": 207,
+    "nombre": "gligar",
+    "imagen": "assets/sprites/207.png"
+  },
+  {
+    "numero": 208,
+    "nombre": "steelix",
+    "imagen": "assets/sprites/208.png"
+  },
+  {
+    "numero": 209,
+    "nombre": "snubbull",
+    "imagen": "assets/sprites/209.png"
+  },
+  {
+    "numero": 210,
+    "nombre": "granbull",
+    "imagen": "assets/sprites/210.png"
+  },
+  {
+    "numero": 211,
+    "nombre": "qwilfish",
+    "imagen": "assets/sprites/211.png"
+  },
+  {
+    "numero": 212,
+    "nombre": "scizor",
+    "imagen": "assets/sprites/212.png"
+  },
+  {
+    "numero": 213,
+    "nombre": "shuckle",
+    "imagen": "assets/sprites/213.png"
+  },
+  {
+    "numero": 214,
+    "nombre": "heracross",
+    "imagen": "assets/sprites/214.png"
+  },
+  {
+    "numero": 215,
+    "nombre": "sneasel",
+    "imagen": "assets/sprites/215.png"
+  },
+  {
+    "numero": 216,
+    "nombre": "teddiursa",
+    "imagen": "assets/sprites/216.png"
+  },
+  {
+    "numero": 217,
+    "nombre": "ursaring",
+    "imagen": "assets/sprites/217.png"
+  },
+  {
+    "numero": 218,
+    "nombre": "slugma",
+    "imagen": "assets/sprites/218.png"
+  },
+  {
+    "numero": 219,
+    "nombre": "magcargo",
+    "imagen": "assets/sprites/219.png"
+  },
+  {
+    "numero": 220,
+    "nombre": "swinub",
+    "imagen": "assets/sprites/220.png"
+  },
+  {
+    "numero": 221,
+    "nombre": "piloswine",
+    "imagen": "assets/sprites/221.png"
+  },
+  {
+    "numero": 222,
+    "nombre": "corsola",
+    "imagen": "assets/sprites/222.png"
+  },
+  {
+    "numero": 223,
+    "nombre": "remoraid",
+    "imagen": "assets/sprites/223.png"
+  },
+  {
+    "numero": 224,
+    "nombre": "octillery",
+    "imagen": "assets/sprites/224.png"
+  },
+  {
+    "numero": 225,
+    "nombre": "delibird",
+    "imagen": "assets/sprites/225.png"
+  },
+  {
+    "numero": 226,
+    "nombre": "mantine",
+    "imagen": "assets/sprites/226.png"
+  },
+  {
+    "numero": 227,
+    "nombre": "skarmory",
+    "imagen": "assets/sprites/227.png"
+  },
+  {
+    "numero": 228,
+    "nombre": "houndour",
+    "imagen": "assets/sprites/228.png"
+  },
+  {
+    "numero": 229,
+    "nombre": "houndoom",
+    "imagen": "assets/sprites/229.png"
+  },
+  {
+    "numero": 230,
+    "nombre": "kingdra",
+    "imagen": "assets/sprites/230.png"
+  },
+  {
+    "numero": 231,
+    "nombre": "phanpy",
+    "imagen": "assets/sprites/231.png"
+  },
+  {
+    "numero": 232,
+    "nombre": "donphan",
+    "imagen": "assets/sprites/232.png"
+  },
+  {
+    "numero": 233,
+    "nombre": "porygon2",
+    "imagen": "assets/sprites/233.png"
+  },
+  {
+    "numero": 234,
+    "nombre": "stantler",
+    "imagen": "assets/sprites/234.png"
+  },
+  {
+    "numero": 235,
+    "nombre": "smeargle",
+    "imagen": "assets/sprites/235.png"
+  },
+  {
+    "numero": 236,
+    "nombre": "tyrogue",
+    "imagen": "assets/sprites/236.png"
+  },
+  {
+    "numero": 237,
+    "nombre": "hitmontop",
+    "imagen": "assets/sprites/237.png"
+  },
+  {
+    "numero": 238,
+    "nombre": "smoochum",
+    "imagen": "assets/sprites/238.png"
+  },
+  {
+    "numero": 239,
+    "nombre": "elekid",
+    "imagen": "assets/sprites/239.png"
+  },
+  {
+    "numero": 240,
+    "nombre": "magby",
+    "imagen": "assets/sprites/240.png"
+  },
+  {
+    "numero": 241,
+    "nombre": "miltank",
+    "imagen": "assets/sprites/241.png"
+  },
+  {
+    "numero": 242,
+    "nombre": "blissey",
+    "imagen": "assets/sprites/242.png"
+  },
+  {
+    "numero": 243,
+    "nombre": "raikou",
+    "imagen": "assets/sprites/243.png"
+  },
+  {
+    "numero": 244,
+    "nombre": "entei",
+    "imagen": "assets/sprites/244.png"
+  },
+  {
+    "numero": 245,
+    "nombre": "suicune",
+    "imagen": "assets/sprites/245.png"
+  },
+  {
+    "numero": 246,
+    "nombre": "larvitar",
+    "imagen": "assets/sprites/246.png"
+  },
+  {
+    "numero": 247,
+    "nombre": "pupitar",
+    "imagen": "assets/sprites/247.png"
+  },
+  {
+    "numero": 248,
+    "nombre": "tyranitar",
+    "imagen": "assets/sprites/248.png"
+  },
+  {
+    "numero": 249,
+    "nombre": "lugia",
+    "imagen": "assets/sprites/249.png"
+  },
+  {
+    "numero": 250,
+    "nombre": "ho-oh",
+    "imagen": "assets/sprites/250.png"
+  },
+  {
+    "numero": 251,
+    "nombre": "celebi",
+    "imagen": "assets/sprites/251.png"
+  },
+  {
+    "numero": 252,
+    "nombre": "treecko",
+    "imagen": "assets/sprites/252.png"
+  },
+  {
+    "numero": 253,
+    "nombre": "grovyle",
+    "imagen": "assets/sprites/253.png"
+  },
+  {
+    "numero": 254,
+    "nombre": "sceptile",
+    "imagen": "assets/sprites/254.png"
+  },
+  {
+    "numero": 255,
+    "nombre": "torchic",
+    "imagen": "assets/sprites/255.png"
+  },
+  {
+    "numero": 256,
+    "nombre": "combusken",
+    "imagen": "assets/sprites/256.png"
+  },
+  {
+    "numero": 257,
+    "nombre": "blaziken",
+    "imagen": "assets/sprites/257.png"
+  },
+  {
+    "numero": 258,
+    "nombre": "mudkip",
+    "imagen": "assets/sprites/258.png"
+  },
+  {
+    "numero": 259,
+    "nombre": "marshtomp",
+    "imagen": "assets/sprites/259.png"
+  },
+  {
+    "numero": 260,
+    "nombre": "swampert",
+    "imagen": "assets/sprites/260.png"
+  },
+  {
+    "numero": 261,
+    "nombre": "poochyena",
+    "imagen": "assets/sprites/261.png"
+  },
+  {
+    "numero": 262,
+    "nombre": "mightyena",
+    "imagen": "assets/sprites/262.png"
+  },
+  {
+    "numero": 263,
+    "nombre": "zigzagoon",
+    "imagen": "assets/sprites/263.png"
+  },
+  {
+    "numero": 264,
+    "nombre": "linoone",
+    "imagen": "assets/sprites/264.png"
+  },
+  {
+    "numero": 265,
+    "nombre": "wurmple",
+    "imagen": "assets/sprites/265.png"
+  },
+  {
+    "numero": 266,
+    "nombre": "silcoon",
+    "imagen": "assets/sprites/266.png"
+  },
+  {
+    "numero": 267,
+    "nombre": "beautifly",
+    "imagen": "assets/sprites/267.png"
+  },
+  {
+    "numero": 268,
+    "nombre": "cascoon",
+    "imagen": "assets/sprites/268.png"
+  },
+  {
+    "numero": 269,
+    "nombre": "dustox",
+    "imagen": "assets/sprites/269.png"
+  },
+  {
+    "numero": 270,
+    "nombre": "lotad",
+    "imagen": "assets/sprites/270.png"
+  },
+  {
+    "numero": 271,
+    "nombre": "lombre",
+    "imagen": "assets/sprites/271.png"
+  },
+  {
+    "numero": 272,
+    "nombre": "ludicolo",
+    "imagen": "assets/sprites/272.png"
+  },
+  {
+    "numero": 273,
+    "nombre": "seedot",
+    "imagen": "assets/sprites/273.png"
+  },
+  {
+    "numero": 274,
+    "nombre": "nuzleaf",
+    "imagen": "assets/sprites/274.png"
+  },
+  {
+    "numero": 275,
+    "nombre": "shiftry",
+    "imagen": "assets/sprites/275.png"
+  },
+  {
+    "numero": 276,
+    "nombre": "taillow",
+    "imagen": "assets/sprites/276.png"
+  },
+  {
+    "numero": 277,
+    "nombre": "swellow",
+    "imagen": "assets/sprites/277.png"
+  },
+  {
+    "numero": 278,
+    "nombre": "wingull",
+    "imagen": "assets/sprites/278.png"
+  },
+  {
+    "numero": 279,
+    "nombre": "pelipper",
+    "imagen": "assets/sprites/279.png"
+  },
+  {
+    "numero": 280,
+    "nombre": "ralts",
+    "imagen": "assets/sprites/280.png"
+  },
+  {
+    "numero": 281,
+    "nombre": "kirlia",
+    "imagen": "assets/sprites/281.png"
+  },
+  {
+    "numero": 282,
+    "nombre": "gardevoir",
+    "imagen": "assets/sprites/282.png"
+  },
+  {
+    "numero": 283,
+    "nombre": "surskit",
+    "imagen": "assets/sprites/283.png"
+  },
+  {
+    "numero": 284,
+    "nombre": "masquerain",
+    "imagen": "assets/sprites/284.png"
+  },
+  {
+    "numero": 285,
+    "nombre": "shroomish",
+    "imagen": "assets/sprites/285.png"
+  },
+  {
+    "numero": 286,
+    "nombre": "breloom",
+    "imagen": "assets/sprites/286.png"
+  },
+  {
+    "numero": 287,
+    "nombre": "slakoth",
+    "imagen": "assets/sprites/287.png"
+  },
+  {
+    "numero": 288,
+    "nombre": "vigoroth",
+    "imagen": "assets/sprites/288.png"
+  },
+  {
+    "numero": 289,
+    "nombre": "slaking",
+    "imagen": "assets/sprites/289.png"
+  },
+  {
+    "numero": 290,
+    "nombre": "nincada",
+    "imagen": "assets/sprites/290.png"
+  },
+  {
+    "numero": 291,
+    "nombre": "ninjask",
+    "imagen": "assets/sprites/291.png"
+  },
+  {
+    "numero": 292,
+    "nombre": "shedinja",
+    "imagen": "assets/sprites/292.png"
+  },
+  {
+    "numero": 293,
+    "nombre": "whismur",
+    "imagen": "assets/sprites/293.png"
+  },
+  {
+    "numero": 294,
+    "nombre": "loudred",
+    "imagen": "assets/sprites/294.png"
+  },
+  {
+    "numero": 295,
+    "nombre": "exploud",
+    "imagen": "assets/sprites/295.png"
+  },
+  {
+    "numero": 296,
+    "nombre": "makuhita",
+    "imagen": "assets/sprites/296.png"
+  },
+  {
+    "numero": 297,
+    "nombre": "hariyama",
+    "imagen": "assets/sprites/297.png"
+  },
+  {
+    "numero": 298,
+    "nombre": "azurill",
+    "imagen": "assets/sprites/298.png"
+  },
+  {
+    "numero": 299,
+    "nombre": "nosepass",
+    "imagen": "assets/sprites/299.png"
+  },
+  {
+    "numero": 300,
+    "nombre": "skitty",
+    "imagen": "assets/sprites/300.png"
+  },
+  {
+    "numero": 301,
+    "nombre": "delcatty",
+    "imagen": "assets/sprites/301.png"
+  },
+  {
+    "numero": 302,
+    "nombre": "sableye",
+    "imagen": "assets/sprites/302.png"
+  },
+  {
+    "numero": 303,
+    "nombre": "mawile",
+    "imagen": "assets/sprites/303.png"
+  },
+  {
+    "numero": 304,
+    "nombre": "aron",
+    "imagen": "assets/sprites/304.png"
+  },
+  {
+    "numero": 305,
+    "nombre": "lairon",
+    "imagen": "assets/sprites/305.png"
+  },
+  {
+    "numero": 306,
+    "nombre": "aggron",
+    "imagen": "assets/sprites/306.png"
+  },
+  {
+    "numero": 307,
+    "nombre": "meditite",
+    "imagen": "assets/sprites/307.png"
+  },
+  {
+    "numero": 308,
+    "nombre": "medicham",
+    "imagen": "assets/sprites/308.png"
+  },
+  {
+    "numero": 309,
+    "nombre": "electrike",
+    "imagen": "assets/sprites/309.png"
+  },
+  {
+    "numero": 310,
+    "nombre": "manectric",
+    "imagen": "assets/sprites/310.png"
+  },
+  {
+    "numero": 311,
+    "nombre": "plusle",
+    "imagen": "assets/sprites/311.png"
+  },
+  {
+    "numero": 312,
+    "nombre": "minun",
+    "imagen": "assets/sprites/312.png"
+  },
+  {
+    "numero": 313,
+    "nombre": "volbeat",
+    "imagen": "assets/sprites/313.png"
+  },
+  {
+    "numero": 314,
+    "nombre": "illumise",
+    "imagen": "assets/sprites/314.png"
+  },
+  {
+    "numero": 315,
+    "nombre": "roselia",
+    "imagen": "assets/sprites/315.png"
+  },
+  {
+    "numero": 316,
+    "nombre": "gulpin",
+    "imagen": "assets/sprites/316.png"
+  },
+  {
+    "numero": 317,
+    "nombre": "swalot",
+    "imagen": "assets/sprites/317.png"
+  },
+  {
+    "numero": 318,
+    "nombre": "carvanha",
+    "imagen": "assets/sprites/318.png"
+  },
+  {
+    "numero": 319,
+    "nombre": "sharpedo",
+    "imagen": "assets/sprites/319.png"
+  },
+  {
+    "numero": 320,
+    "nombre": "wailmer",
+    "imagen": "assets/sprites/320.png"
+  },
+  {
+    "numero": 321,
+    "nombre": "wailord",
+    "imagen": "assets/sprites/321.png"
+  },
+  {
+    "numero": 322,
+    "nombre": "numel",
+    "imagen": "assets/sprites/322.png"
+  },
+  {
+    "numero": 323,
+    "nombre": "camerupt",
+    "imagen": "assets/sprites/323.png"
+  },
+  {
+    "numero": 324,
+    "nombre": "torkoal",
+    "imagen": "assets/sprites/324.png"
+  },
+  {
+    "numero": 325,
+    "nombre": "spoink",
+    "imagen": "assets/sprites/325.png"
+  },
+  {
+    "numero": 326,
+    "nombre": "grumpig",
+    "imagen": "assets/sprites/326.png"
+  },
+  {
+    "numero": 327,
+    "nombre": "spinda",
+    "imagen": "assets/sprites/327.png"
+  },
+  {
+    "numero": 328,
+    "nombre": "trapinch",
+    "imagen": "assets/sprites/328.png"
+  },
+  {
+    "numero": 329,
+    "nombre": "vibrava",
+    "imagen": "assets/sprites/329.png"
+  },
+  {
+    "numero": 330,
+    "nombre": "flygon",
+    "imagen": "assets/sprites/330.png"
+  },
+  {
+    "numero": 331,
+    "nombre": "cacnea",
+    "imagen": "assets/sprites/331.png"
+  },
+  {
+    "numero": 332,
+    "nombre": "cacturne",
+    "imagen": "assets/sprites/332.png"
+  },
+  {
+    "numero": 333,
+    "nombre": "swablu",
+    "imagen": "assets/sprites/333.png"
+  },
+  {
+    "numero": 334,
+    "nombre": "altaria",
+    "imagen": "assets/sprites/334.png"
+  },
+  {
+    "numero": 335,
+    "nombre": "zangoose",
+    "imagen": "assets/sprites/335.png"
+  },
+  {
+    "numero": 336,
+    "nombre": "seviper",
+    "imagen": "assets/sprites/336.png"
+  },
+  {
+    "numero": 337,
+    "nombre": "lunatone",
+    "imagen": "assets/sprites/337.png"
+  },
+  {
+    "numero": 338,
+    "nombre": "solrock",
+    "imagen": "assets/sprites/338.png"
+  },
+  {
+    "numero": 339,
+    "nombre": "barboach",
+    "imagen": "assets/sprites/339.png"
+  },
+  {
+    "numero": 340,
+    "nombre": "whiscash",
+    "imagen": "assets/sprites/340.png"
+  },
+  {
+    "numero": 341,
+    "nombre": "corphish",
+    "imagen": "assets/sprites/341.png"
+  },
+  {
+    "numero": 342,
+    "nombre": "crawdaunt",
+    "imagen": "assets/sprites/342.png"
+  },
+  {
+    "numero": 343,
+    "nombre": "baltoy",
+    "imagen": "assets/sprites/343.png"
+  },
+  {
+    "numero": 344,
+    "nombre": "claydol",
+    "imagen": "assets/sprites/344.png"
+  },
+  {
+    "numero": 345,
+    "nombre": "lileep",
+    "imagen": "assets/sprites/345.png"
+  },
+  {
+    "numero": 346,
+    "nombre": "cradily",
+    "imagen": "assets/sprites/346.png"
+  },
+  {
+    "numero": 347,
+    "nombre": "anorith",
+    "imagen": "assets/sprites/347.png"
+  },
+  {
+    "numero": 348,
+    "nombre": "armaldo",
+    "imagen": "assets/sprites/348.png"
+  },
+  {
+    "numero": 349,
+    "nombre": "feebas",
+    "imagen": "assets/sprites/349.png"
+  },
+  {
+    "numero": 350,
+    "nombre": "milotic",
+    "imagen": "assets/sprites/350.png"
+  },
+  {
+    "numero": 351,
+    "nombre": "castform",
+    "imagen": "assets/sprites/351.png"
+  },
+  {
+    "numero": 352,
+    "nombre": "kecleon",
+    "imagen": "assets/sprites/352.png"
+  },
+  {
+    "numero": 353,
+    "nombre": "shuppet",
+    "imagen": "assets/sprites/353.png"
+  },
+  {
+    "numero": 354,
+    "nombre": "banette",
+    "imagen": "assets/sprites/354.png"
+  },
+  {
+    "numero": 355,
+    "nombre": "duskull",
+    "imagen": "assets/sprites/355.png"
+  },
+  {
+    "numero": 356,
+    "nombre": "dusclops",
+    "imagen": "assets/sprites/356.png"
+  },
+  {
+    "numero": 357,
+    "nombre": "tropius",
+    "imagen": "assets/sprites/357.png"
+  },
+  {
+    "numero": 358,
+    "nombre": "chimecho",
+    "imagen": "assets/sprites/358.png"
+  },
+  {
+    "numero": 359,
+    "nombre": "absol",
+    "imagen": "assets/sprites/359.png"
+  },
+  {
+    "numero": 360,
+    "nombre": "wynaut",
+    "imagen": "assets/sprites/360.png"
+  },
+  {
+    "numero": 361,
+    "nombre": "snorunt",
+    "imagen": "assets/sprites/361.png"
+  },
+  {
+    "numero": 362,
+    "nombre": "glalie",
+    "imagen": "assets/sprites/362.png"
+  },
+  {
+    "numero": 363,
+    "nombre": "spheal",
+    "imagen": "assets/sprites/363.png"
+  },
+  {
+    "numero": 364,
+    "nombre": "sealeo",
+    "imagen": "assets/sprites/364.png"
+  },
+  {
+    "numero": 365,
+    "nombre": "walrein",
+    "imagen": "assets/sprites/365.png"
+  },
+  {
+    "numero": 366,
+    "nombre": "clamperl",
+    "imagen": "assets/sprites/366.png"
+  },
+  {
+    "numero": 367,
+    "nombre": "huntail",
+    "imagen": "assets/sprites/367.png"
+  },
+  {
+    "numero": 368,
+    "nombre": "gorebyss",
+    "imagen": "assets/sprites/368.png"
+  },
+  {
+    "numero": 369,
+    "nombre": "relicanth",
+    "imagen": "assets/sprites/369.png"
+  },
+  {
+    "numero": 370,
+    "nombre": "luvdisc",
+    "imagen": "assets/sprites/370.png"
+  },
+  {
+    "numero": 371,
+    "nombre": "bagon",
+    "imagen": "assets/sprites/371.png"
+  },
+  {
+    "numero": 372,
+    "nombre": "shelgon",
+    "imagen": "assets/sprites/372.png"
+  },
+  {
+    "numero": 373,
+    "nombre": "salamence",
+    "imagen": "assets/sprites/373.png"
+  },
+  {
+    "numero": 374,
+    "nombre": "beldum",
+    "imagen": "assets/sprites/374.png"
+  },
+  {
+    "numero": 375,
+    "nombre": "metang",
+    "imagen": "assets/sprites/375.png"
+  },
+  {
+    "numero": 376,
+    "nombre": "metagross",
+    "imagen": "assets/sprites/376.png"
+  },
+  {
+    "numero": 377,
+    "nombre": "regirock",
+    "imagen": "assets/sprites/377.png"
+  },
+  {
+    "numero": 378,
+    "nombre": "regice",
+    "imagen": "assets/sprites/378.png"
+  },
+  {
+    "numero": 379,
+    "nombre": "registeel",
+    "imagen": "assets/sprites/379.png"
+  },
+  {
+    "numero": 380,
+    "nombre": "latias",
+    "imagen": "assets/sprites/380.png"
+  },
+  {
+    "numero": 381,
+    "nombre": "latios",
+    "imagen": "assets/sprites/381.png"
+  },
+  {
+    "numero": 382,
+    "nombre": "kyogre",
+    "imagen": "assets/sprites/382.png"
+  },
+  {
+    "numero": 383,
+    "nombre": "groudon",
+    "imagen": "assets/sprites/383.png"
+  },
+  {
+    "numero": 384,
+    "nombre": "rayquaza",
+    "imagen": "assets/sprites/384.png"
+  },
+  {
+    "numero": 385,
+    "nombre": "jirachi",
+    "imagen": "assets/sprites/385.png"
+  },
+  {
+    "numero": 386,
+    "nombre": "deoxys-normal",
+    "imagen": "assets/sprites/386.png"
+  },
+  {
+    "numero": 387,
+    "nombre": "turtwig",
+    "imagen": "assets/sprites/387.png"
+  },
+  {
+    "numero": 388,
+    "nombre": "grotle",
+    "imagen": "assets/sprites/388.png"
+  },
+  {
+    "numero": 389,
+    "nombre": "torterra",
+    "imagen": "assets/sprites/389.png"
+  },
+  {
+    "numero": 390,
+    "nombre": "chimchar",
+    "imagen": "assets/sprites/390.png"
+  },
+  {
+    "numero": 391,
+    "nombre": "monferno",
+    "imagen": "assets/sprites/391.png"
+  },
+  {
+    "numero": 392,
+    "nombre": "infernape",
+    "imagen": "assets/sprites/392.png"
+  },
+  {
+    "numero": 393,
+    "nombre": "piplup",
+    "imagen": "assets/sprites/393.png"
+  },
+  {
+    "numero": 394,
+    "nombre": "prinplup",
+    "imagen": "assets/sprites/394.png"
+  },
+  {
+    "numero": 395,
+    "nombre": "empoleon",
+    "imagen": "assets/sprites/395.png"
+  },
+  {
+    "numero": 396,
+    "nombre": "starly",
+    "imagen": "assets/sprites/396.png"
+  },
+  {
+    "numero": 397,
+    "nombre": "staravia",
+    "imagen": "assets/sprites/397.png"
+  },
+  {
+    "numero": 398,
+    "nombre": "staraptor",
+    "imagen": "assets/sprites/398.png"
+  },
+  {
+    "numero": 399,
+    "nombre": "bidoof",
+    "imagen": "assets/sprites/399.png"
+  },
+  {
+    "numero": 400,
+    "nombre": "bibarel",
+    "imagen": "assets/sprites/400.png"
+  },
+  {
+    "numero": 401,
+    "nombre": "kricketot",
+    "imagen": "assets/sprites/401.png"
+  },
+  {
+    "numero": 402,
+    "nombre": "kricketune",
+    "imagen": "assets/sprites/402.png"
+  },
+  {
+    "numero": 403,
+    "nombre": "shinx",
+    "imagen": "assets/sprites/403.png"
+  },
+  {
+    "numero": 404,
+    "nombre": "luxio",
+    "imagen": "assets/sprites/404.png"
+  },
+  {
+    "numero": 405,
+    "nombre": "luxray",
+    "imagen": "assets/sprites/405.png"
+  },
+  {
+    "numero": 406,
+    "nombre": "budew",
+    "imagen": "assets/sprites/406.png"
+  },
+  {
+    "numero": 407,
+    "nombre": "roserade",
+    "imagen": "assets/sprites/407.png"
+  },
+  {
+    "numero": 408,
+    "nombre": "cranidos",
+    "imagen": "assets/sprites/408.png"
+  },
+  {
+    "numero": 409,
+    "nombre": "rampardos",
+    "imagen": "assets/sprites/409.png"
+  },
+  {
+    "numero": 410,
+    "nombre": "shieldon",
+    "imagen": "assets/sprites/410.png"
+  },
+  {
+    "numero": 411,
+    "nombre": "bastiodon",
+    "imagen": "assets/sprites/411.png"
+  },
+  {
+    "numero": 412,
+    "nombre": "burmy",
+    "imagen": "assets/sprites/412.png"
+  },
+  {
+    "numero": 413,
+    "nombre": "wormadam-plant",
+    "imagen": "assets/sprites/413.png"
+  },
+  {
+    "numero": 414,
+    "nombre": "mothim",
+    "imagen": "assets/sprites/414.png"
+  },
+  {
+    "numero": 415,
+    "nombre": "combee",
+    "imagen": "assets/sprites/415.png"
+  },
+  {
+    "numero": 416,
+    "nombre": "vespiquen",
+    "imagen": "assets/sprites/416.png"
+  },
+  {
+    "numero": 417,
+    "nombre": "pachirisu",
+    "imagen": "assets/sprites/417.png"
+  },
+  {
+    "numero": 418,
+    "nombre": "buizel",
+    "imagen": "assets/sprites/418.png"
+  },
+  {
+    "numero": 419,
+    "nombre": "floatzel",
+    "imagen": "assets/sprites/419.png"
+  },
+  {
+    "numero": 420,
+    "nombre": "cherubi",
+    "imagen": "assets/sprites/420.png"
+  },
+  {
+    "numero": 421,
+    "nombre": "cherrim",
+    "imagen": "assets/sprites/421.png"
+  },
+  {
+    "numero": 422,
+    "nombre": "shellos",
+    "imagen": "assets/sprites/422.png"
+  },
+  {
+    "numero": 423,
+    "nombre": "gastrodon",
+    "imagen": "assets/sprites/423.png"
+  },
+  {
+    "numero": 424,
+    "nombre": "ambipom",
+    "imagen": "assets/sprites/424.png"
+  },
+  {
+    "numero": 425,
+    "nombre": "drifloon",
+    "imagen": "assets/sprites/425.png"
+  },
+  {
+    "numero": 426,
+    "nombre": "drifblim",
+    "imagen": "assets/sprites/426.png"
+  },
+  {
+    "numero": 427,
+    "nombre": "buneary",
+    "imagen": "assets/sprites/427.png"
+  },
+  {
+    "numero": 428,
+    "nombre": "lopunny",
+    "imagen": "assets/sprites/428.png"
+  },
+  {
+    "numero": 429,
+    "nombre": "mismagius",
+    "imagen": "assets/sprites/429.png"
+  },
+  {
+    "numero": 430,
+    "nombre": "honchkrow",
+    "imagen": "assets/sprites/430.png"
+  },
+  {
+    "numero": 431,
+    "nombre": "glameow",
+    "imagen": "assets/sprites/431.png"
+  },
+  {
+    "numero": 432,
+    "nombre": "purugly",
+    "imagen": "assets/sprites/432.png"
+  },
+  {
+    "numero": 433,
+    "nombre": "chingling",
+    "imagen": "assets/sprites/433.png"
+  },
+  {
+    "numero": 434,
+    "nombre": "stunky",
+    "imagen": "assets/sprites/434.png"
+  },
+  {
+    "numero": 435,
+    "nombre": "skuntank",
+    "imagen": "assets/sprites/435.png"
+  },
+  {
+    "numero": 436,
+    "nombre": "bronzor",
+    "imagen": "assets/sprites/436.png"
+  },
+  {
+    "numero": 437,
+    "nombre": "bronzong",
+    "imagen": "assets/sprites/437.png"
+  },
+  {
+    "numero": 438,
+    "nombre": "bonsly",
+    "imagen": "assets/sprites/438.png"
+  },
+  {
+    "numero": 439,
+    "nombre": "mime-jr",
+    "imagen": "assets/sprites/439.png"
+  },
+  {
+    "numero": 440,
+    "nombre": "happiny",
+    "imagen": "assets/sprites/440.png"
+  },
+  {
+    "numero": 441,
+    "nombre": "chatot",
+    "imagen": "assets/sprites/441.png"
+  },
+  {
+    "numero": 442,
+    "nombre": "spiritomb",
+    "imagen": "assets/sprites/442.png"
+  },
+  {
+    "numero": 443,
+    "nombre": "gible",
+    "imagen": "assets/sprites/443.png"
+  },
+  {
+    "numero": 444,
+    "nombre": "gabite",
+    "imagen": "assets/sprites/444.png"
+  },
+  {
+    "numero": 445,
+    "nombre": "garchomp",
+    "imagen": "assets/sprites/445.png"
+  },
+  {
+    "numero": 446,
+    "nombre": "munchlax",
+    "imagen": "assets/sprites/446.png"
+  },
+  {
+    "numero": 447,
+    "nombre": "riolu",
+    "imagen": "assets/sprites/447.png"
+  },
+  {
+    "numero": 448,
+    "nombre": "lucario",
+    "imagen": "assets/sprites/448.png"
+  },
+  {
+    "numero": 449,
+    "nombre": "hippopotas",
+    "imagen": "assets/sprites/449.png"
+  },
+  {
+    "numero": 450,
+    "nombre": "hippowdon",
+    "imagen": "assets/sprites/450.png"
+  },
+  {
+    "numero": 451,
+    "nombre": "skorupi",
+    "imagen": "assets/sprites/451.png"
+  },
+  {
+    "numero": 452,
+    "nombre": "drapion",
+    "imagen": "assets/sprites/452.png"
+  },
+  {
+    "numero": 453,
+    "nombre": "croagunk",
+    "imagen": "assets/sprites/453.png"
+  },
+  {
+    "numero": 454,
+    "nombre": "toxicroak",
+    "imagen": "assets/sprites/454.png"
+  },
+  {
+    "numero": 455,
+    "nombre": "carnivine",
+    "imagen": "assets/sprites/455.png"
+  },
+  {
+    "numero": 456,
+    "nombre": "finneon",
+    "imagen": "assets/sprites/456.png"
+  },
+  {
+    "numero": 457,
+    "nombre": "lumineon",
+    "imagen": "assets/sprites/457.png"
+  },
+  {
+    "numero": 458,
+    "nombre": "mantyke",
+    "imagen": "assets/sprites/458.png"
+  },
+  {
+    "numero": 459,
+    "nombre": "snover",
+    "imagen": "assets/sprites/459.png"
+  },
+  {
+    "numero": 460,
+    "nombre": "abomasnow",
+    "imagen": "assets/sprites/460.png"
+  },
+  {
+    "numero": 461,
+    "nombre": "weavile",
+    "imagen": "assets/sprites/461.png"
+  },
+  {
+    "numero": 462,
+    "nombre": "magnezone",
+    "imagen": "assets/sprites/462.png"
+  },
+  {
+    "numero": 463,
+    "nombre": "lickilicky",
+    "imagen": "assets/sprites/463.png"
+  },
+  {
+    "numero": 464,
+    "nombre": "rhyperior",
+    "imagen": "assets/sprites/464.png"
+  },
+  {
+    "numero": 465,
+    "nombre": "tangrowth",
+    "imagen": "assets/sprites/465.png"
+  },
+  {
+    "numero": 466,
+    "nombre": "electivire",
+    "imagen": "assets/sprites/466.png"
+  },
+  {
+    "numero": 467,
+    "nombre": "magmortar",
+    "imagen": "assets/sprites/467.png"
+  },
+  {
+    "numero": 468,
+    "nombre": "togekiss",
+    "imagen": "assets/sprites/468.png"
+  },
+  {
+    "numero": 469,
+    "nombre": "yanmega",
+    "imagen": "assets/sprites/469.png"
+  },
+  {
+    "numero": 470,
+    "nombre": "leafeon",
+    "imagen": "assets/sprites/470.png"
+  },
+  {
+    "numero": 471,
+    "nombre": "glaceon",
+    "imagen": "assets/sprites/471.png"
+  },
+  {
+    "numero": 472,
+    "nombre": "gliscor",
+    "imagen": "assets/sprites/472.png"
+  },
+  {
+    "numero": 473,
+    "nombre": "mamoswine",
+    "imagen": "assets/sprites/473.png"
+  },
+  {
+    "numero": 474,
+    "nombre": "porygon-z",
+    "imagen": "assets/sprites/474.png"
+  },
+  {
+    "numero": 475,
+    "nombre": "gallade",
+    "imagen": "assets/sprites/475.png"
+  },
+  {
+    "numero": 476,
+    "nombre": "probopass",
+    "imagen": "assets/sprites/476.png"
+  },
+  {
+    "numero": 477,
+    "nombre": "dusknoir",
+    "imagen": "assets/sprites/477.png"
+  },
+  {
+    "numero": 478,
+    "nombre": "froslass",
+    "imagen": "assets/sprites/478.png"
+  },
+  {
+    "numero": 479,
+    "nombre": "rotom",
+    "imagen": "assets/sprites/479.png"
+  },
+  {
+    "numero": 480,
+    "nombre": "uxie",
+    "imagen": "assets/sprites/480.png"
+  },
+  {
+    "numero": 481,
+    "nombre": "mesprit",
+    "imagen": "assets/sprites/481.png"
+  },
+  {
+    "numero": 482,
+    "nombre": "azelf",
+    "imagen": "assets/sprites/482.png"
+  },
+  {
+    "numero": 483,
+    "nombre": "dialga",
+    "imagen": "assets/sprites/483.png"
+  },
+  {
+    "numero": 484,
+    "nombre": "palkia",
+    "imagen": "assets/sprites/484.png"
+  },
+  {
+    "numero": 485,
+    "nombre": "heatran",
+    "imagen": "assets/sprites/485.png"
+  },
+  {
+    "numero": 486,
+    "nombre": "regigigas",
+    "imagen": "assets/sprites/486.png"
+  },
+  {
+    "numero": 487,
+    "nombre": "giratina-altered",
+    "imagen": "assets/sprites/487.png"
+  },
+  {
+    "numero": 488,
+    "nombre": "cresselia",
+    "imagen": "assets/sprites/488.png"
+  },
+  {
+    "numero": 489,
+    "nombre": "phione",
+    "imagen": "assets/sprites/489.png"
+  },
+  {
+    "numero": 490,
+    "nombre": "manaphy",
+    "imagen": "assets/sprites/490.png"
+  },
+  {
+    "numero": 491,
+    "nombre": "darkrai",
+    "imagen": "assets/sprites/491.png"
+  },
+  {
+    "numero": 492,
+    "nombre": "shaymin-land",
+    "imagen": "assets/sprites/492.png"
+  },
+  {
+    "numero": 493,
+    "nombre": "arceus",
+    "imagen": "assets/sprites/493.png"
+  },
+  {
+    "numero": 494,
+    "nombre": "victini",
+    "imagen": "assets/sprites/494.png"
+  },
+  {
+    "numero": 495,
+    "nombre": "snivy",
+    "imagen": "assets/sprites/495.png"
+  },
+  {
+    "numero": 496,
+    "nombre": "servine",
+    "imagen": "assets/sprites/496.png"
+  },
+  {
+    "numero": 497,
+    "nombre": "serperior",
+    "imagen": "assets/sprites/497.png"
+  },
+  {
+    "numero": 498,
+    "nombre": "tepig",
+    "imagen": "assets/sprites/498.png"
+  },
+  {
+    "numero": 499,
+    "nombre": "pignite",
+    "imagen": "assets/sprites/499.png"
+  },
+  {
+    "numero": 500,
+    "nombre": "emboar",
+    "imagen": "assets/sprites/500.png"
+  },
+  {
+    "numero": 501,
+    "nombre": "oshawott",
+    "imagen": "assets/sprites/501.png"
+  },
+  {
+    "numero": 502,
+    "nombre": "dewott",
+    "imagen": "assets/sprites/502.png"
+  },
+  {
+    "numero": 503,
+    "nombre": "samurott",
+    "imagen": "assets/sprites/503.png"
+  },
+  {
+    "numero": 504,
+    "nombre": "patrat",
+    "imagen": "assets/sprites/504.png"
+  },
+  {
+    "numero": 505,
+    "nombre": "watchog",
+    "imagen": "assets/sprites/505.png"
+  },
+  {
+    "numero": 506,
+    "nombre": "lillipup",
+    "imagen": "assets/sprites/506.png"
+  },
+  {
+    "numero": 507,
+    "nombre": "herdier",
+    "imagen": "assets/sprites/507.png"
+  },
+  {
+    "numero": 508,
+    "nombre": "stoutland",
+    "imagen": "assets/sprites/508.png"
+  },
+  {
+    "numero": 509,
+    "nombre": "purrloin",
+    "imagen": "assets/sprites/509.png"
+  },
+  {
+    "numero": 510,
+    "nombre": "liepard",
+    "imagen": "assets/sprites/510.png"
+  },
+  {
+    "numero": 511,
+    "nombre": "pansage",
+    "imagen": "assets/sprites/511.png"
+  },
+  {
+    "numero": 512,
+    "nombre": "simisage",
+    "imagen": "assets/sprites/512.png"
+  },
+  {
+    "numero": 513,
+    "nombre": "pansear",
+    "imagen": "assets/sprites/513.png"
+  },
+  {
+    "numero": 514,
+    "nombre": "simisear",
+    "imagen": "assets/sprites/514.png"
+  },
+  {
+    "numero": 515,
+    "nombre": "panpour",
+    "imagen": "assets/sprites/515.png"
+  },
+  {
+    "numero": 516,
+    "nombre": "simipour",
+    "imagen": "assets/sprites/516.png"
+  },
+  {
+    "numero": 517,
+    "nombre": "munna",
+    "imagen": "assets/sprites/517.png"
+  },
+  {
+    "numero": 518,
+    "nombre": "musharna",
+    "imagen": "assets/sprites/518.png"
+  },
+  {
+    "numero": 519,
+    "nombre": "pidove",
+    "imagen": "assets/sprites/519.png"
+  },
+  {
+    "numero": 520,
+    "nombre": "tranquill",
+    "imagen": "assets/sprites/520.png"
+  },
+  {
+    "numero": 521,
+    "nombre": "unfezant",
+    "imagen": "assets/sprites/521.png"
+  },
+  {
+    "numero": 522,
+    "nombre": "blitzle",
+    "imagen": "assets/sprites/522.png"
+  },
+  {
+    "numero": 523,
+    "nombre": "zebstrika",
+    "imagen": "assets/sprites/523.png"
+  },
+  {
+    "numero": 524,
+    "nombre": "roggenrola",
+    "imagen": "assets/sprites/524.png"
+  },
+  {
+    "numero": 525,
+    "nombre": "boldore",
+    "imagen": "assets/sprites/525.png"
+  },
+  {
+    "numero": 526,
+    "nombre": "gigalith",
+    "imagen": "assets/sprites/526.png"
+  },
+  {
+    "numero": 527,
+    "nombre": "woobat",
+    "imagen": "assets/sprites/527.png"
+  },
+  {
+    "numero": 528,
+    "nombre": "swoobat",
+    "imagen": "assets/sprites/528.png"
+  },
+  {
+    "numero": 529,
+    "nombre": "drilbur",
+    "imagen": "assets/sprites/529.png"
+  },
+  {
+    "numero": 530,
+    "nombre": "excadrill",
+    "imagen": "assets/sprites/530.png"
+  },
+  {
+    "numero": 531,
+    "nombre": "audino",
+    "imagen": "assets/sprites/531.png"
+  },
+  {
+    "numero": 532,
+    "nombre": "timburr",
+    "imagen": "assets/sprites/532.png"
+  },
+  {
+    "numero": 533,
+    "nombre": "gurdurr",
+    "imagen": "assets/sprites/533.png"
+  },
+  {
+    "numero": 534,
+    "nombre": "conkeldurr",
+    "imagen": "assets/sprites/534.png"
+  },
+  {
+    "numero": 535,
+    "nombre": "tympole",
+    "imagen": "assets/sprites/535.png"
+  },
+  {
+    "numero": 536,
+    "nombre": "palpitoad",
+    "imagen": "assets/sprites/536.png"
+  },
+  {
+    "numero": 537,
+    "nombre": "seismitoad",
+    "imagen": "assets/sprites/537.png"
+  },
+  {
+    "numero": 538,
+    "nombre": "throh",
+    "imagen": "assets/sprites/538.png"
+  },
+  {
+    "numero": 539,
+    "nombre": "sawk",
+    "imagen": "assets/sprites/539.png"
+  },
+  {
+    "numero": 540,
+    "nombre": "sewaddle",
+    "imagen": "assets/sprites/540.png"
+  },
+  {
+    "numero": 541,
+    "nombre": "swadloon",
+    "imagen": "assets/sprites/541.png"
+  },
+  {
+    "numero": 542,
+    "nombre": "leavanny",
+    "imagen": "assets/sprites/542.png"
+  },
+  {
+    "numero": 543,
+    "nombre": "venipede",
+    "imagen": "assets/sprites/543.png"
+  },
+  {
+    "numero": 544,
+    "nombre": "whirlipede",
+    "imagen": "assets/sprites/544.png"
+  },
+  {
+    "numero": 545,
+    "nombre": "scolipede",
+    "imagen": "assets/sprites/545.png"
+  },
+  {
+    "numero": 546,
+    "nombre": "cottonee",
+    "imagen": "assets/sprites/546.png"
+  },
+  {
+    "numero": 547,
+    "nombre": "whimsicott",
+    "imagen": "assets/sprites/547.png"
+  },
+  {
+    "numero": 548,
+    "nombre": "petilil",
+    "imagen": "assets/sprites/548.png"
+  },
+  {
+    "numero": 549,
+    "nombre": "lilligant",
+    "imagen": "assets/sprites/549.png"
+  },
+  {
+    "numero": 550,
+    "nombre": "basculin-red-striped",
+    "imagen": "assets/sprites/550.png"
+  },
+  {
+    "numero": 551,
+    "nombre": "sandile",
+    "imagen": "assets/sprites/551.png"
+  },
+  {
+    "numero": 552,
+    "nombre": "krokorok",
+    "imagen": "assets/sprites/552.png"
+  },
+  {
+    "numero": 553,
+    "nombre": "krookodile",
+    "imagen": "assets/sprites/553.png"
+  },
+  {
+    "numero": 554,
+    "nombre": "darumaka",
+    "imagen": "assets/sprites/554.png"
+  },
+  {
+    "numero": 555,
+    "nombre": "darmanitan-standard",
+    "imagen": "assets/sprites/555.png"
+  },
+  {
+    "numero": 556,
+    "nombre": "maractus",
+    "imagen": "assets/sprites/556.png"
+  },
+  {
+    "numero": 557,
+    "nombre": "dwebble",
+    "imagen": "assets/sprites/557.png"
+  },
+  {
+    "numero": 558,
+    "nombre": "crustle",
+    "imagen": "assets/sprites/558.png"
+  },
+  {
+    "numero": 559,
+    "nombre": "scraggy",
+    "imagen": "assets/sprites/559.png"
+  },
+  {
+    "numero": 560,
+    "nombre": "scrafty",
+    "imagen": "assets/sprites/560.png"
+  },
+  {
+    "numero": 561,
+    "nombre": "sigilyph",
+    "imagen": "assets/sprites/561.png"
+  },
+  {
+    "numero": 562,
+    "nombre": "yamask",
+    "imagen": "assets/sprites/562.png"
+  },
+  {
+    "numero": 563,
+    "nombre": "cofagrigus",
+    "imagen": "assets/sprites/563.png"
+  },
+  {
+    "numero": 564,
+    "nombre": "tirtouga",
+    "imagen": "assets/sprites/564.png"
+  },
+  {
+    "numero": 565,
+    "nombre": "carracosta",
+    "imagen": "assets/sprites/565.png"
+  },
+  {
+    "numero": 566,
+    "nombre": "archen",
+    "imagen": "assets/sprites/566.png"
+  },
+  {
+    "numero": 567,
+    "nombre": "archeops",
+    "imagen": "assets/sprites/567.png"
+  },
+  {
+    "numero": 568,
+    "nombre": "trubbish",
+    "imagen": "assets/sprites/568.png"
+  },
+  {
+    "numero": 569,
+    "nombre": "garbodor",
+    "imagen": "assets/sprites/569.png"
+  },
+  {
+    "numero": 570,
+    "nombre": "zorua",
+    "imagen": "assets/sprites/570.png"
+  },
+  {
+    "numero": 571,
+    "nombre": "zoroark",
+    "imagen": "assets/sprites/571.png"
+  },
+  {
+    "numero": 572,
+    "nombre": "minccino",
+    "imagen": "assets/sprites/572.png"
+  },
+  {
+    "numero": 573,
+    "nombre": "cinccino",
+    "imagen": "assets/sprites/573.png"
+  },
+  {
+    "numero": 574,
+    "nombre": "gothita",
+    "imagen": "assets/sprites/574.png"
+  },
+  {
+    "numero": 575,
+    "nombre": "gothorita",
+    "imagen": "assets/sprites/575.png"
+  },
+  {
+    "numero": 576,
+    "nombre": "gothitelle",
+    "imagen": "assets/sprites/576.png"
+  },
+  {
+    "numero": 577,
+    "nombre": "solosis",
+    "imagen": "assets/sprites/577.png"
+  },
+  {
+    "numero": 578,
+    "nombre": "duosion",
+    "imagen": "assets/sprites/578.png"
+  },
+  {
+    "numero": 579,
+    "nombre": "reuniclus",
+    "imagen": "assets/sprites/579.png"
+  },
+  {
+    "numero": 580,
+    "nombre": "ducklett",
+    "imagen": "assets/sprites/580.png"
+  },
+  {
+    "numero": 581,
+    "nombre": "swanna",
+    "imagen": "assets/sprites/581.png"
+  },
+  {
+    "numero": 582,
+    "nombre": "vanillite",
+    "imagen": "assets/sprites/582.png"
+  },
+  {
+    "numero": 583,
+    "nombre": "vanillish",
+    "imagen": "assets/sprites/583.png"
+  },
+  {
+    "numero": 584,
+    "nombre": "vanilluxe",
+    "imagen": "assets/sprites/584.png"
+  },
+  {
+    "numero": 585,
+    "nombre": "deerling",
+    "imagen": "assets/sprites/585.png"
+  },
+  {
+    "numero": 586,
+    "nombre": "sawsbuck",
+    "imagen": "assets/sprites/586.png"
+  },
+  {
+    "numero": 587,
+    "nombre": "emolga",
+    "imagen": "assets/sprites/587.png"
+  },
+  {
+    "numero": 588,
+    "nombre": "karrablast",
+    "imagen": "assets/sprites/588.png"
+  },
+  {
+    "numero": 589,
+    "nombre": "escavalier",
+    "imagen": "assets/sprites/589.png"
+  },
+  {
+    "numero": 590,
+    "nombre": "foongus",
+    "imagen": "assets/sprites/590.png"
+  },
+  {
+    "numero": 591,
+    "nombre": "amoonguss",
+    "imagen": "assets/sprites/591.png"
+  },
+  {
+    "numero": 592,
+    "nombre": "frillish-male",
+    "imagen": "assets/sprites/592.png"
+  },
+  {
+    "numero": 593,
+    "nombre": "jellicent-male",
+    "imagen": "assets/sprites/593.png"
+  },
+  {
+    "numero": 594,
+    "nombre": "alomomola",
+    "imagen": "assets/sprites/594.png"
+  },
+  {
+    "numero": 595,
+    "nombre": "joltik",
+    "imagen": "assets/sprites/595.png"
+  },
+  {
+    "numero": 596,
+    "nombre": "galvantula",
+    "imagen": "assets/sprites/596.png"
+  },
+  {
+    "numero": 597,
+    "nombre": "ferroseed",
+    "imagen": "assets/sprites/597.png"
+  },
+  {
+    "numero": 598,
+    "nombre": "ferrothorn",
+    "imagen": "assets/sprites/598.png"
+  },
+  {
+    "numero": 599,
+    "nombre": "klink",
+    "imagen": "assets/sprites/599.png"
+  },
+  {
+    "numero": 600,
+    "nombre": "klang",
+    "imagen": "assets/sprites/600.png"
+  },
+  {
+    "numero": 601,
+    "nombre": "klinklang",
+    "imagen": "assets/sprites/601.png"
+  },
+  {
+    "numero": 602,
+    "nombre": "tynamo",
+    "imagen": "assets/sprites/602.png"
+  },
+  {
+    "numero": 603,
+    "nombre": "eelektrik",
+    "imagen": "assets/sprites/603.png"
+  },
+  {
+    "numero": 604,
+    "nombre": "eelektross",
+    "imagen": "assets/sprites/604.png"
+  },
+  {
+    "numero": 605,
+    "nombre": "elgyem",
+    "imagen": "assets/sprites/605.png"
+  },
+  {
+    "numero": 606,
+    "nombre": "beheeyem",
+    "imagen": "assets/sprites/606.png"
+  },
+  {
+    "numero": 607,
+    "nombre": "litwick",
+    "imagen": "assets/sprites/607.png"
+  },
+  {
+    "numero": 608,
+    "nombre": "lampent",
+    "imagen": "assets/sprites/608.png"
+  },
+  {
+    "numero": 609,
+    "nombre": "chandelure",
+    "imagen": "assets/sprites/609.png"
+  },
+  {
+    "numero": 610,
+    "nombre": "axew",
+    "imagen": "assets/sprites/610.png"
+  },
+  {
+    "numero": 611,
+    "nombre": "fraxure",
+    "imagen": "assets/sprites/611.png"
+  },
+  {
+    "numero": 612,
+    "nombre": "haxorus",
+    "imagen": "assets/sprites/612.png"
+  },
+  {
+    "numero": 613,
+    "nombre": "cubchoo",
+    "imagen": "assets/sprites/613.png"
+  },
+  {
+    "numero": 614,
+    "nombre": "beartic",
+    "imagen": "assets/sprites/614.png"
+  },
+  {
+    "numero": 615,
+    "nombre": "cryogonal",
+    "imagen": "assets/sprites/615.png"
+  },
+  {
+    "numero": 616,
+    "nombre": "shelmet",
+    "imagen": "assets/sprites/616.png"
+  },
+  {
+    "numero": 617,
+    "nombre": "accelgor",
+    "imagen": "assets/sprites/617.png"
+  },
+  {
+    "numero": 618,
+    "nombre": "stunfisk",
+    "imagen": "assets/sprites/618.png"
+  },
+  {
+    "numero": 619,
+    "nombre": "mienfoo",
+    "imagen": "assets/sprites/619.png"
+  },
+  {
+    "numero": 620,
+    "nombre": "mienshao",
+    "imagen": "assets/sprites/620.png"
+  },
+  {
+    "numero": 621,
+    "nombre": "druddigon",
+    "imagen": "assets/sprites/621.png"
+  },
+  {
+    "numero": 622,
+    "nombre": "golett",
+    "imagen": "assets/sprites/622.png"
+  },
+  {
+    "numero": 623,
+    "nombre": "golurk",
+    "imagen": "assets/sprites/623.png"
+  },
+  {
+    "numero": 624,
+    "nombre": "pawniard",
+    "imagen": "assets/sprites/624.png"
+  },
+  {
+    "numero": 625,
+    "nombre": "bisharp",
+    "imagen": "assets/sprites/625.png"
+  },
+  {
+    "numero": 626,
+    "nombre": "bouffalant",
+    "imagen": "assets/sprites/626.png"
+  },
+  {
+    "numero": 627,
+    "nombre": "rufflet",
+    "imagen": "assets/sprites/627.png"
+  },
+  {
+    "numero": 628,
+    "nombre": "braviary",
+    "imagen": "assets/sprites/628.png"
+  },
+  {
+    "numero": 629,
+    "nombre": "vullaby",
+    "imagen": "assets/sprites/629.png"
+  },
+  {
+    "numero": 630,
+    "nombre": "mandibuzz",
+    "imagen": "assets/sprites/630.png"
+  },
+  {
+    "numero": 631,
+    "nombre": "heatmor",
+    "imagen": "assets/sprites/631.png"
+  },
+  {
+    "numero": 632,
+    "nombre": "durant",
+    "imagen": "assets/sprites/632.png"
+  },
+  {
+    "numero": 633,
+    "nombre": "deino",
+    "imagen": "assets/sprites/633.png"
+  },
+  {
+    "numero": 634,
+    "nombre": "zweilous",
+    "imagen": "assets/sprites/634.png"
+  },
+  {
+    "numero": 635,
+    "nombre": "hydreigon",
+    "imagen": "assets/sprites/635.png"
+  },
+  {
+    "numero": 636,
+    "nombre": "larvesta",
+    "imagen": "assets/sprites/636.png"
+  },
+  {
+    "numero": 637,
+    "nombre": "volcarona",
+    "imagen": "assets/sprites/637.png"
+  },
+  {
+    "numero": 638,
+    "nombre": "cobalion",
+    "imagen": "assets/sprites/638.png"
+  },
+  {
+    "numero": 639,
+    "nombre": "terrakion",
+    "imagen": "assets/sprites/639.png"
+  },
+  {
+    "numero": 640,
+    "nombre": "virizion",
+    "imagen": "assets/sprites/640.png"
+  },
+  {
+    "numero": 641,
+    "nombre": "tornadus-incarnate",
+    "imagen": "assets/sprites/641.png"
+  },
+  {
+    "numero": 642,
+    "nombre": "thundurus-incarnate",
+    "imagen": "assets/sprites/642.png"
+  },
+  {
+    "numero": 643,
+    "nombre": "reshiram",
+    "imagen": "assets/sprites/643.png"
+  },
+  {
+    "numero": 644,
+    "nombre": "zekrom",
+    "imagen": "assets/sprites/644.png"
+  },
+  {
+    "numero": 645,
+    "nombre": "landorus-incarnate",
+    "imagen": "assets/sprites/645.png"
+  },
+  {
+    "numero": 646,
+    "nombre": "kyurem",
+    "imagen": "assets/sprites/646.png"
+  },
+  {
+    "numero": 647,
+    "nombre": "keldeo-ordinary",
+    "imagen": "assets/sprites/647.png"
+  },
+  {
+    "numero": 648,
+    "nombre": "meloetta-aria",
+    "imagen": "assets/sprites/648.png"
+  },
+  {
+    "numero": 649,
+    "nombre": "genesect",
+    "imagen": "assets/sprites/649.png"
+  },
+  {
+    "numero": 650,
+    "nombre": "chespin",
+    "imagen": "assets/sprites/650.png"
+  },
+  {
+    "numero": 651,
+    "nombre": "quilladin",
+    "imagen": "assets/sprites/651.png"
+  },
+  {
+    "numero": 652,
+    "nombre": "chesnaught",
+    "imagen": "assets/sprites/652.png"
+  },
+  {
+    "numero": 653,
+    "nombre": "fennekin",
+    "imagen": "assets/sprites/653.png"
+  },
+  {
+    "numero": 654,
+    "nombre": "braixen",
+    "imagen": "assets/sprites/654.png"
+  },
+  {
+    "numero": 655,
+    "nombre": "delphox",
+    "imagen": "assets/sprites/655.png"
+  },
+  {
+    "numero": 656,
+    "nombre": "froakie",
+    "imagen": "assets/sprites/656.png"
+  },
+  {
+    "numero": 657,
+    "nombre": "frogadier",
+    "imagen": "assets/sprites/657.png"
+  },
+  {
+    "numero": 658,
+    "nombre": "greninja",
+    "imagen": "assets/sprites/658.png"
+  },
+  {
+    "numero": 659,
+    "nombre": "bunnelby",
+    "imagen": "assets/sprites/659.png"
+  },
+  {
+    "numero": 660,
+    "nombre": "diggersby",
+    "imagen": "assets/sprites/660.png"
+  },
+  {
+    "numero": 661,
+    "nombre": "fletchling",
+    "imagen": "assets/sprites/661.png"
+  },
+  {
+    "numero": 662,
+    "nombre": "fletchinder",
+    "imagen": "assets/sprites/662.png"
+  },
+  {
+    "numero": 663,
+    "nombre": "talonflame",
+    "imagen": "assets/sprites/663.png"
+  },
+  {
+    "numero": 664,
+    "nombre": "scatterbug",
+    "imagen": "assets/sprites/664.png"
+  },
+  {
+    "numero": 665,
+    "nombre": "spewpa",
+    "imagen": "assets/sprites/665.png"
+  },
+  {
+    "numero": 666,
+    "nombre": "vivillon",
+    "imagen": "assets/sprites/666.png"
+  },
+  {
+    "numero": 667,
+    "nombre": "litleo",
+    "imagen": "assets/sprites/667.png"
+  },
+  {
+    "numero": 668,
+    "nombre": "pyroar-male",
+    "imagen": "assets/sprites/668.png"
+  },
+  {
+    "numero": 669,
+    "nombre": "flabebe",
+    "imagen": "assets/sprites/669.png"
+  },
+  {
+    "numero": 670,
+    "nombre": "floette",
+    "imagen": "assets/sprites/670.png"
+  },
+  {
+    "numero": 671,
+    "nombre": "florges",
+    "imagen": "assets/sprites/671.png"
+  },
+  {
+    "numero": 672,
+    "nombre": "skiddo",
+    "imagen": "assets/sprites/672.png"
+  },
+  {
+    "numero": 673,
+    "nombre": "gogoat",
+    "imagen": "assets/sprites/673.png"
+  },
+  {
+    "numero": 674,
+    "nombre": "pancham",
+    "imagen": "assets/sprites/674.png"
+  },
+  {
+    "numero": 675,
+    "nombre": "pangoro",
+    "imagen": "assets/sprites/675.png"
+  },
+  {
+    "numero": 676,
+    "nombre": "furfrou",
+    "imagen": "assets/sprites/676.png"
+  },
+  {
+    "numero": 677,
+    "nombre": "espurr",
+    "imagen": "assets/sprites/677.png"
+  },
+  {
+    "numero": 678,
+    "nombre": "meowstic-male",
+    "imagen": "assets/sprites/678.png"
+  },
+  {
+    "numero": 679,
+    "nombre": "honedge",
+    "imagen": "assets/sprites/679.png"
+  },
+  {
+    "numero": 680,
+    "nombre": "doublade",
+    "imagen": "assets/sprites/680.png"
+  },
+  {
+    "numero": 681,
+    "nombre": "aegislash-shield",
+    "imagen": "assets/sprites/681.png"
+  },
+  {
+    "numero": 682,
+    "nombre": "spritzee",
+    "imagen": "assets/sprites/682.png"
+  },
+  {
+    "numero": 683,
+    "nombre": "aromatisse",
+    "imagen": "assets/sprites/683.png"
+  },
+  {
+    "numero": 684,
+    "nombre": "swirlix",
+    "imagen": "assets/sprites/684.png"
+  },
+  {
+    "numero": 685,
+    "nombre": "slurpuff",
+    "imagen": "assets/sprites/685.png"
+  },
+  {
+    "numero": 686,
+    "nombre": "inkay",
+    "imagen": "assets/sprites/686.png"
+  },
+  {
+    "numero": 687,
+    "nombre": "malamar",
+    "imagen": "assets/sprites/687.png"
+  },
+  {
+    "numero": 688,
+    "nombre": "binacle",
+    "imagen": "assets/sprites/688.png"
+  },
+  {
+    "numero": 689,
+    "nombre": "barbaracle",
+    "imagen": "assets/sprites/689.png"
+  },
+  {
+    "numero": 690,
+    "nombre": "skrelp",
+    "imagen": "assets/sprites/690.png"
+  },
+  {
+    "numero": 691,
+    "nombre": "dragalge",
+    "imagen": "assets/sprites/691.png"
+  },
+  {
+    "numero": 692,
+    "nombre": "clauncher",
+    "imagen": "assets/sprites/692.png"
+  },
+  {
+    "numero": 693,
+    "nombre": "clawitzer",
+    "imagen": "assets/sprites/693.png"
+  },
+  {
+    "numero": 694,
+    "nombre": "helioptile",
+    "imagen": "assets/sprites/694.png"
+  },
+  {
+    "numero": 695,
+    "nombre": "heliolisk",
+    "imagen": "assets/sprites/695.png"
+  },
+  {
+    "numero": 696,
+    "nombre": "tyrunt",
+    "imagen": "assets/sprites/696.png"
+  },
+  {
+    "numero": 697,
+    "nombre": "tyrantrum",
+    "imagen": "assets/sprites/697.png"
+  },
+  {
+    "numero": 698,
+    "nombre": "amaura",
+    "imagen": "assets/sprites/698.png"
+  },
+  {
+    "numero": 699,
+    "nombre": "aurorus",
+    "imagen": "assets/sprites/699.png"
+  },
+  {
+    "numero": 700,
+    "nombre": "sylveon",
+    "imagen": "assets/sprites/700.png"
+  },
+  {
+    "numero": 701,
+    "nombre": "hawlucha",
+    "imagen": "assets/sprites/701.png"
+  },
+  {
+    "numero": 702,
+    "nombre": "dedenne",
+    "imagen": "assets/sprites/702.png"
+  },
+  {
+    "numero": 703,
+    "nombre": "carbink",
+    "imagen": "assets/sprites/703.png"
+  },
+  {
+    "numero": 704,
+    "nombre": "goomy",
+    "imagen": "assets/sprites/704.png"
+  },
+  {
+    "numero": 705,
+    "nombre": "sliggoo",
+    "imagen": "assets/sprites/705.png"
+  },
+  {
+    "numero": 706,
+    "nombre": "goodra",
+    "imagen": "assets/sprites/706.png"
+  },
+  {
+    "numero": 707,
+    "nombre": "klefki",
+    "imagen": "assets/sprites/707.png"
+  },
+  {
+    "numero": 708,
+    "nombre": "phantump",
+    "imagen": "assets/sprites/708.png"
+  },
+  {
+    "numero": 709,
+    "nombre": "trevenant",
+    "imagen": "assets/sprites/709.png"
+  },
+  {
+    "numero": 710,
+    "nombre": "pumpkaboo-average",
+    "imagen": "assets/sprites/710.png"
+  },
+  {
+    "numero": 711,
+    "nombre": "gourgeist-average",
+    "imagen": "assets/sprites/711.png"
+  },
+  {
+    "numero": 712,
+    "nombre": "bergmite",
+    "imagen": "assets/sprites/712.png"
+  },
+  {
+    "numero": 713,
+    "nombre": "avalugg",
+    "imagen": "assets/sprites/713.png"
+  },
+  {
+    "numero": 714,
+    "nombre": "noibat",
+    "imagen": "assets/sprites/714.png"
+  },
+  {
+    "numero": 715,
+    "nombre": "noivern",
+    "imagen": "assets/sprites/715.png"
+  },
+  {
+    "numero": 716,
+    "nombre": "xerneas",
+    "imagen": "assets/sprites/716.png"
+  },
+  {
+    "numero": 717,
+    "nombre": "yveltal",
+    "imagen": "assets/sprites/717.png"
+  },
+  {
+    "numero": 718,
+    "nombre": "zygarde-50",
+    "imagen": "assets/sprites/718.png"
+  },
+  {
+    "numero": 719,
+    "nombre": "diancie",
+    "imagen": "assets/sprites/719.png"
+  },
+  {
+    "numero": 720,
+    "nombre": "hoopa",
+    "imagen": "assets/sprites/720.png"
+  },
+  {
+    "numero": 721,
+    "nombre": "volcanion",
+    "imagen": "assets/sprites/721.png"
+  },
+  {
+    "numero": 722,
+    "nombre": "rowlet",
+    "imagen": "assets/sprites/722.png"
+  },
+  {
+    "numero": 723,
+    "nombre": "dartrix",
+    "imagen": "assets/sprites/723.png"
+  },
+  {
+    "numero": 724,
+    "nombre": "decidueye",
+    "imagen": "assets/sprites/724.png"
+  },
+  {
+    "numero": 725,
+    "nombre": "litten",
+    "imagen": "assets/sprites/725.png"
+  },
+  {
+    "numero": 726,
+    "nombre": "torracat",
+    "imagen": "assets/sprites/726.png"
+  },
+  {
+    "numero": 727,
+    "nombre": "incineroar",
+    "imagen": "assets/sprites/727.png"
+  },
+  {
+    "numero": 728,
+    "nombre": "popplio",
+    "imagen": "assets/sprites/728.png"
+  },
+  {
+    "numero": 729,
+    "nombre": "brionne",
+    "imagen": "assets/sprites/729.png"
+  },
+  {
+    "numero": 730,
+    "nombre": "primarina",
+    "imagen": "assets/sprites/730.png"
+  },
+  {
+    "numero": 731,
+    "nombre": "pikipek",
+    "imagen": "assets/sprites/731.png"
+  },
+  {
+    "numero": 732,
+    "nombre": "trumbeak",
+    "imagen": "assets/sprites/732.png"
+  },
+  {
+    "numero": 733,
+    "nombre": "toucannon",
+    "imagen": "assets/sprites/733.png"
+  },
+  {
+    "numero": 734,
+    "nombre": "yungoos",
+    "imagen": "assets/sprites/734.png"
+  },
+  {
+    "numero": 735,
+    "nombre": "gumshoos",
+    "imagen": "assets/sprites/735.png"
+  },
+  {
+    "numero": 736,
+    "nombre": "grubbin",
+    "imagen": "assets/sprites/736.png"
+  },
+  {
+    "numero": 737,
+    "nombre": "charjabug",
+    "imagen": "assets/sprites/737.png"
+  },
+  {
+    "numero": 738,
+    "nombre": "vikavolt",
+    "imagen": "assets/sprites/738.png"
+  },
+  {
+    "numero": 739,
+    "nombre": "crabrawler",
+    "imagen": "assets/sprites/739.png"
+  },
+  {
+    "numero": 740,
+    "nombre": "crabominable",
+    "imagen": "assets/sprites/740.png"
+  },
+  {
+    "numero": 741,
+    "nombre": "oricorio-baile",
+    "imagen": "assets/sprites/741.png"
+  },
+  {
+    "numero": 742,
+    "nombre": "cutiefly",
+    "imagen": "assets/sprites/742.png"
+  },
+  {
+    "numero": 743,
+    "nombre": "ribombee",
+    "imagen": "assets/sprites/743.png"
+  },
+  {
+    "numero": 744,
+    "nombre": "rockruff",
+    "imagen": "assets/sprites/744.png"
+  },
+  {
+    "numero": 745,
+    "nombre": "lycanroc-midday",
+    "imagen": "assets/sprites/745.png"
+  },
+  {
+    "numero": 746,
+    "nombre": "wishiwashi-solo",
+    "imagen": "assets/sprites/746.png"
+  },
+  {
+    "numero": 747,
+    "nombre": "mareanie",
+    "imagen": "assets/sprites/747.png"
+  },
+  {
+    "numero": 748,
+    "nombre": "toxapex",
+    "imagen": "assets/sprites/748.png"
+  },
+  {
+    "numero": 749,
+    "nombre": "mudbray",
+    "imagen": "assets/sprites/749.png"
+  },
+  {
+    "numero": 750,
+    "nombre": "mudsdale",
+    "imagen": "assets/sprites/750.png"
+  },
+  {
+    "numero": 751,
+    "nombre": "dewpider",
+    "imagen": "assets/sprites/751.png"
+  },
+  {
+    "numero": 752,
+    "nombre": "araquanid",
+    "imagen": "assets/sprites/752.png"
+  },
+  {
+    "numero": 753,
+    "nombre": "fomantis",
+    "imagen": "assets/sprites/753.png"
+  },
+  {
+    "numero": 754,
+    "nombre": "lurantis",
+    "imagen": "assets/sprites/754.png"
+  },
+  {
+    "numero": 755,
+    "nombre": "morelull",
+    "imagen": "assets/sprites/755.png"
+  },
+  {
+    "numero": 756,
+    "nombre": "shiinotic",
+    "imagen": "assets/sprites/756.png"
+  },
+  {
+    "numero": 757,
+    "nombre": "salandit",
+    "imagen": "assets/sprites/757.png"
+  },
+  {
+    "numero": 758,
+    "nombre": "salazzle",
+    "imagen": "assets/sprites/758.png"
+  },
+  {
+    "numero": 759,
+    "nombre": "stufful",
+    "imagen": "assets/sprites/759.png"
+  },
+  {
+    "numero": 760,
+    "nombre": "bewear",
+    "imagen": "assets/sprites/760.png"
+  },
+  {
+    "numero": 761,
+    "nombre": "bounsweet",
+    "imagen": "assets/sprites/761.png"
+  },
+  {
+    "numero": 762,
+    "nombre": "steenee",
+    "imagen": "assets/sprites/762.png"
+  },
+  {
+    "numero": 763,
+    "nombre": "tsareena",
+    "imagen": "assets/sprites/763.png"
+  },
+  {
+    "numero": 764,
+    "nombre": "comfey",
+    "imagen": "assets/sprites/764.png"
+  },
+  {
+    "numero": 765,
+    "nombre": "oranguru",
+    "imagen": "assets/sprites/765.png"
+  },
+  {
+    "numero": 766,
+    "nombre": "passimian",
+    "imagen": "assets/sprites/766.png"
+  },
+  {
+    "numero": 767,
+    "nombre": "wimpod",
+    "imagen": "assets/sprites/767.png"
+  },
+  {
+    "numero": 768,
+    "nombre": "golisopod",
+    "imagen": "assets/sprites/768.png"
+  },
+  {
+    "numero": 769,
+    "nombre": "sandygast",
+    "imagen": "assets/sprites/769.png"
+  },
+  {
+    "numero": 770,
+    "nombre": "palossand",
+    "imagen": "assets/sprites/770.png"
+  },
+  {
+    "numero": 771,
+    "nombre": "pyukumuku",
+    "imagen": "assets/sprites/771.png"
+  },
+  {
+    "numero": 772,
+    "nombre": "type-null",
+    "imagen": "assets/sprites/772.png"
+  },
+  {
+    "numero": 773,
+    "nombre": "silvally",
+    "imagen": "assets/sprites/773.png"
+  },
+  {
+    "numero": 774,
+    "nombre": "minior-red-meteor",
+    "imagen": "assets/sprites/774.png"
+  },
+  {
+    "numero": 775,
+    "nombre": "komala",
+    "imagen": "assets/sprites/775.png"
+  },
+  {
+    "numero": 776,
+    "nombre": "turtonator",
+    "imagen": "assets/sprites/776.png"
+  },
+  {
+    "numero": 777,
+    "nombre": "togedemaru",
+    "imagen": "assets/sprites/777.png"
+  },
+  {
+    "numero": 778,
+    "nombre": "mimikyu-disguised",
+    "imagen": "assets/sprites/778.png"
+  },
+  {
+    "numero": 779,
+    "nombre": "bruxish",
+    "imagen": "assets/sprites/779.png"
+  },
+  {
+    "numero": 780,
+    "nombre": "drampa",
+    "imagen": "assets/sprites/780.png"
+  },
+  {
+    "numero": 781,
+    "nombre": "dhelmise",
+    "imagen": "assets/sprites/781.png"
+  },
+  {
+    "numero": 782,
+    "nombre": "jangmo-o",
+    "imagen": "assets/sprites/782.png"
+  },
+  {
+    "numero": 783,
+    "nombre": "hakamo-o",
+    "imagen": "assets/sprites/783.png"
+  },
+  {
+    "numero": 784,
+    "nombre": "kommo-o",
+    "imagen": "assets/sprites/784.png"
+  },
+  {
+    "numero": 785,
+    "nombre": "tapu-koko",
+    "imagen": "assets/sprites/785.png"
+  },
+  {
+    "numero": 786,
+    "nombre": "tapu-lele",
+    "imagen": "assets/sprites/786.png"
+  },
+  {
+    "numero": 787,
+    "nombre": "tapu-bulu",
+    "imagen": "assets/sprites/787.png"
+  },
+  {
+    "numero": 788,
+    "nombre": "tapu-fini",
+    "imagen": "assets/sprites/788.png"
+  },
+  {
+    "numero": 789,
+    "nombre": "cosmog",
+    "imagen": "assets/sprites/789.png"
+  },
+  {
+    "numero": 790,
+    "nombre": "cosmoem",
+    "imagen": "assets/sprites/790.png"
+  },
+  {
+    "numero": 791,
+    "nombre": "solgaleo",
+    "imagen": "assets/sprites/791.png"
+  },
+  {
+    "numero": 792,
+    "nombre": "lunala",
+    "imagen": "assets/sprites/792.png"
+  },
+  {
+    "numero": 793,
+    "nombre": "nihilego",
+    "imagen": "assets/sprites/793.png"
+  },
+  {
+    "numero": 794,
+    "nombre": "buzzwole",
+    "imagen": "assets/sprites/794.png"
+  },
+  {
+    "numero": 795,
+    "nombre": "pheromosa",
+    "imagen": "assets/sprites/795.png"
+  },
+  {
+    "numero": 796,
+    "nombre": "xurkitree",
+    "imagen": "assets/sprites/796.png"
+  },
+  {
+    "numero": 797,
+    "nombre": "celesteela",
+    "imagen": "assets/sprites/797.png"
+  },
+  {
+    "numero": 798,
+    "nombre": "kartana",
+    "imagen": "assets/sprites/798.png"
+  },
+  {
+    "numero": 799,
+    "nombre": "guzzlord",
+    "imagen": "assets/sprites/799.png"
+  },
+  {
+    "numero": 800,
+    "nombre": "necrozma",
+    "imagen": "assets/sprites/800.png"
+  },
+  {
+    "numero": 801,
+    "nombre": "magearna",
+    "imagen": "assets/sprites/801.png"
+  },
+  {
+    "numero": 802,
+    "nombre": "marshadow",
+    "imagen": "assets/sprites/802.png"
+  },
+  {
+    "numero": 803,
+    "nombre": "poipole",
+    "imagen": "assets/sprites/803.png"
+  },
+  {
+    "numero": 804,
+    "nombre": "naganadel",
+    "imagen": "assets/sprites/804.png"
+  },
+  {
+    "numero": 805,
+    "nombre": "stakataka",
+    "imagen": "assets/sprites/805.png"
+  },
+  {
+    "numero": 806,
+    "nombre": "blacephalon",
+    "imagen": "assets/sprites/806.png"
+  },
+  {
+    "numero": 807,
+    "nombre": "zeraora",
+    "imagen": "assets/sprites/807.png"
+  },
+  {
+    "numero": 808,
+    "nombre": "meltan",
+    "imagen": "assets/sprites/808.png"
+  },
+  {
+    "numero": 809,
+    "nombre": "melmetal",
+    "imagen": "assets/sprites/809.png"
+  },
+  {
+    "numero": 810,
+    "nombre": "grookey",
+    "imagen": "assets/sprites/810.png"
+  },
+  {
+    "numero": 811,
+    "nombre": "thwackey",
+    "imagen": "assets/sprites/811.png"
+  },
+  {
+    "numero": 812,
+    "nombre": "rillaboom",
+    "imagen": "assets/sprites/812.png"
+  },
+  {
+    "numero": 813,
+    "nombre": "scorbunny",
+    "imagen": "assets/sprites/813.png"
+  },
+  {
+    "numero": 814,
+    "nombre": "raboot",
+    "imagen": "assets/sprites/814.png"
+  },
+  {
+    "numero": 815,
+    "nombre": "cinderace",
+    "imagen": "assets/sprites/815.png"
+  },
+  {
+    "numero": 816,
+    "nombre": "sobble",
+    "imagen": "assets/sprites/816.png"
+  },
+  {
+    "numero": 817,
+    "nombre": "drizzile",
+    "imagen": "assets/sprites/817.png"
+  },
+  {
+    "numero": 818,
+    "nombre": "inteleon",
+    "imagen": "assets/sprites/818.png"
+  },
+  {
+    "numero": 819,
+    "nombre": "skwovet",
+    "imagen": "assets/sprites/819.png"
+  },
+  {
+    "numero": 820,
+    "nombre": "greedent",
+    "imagen": "assets/sprites/820.png"
+  },
+  {
+    "numero": 821,
+    "nombre": "rookidee",
+    "imagen": "assets/sprites/821.png"
+  },
+  {
+    "numero": 822,
+    "nombre": "corvisquire",
+    "imagen": "assets/sprites/822.png"
+  },
+  {
+    "numero": 823,
+    "nombre": "corviknight",
+    "imagen": "assets/sprites/823.png"
+  },
+  {
+    "numero": 824,
+    "nombre": "blipbug",
+    "imagen": "assets/sprites/824.png"
+  },
+  {
+    "numero": 825,
+    "nombre": "dottler",
+    "imagen": "assets/sprites/825.png"
+  },
+  {
+    "numero": 826,
+    "nombre": "orbeetle",
+    "imagen": "assets/sprites/826.png"
+  },
+  {
+    "numero": 827,
+    "nombre": "nickit",
+    "imagen": "assets/sprites/827.png"
+  },
+  {
+    "numero": 828,
+    "nombre": "thievul",
+    "imagen": "assets/sprites/828.png"
+  },
+  {
+    "numero": 829,
+    "nombre": "gossifleur",
+    "imagen": "assets/sprites/829.png"
+  },
+  {
+    "numero": 830,
+    "nombre": "eldegoss",
+    "imagen": "assets/sprites/830.png"
+  },
+  {
+    "numero": 831,
+    "nombre": "wooloo",
+    "imagen": "assets/sprites/831.png"
+  },
+  {
+    "numero": 832,
+    "nombre": "dubwool",
+    "imagen": "assets/sprites/832.png"
+  },
+  {
+    "numero": 833,
+    "nombre": "chewtle",
+    "imagen": "assets/sprites/833.png"
+  },
+  {
+    "numero": 834,
+    "nombre": "drednaw",
+    "imagen": "assets/sprites/834.png"
+  },
+  {
+    "numero": 835,
+    "nombre": "yamper",
+    "imagen": "assets/sprites/835.png"
+  },
+  {
+    "numero": 836,
+    "nombre": "boltund",
+    "imagen": "assets/sprites/836.png"
+  },
+  {
+    "numero": 837,
+    "nombre": "rolycoly",
+    "imagen": "assets/sprites/837.png"
+  },
+  {
+    "numero": 838,
+    "nombre": "carkol",
+    "imagen": "assets/sprites/838.png"
+  },
+  {
+    "numero": 839,
+    "nombre": "coalossal",
+    "imagen": "assets/sprites/839.png"
+  },
+  {
+    "numero": 840,
+    "nombre": "applin",
+    "imagen": "assets/sprites/840.png"
+  },
+  {
+    "numero": 841,
+    "nombre": "flapple",
+    "imagen": "assets/sprites/841.png"
+  },
+  {
+    "numero": 842,
+    "nombre": "appletun",
+    "imagen": "assets/sprites/842.png"
+  },
+  {
+    "numero": 843,
+    "nombre": "silicobra",
+    "imagen": "assets/sprites/843.png"
+  },
+  {
+    "numero": 844,
+    "nombre": "sandaconda",
+    "imagen": "assets/sprites/844.png"
+  },
+  {
+    "numero": 845,
+    "nombre": "cramorant",
+    "imagen": "assets/sprites/845.png"
+  },
+  {
+    "numero": 846,
+    "nombre": "arrokuda",
+    "imagen": "assets/sprites/846.png"
+  },
+  {
+    "numero": 847,
+    "nombre": "barraskewda",
+    "imagen": "assets/sprites/847.png"
+  },
+  {
+    "numero": 848,
+    "nombre": "toxel",
+    "imagen": "assets/sprites/848.png"
+  },
+  {
+    "numero": 849,
+    "nombre": "toxtricity-amped",
+    "imagen": "assets/sprites/849.png"
+  },
+  {
+    "numero": 850,
+    "nombre": "sizzlipede",
+    "imagen": "assets/sprites/850.png"
+  },
+  {
+    "numero": 851,
+    "nombre": "centiskorch",
+    "imagen": "assets/sprites/851.png"
+  },
+  {
+    "numero": 852,
+    "nombre": "clobbopus",
+    "imagen": "assets/sprites/852.png"
+  },
+  {
+    "numero": 853,
+    "nombre": "grapploct",
+    "imagen": "assets/sprites/853.png"
+  },
+  {
+    "numero": 854,
+    "nombre": "sinistea",
+    "imagen": "assets/sprites/854.png"
+  },
+  {
+    "numero": 855,
+    "nombre": "polteageist",
+    "imagen": "assets/sprites/855.png"
+  },
+  {
+    "numero": 856,
+    "nombre": "hatenna",
+    "imagen": "assets/sprites/856.png"
+  },
+  {
+    "numero": 857,
+    "nombre": "hattrem",
+    "imagen": "assets/sprites/857.png"
+  },
+  {
+    "numero": 858,
+    "nombre": "hatterene",
+    "imagen": "assets/sprites/858.png"
+  },
+  {
+    "numero": 859,
+    "nombre": "impidimp",
+    "imagen": "assets/sprites/859.png"
+  },
+  {
+    "numero": 860,
+    "nombre": "morgrem",
+    "imagen": "assets/sprites/860.png"
+  },
+  {
+    "numero": 861,
+    "nombre": "grimmsnarl",
+    "imagen": "assets/sprites/861.png"
+  },
+  {
+    "numero": 862,
+    "nombre": "obstagoon",
+    "imagen": "assets/sprites/862.png"
+  },
+  {
+    "numero": 863,
+    "nombre": "perrserker",
+    "imagen": "assets/sprites/863.png"
+  },
+  {
+    "numero": 864,
+    "nombre": "cursola",
+    "imagen": "assets/sprites/864.png"
+  },
+  {
+    "numero": 865,
+    "nombre": "sirfetchd",
+    "imagen": "assets/sprites/865.png"
+  },
+  {
+    "numero": 866,
+    "nombre": "mr-rime",
+    "imagen": "assets/sprites/866.png"
+  },
+  {
+    "numero": 867,
+    "nombre": "runerigus",
+    "imagen": "assets/sprites/867.png"
+  },
+  {
+    "numero": 868,
+    "nombre": "milcery",
+    "imagen": "assets/sprites/868.png"
+  },
+  {
+    "numero": 869,
+    "nombre": "alcremie",
+    "imagen": "assets/sprites/869.png"
+  },
+  {
+    "numero": 870,
+    "nombre": "falinks",
+    "imagen": "assets/sprites/870.png"
+  },
+  {
+    "numero": 871,
+    "nombre": "pincurchin",
+    "imagen": "assets/sprites/871.png"
+  },
+  {
+    "numero": 872,
+    "nombre": "snom",
+    "imagen": "assets/sprites/872.png"
+  },
+  {
+    "numero": 873,
+    "nombre": "frosmoth",
+    "imagen": "assets/sprites/873.png"
+  },
+  {
+    "numero": 874,
+    "nombre": "stonjourner",
+    "imagen": "assets/sprites/874.png"
+  },
+  {
+    "numero": 875,
+    "nombre": "eiscue-ice",
+    "imagen": "assets/sprites/875.png"
+  },
+  {
+    "numero": 876,
+    "nombre": "indeedee-male",
+    "imagen": "assets/sprites/876.png"
+  },
+  {
+    "numero": 877,
+    "nombre": "morpeko-full-belly",
+    "imagen": "assets/sprites/877.png"
+  },
+  {
+    "numero": 878,
+    "nombre": "cufant",
+    "imagen": "assets/sprites/878.png"
+  },
+  {
+    "numero": 879,
+    "nombre": "copperajah",
+    "imagen": "assets/sprites/879.png"
+  },
+  {
+    "numero": 880,
+    "nombre": "dracozolt",
+    "imagen": "assets/sprites/880.png"
+  },
+  {
+    "numero": 881,
+    "nombre": "arctozolt",
+    "imagen": "assets/sprites/881.png"
+  },
+  {
+    "numero": 882,
+    "nombre": "dracovish",
+    "imagen": "assets/sprites/882.png"
+  },
+  {
+    "numero": 883,
+    "nombre": "arctovish",
+    "imagen": "assets/sprites/883.png"
+  },
+  {
+    "numero": 884,
+    "nombre": "duraludon",
+    "imagen": "assets/sprites/884.png"
+  },
+  {
+    "numero": 885,
+    "nombre": "dreepy",
+    "imagen": "assets/sprites/885.png"
+  },
+  {
+    "numero": 886,
+    "nombre": "drakloak",
+    "imagen": "assets/sprites/886.png"
+  },
+  {
+    "numero": 887,
+    "nombre": "dragapult",
+    "imagen": "assets/sprites/887.png"
+  },
+  {
+    "numero": 888,
+    "nombre": "zacian",
+    "imagen": "assets/sprites/888.png"
+  },
+  {
+    "numero": 889,
+    "nombre": "zamazenta",
+    "imagen": "assets/sprites/889.png"
+  },
+  {
+    "numero": 890,
+    "nombre": "eternatus",
+    "imagen": "assets/sprites/890.png"
+  },
+  {
+    "numero": 891,
+    "nombre": "kubfu",
+    "imagen": "assets/sprites/891.png"
+  },
+  {
+    "numero": 892,
+    "nombre": "urshifu-single-strike",
+    "imagen": "assets/sprites/892.png"
+  },
+  {
+    "numero": 893,
+    "nombre": "zarude",
+    "imagen": "assets/sprites/893.png"
+  },
+  {
+    "numero": 894,
+    "nombre": "regieleki",
+    "imagen": "assets/sprites/894.png"
+  },
+  {
+    "numero": 895,
+    "nombre": "regidrago",
+    "imagen": "assets/sprites/895.png"
+  },
+  {
+    "numero": 896,
+    "nombre": "glastrier",
+    "imagen": "assets/sprites/896.png"
+  },
+  {
+    "numero": 897,
+    "nombre": "spectrier",
+    "imagen": "assets/sprites/897.png"
+  },
+  {
+    "numero": 898,
+    "nombre": "calyrex",
+    "imagen": "assets/sprites/898.png"
+  },
+  {
+    "numero": 899,
+    "nombre": "wyrdeer",
+    "imagen": "assets/sprites/899.png"
+  },
+  {
+    "numero": 900,
+    "nombre": "kleavor",
+    "imagen": "assets/sprites/900.png"
+  },
+  {
+    "numero": 901,
+    "nombre": "ursaluna",
+    "imagen": "assets/sprites/901.png"
+  },
+  {
+    "numero": 902,
+    "nombre": "basculegion-male",
+    "imagen": "assets/sprites/902.png"
+  },
+  {
+    "numero": 903,
+    "nombre": "sneasler",
+    "imagen": "assets/sprites/903.png"
+  },
+  {
+    "numero": 904,
+    "nombre": "overqwil",
+    "imagen": "assets/sprites/904.png"
+  },
+  {
+    "numero": 905,
+    "nombre": "enamorus-incarnate",
+    "imagen": "assets/sprites/905.png"
+  },
+  {
+    "numero": 906,
+    "nombre": "sprigatito",
+    "imagen": "assets/sprites/906.png"
+  },
+  {
+    "numero": 907,
+    "nombre": "floragato",
+    "imagen": "assets/sprites/907.png"
+  },
+  {
+    "numero": 908,
+    "nombre": "meowscarada",
+    "imagen": "assets/sprites/908.png"
+  },
+  {
+    "numero": 909,
+    "nombre": "fuecoco",
+    "imagen": "assets/sprites/909.png"
+  },
+  {
+    "numero": 910,
+    "nombre": "crocalor",
+    "imagen": "assets/sprites/910.png"
+  },
+  {
+    "numero": 911,
+    "nombre": "skeledirge",
+    "imagen": "assets/sprites/911.png"
+  },
+  {
+    "numero": 912,
+    "nombre": "quaxly",
+    "imagen": "assets/sprites/912.png"
+  },
+  {
+    "numero": 913,
+    "nombre": "quaxwell",
+    "imagen": "assets/sprites/913.png"
+  },
+  {
+    "numero": 914,
+    "nombre": "quaquaval",
+    "imagen": "assets/sprites/914.png"
+  },
+  {
+    "numero": 915,
+    "nombre": "lechonk",
+    "imagen": "assets/sprites/915.png"
+  },
+  {
+    "numero": 916,
+    "nombre": "oinkologne-male",
+    "imagen": "assets/sprites/916.png"
+  },
+  {
+    "numero": 917,
+    "nombre": "tarountula",
+    "imagen": "assets/sprites/917.png"
+  },
+  {
+    "numero": 918,
+    "nombre": "spidops",
+    "imagen": "assets/sprites/918.png"
+  },
+  {
+    "numero": 919,
+    "nombre": "nymble",
+    "imagen": "assets/sprites/919.png"
+  },
+  {
+    "numero": 920,
+    "nombre": "lokix",
+    "imagen": "assets/sprites/920.png"
+  },
+  {
+    "numero": 921,
+    "nombre": "pawmi",
+    "imagen": "assets/sprites/921.png"
+  },
+  {
+    "numero": 922,
+    "nombre": "pawmo",
+    "imagen": "assets/sprites/922.png"
+  },
+  {
+    "numero": 923,
+    "nombre": "pawmot",
+    "imagen": "assets/sprites/923.png"
+  },
+  {
+    "numero": 924,
+    "nombre": "tandemaus",
+    "imagen": "assets/sprites/924.png"
+  },
+  {
+    "numero": 925,
+    "nombre": "maushold-family-of-four",
+    "imagen": "assets/sprites/925.png"
+  },
+  {
+    "numero": 926,
+    "nombre": "fidough",
+    "imagen": "assets/sprites/926.png"
+  },
+  {
+    "numero": 927,
+    "nombre": "dachsbun",
+    "imagen": "assets/sprites/927.png"
+  },
+  {
+    "numero": 928,
+    "nombre": "smoliv",
+    "imagen": "assets/sprites/928.png"
+  },
+  {
+    "numero": 929,
+    "nombre": "dolliv",
+    "imagen": "assets/sprites/929.png"
+  },
+  {
+    "numero": 930,
+    "nombre": "arboliva",
+    "imagen": "assets/sprites/930.png"
+  },
+  {
+    "numero": 931,
+    "nombre": "squawkabilly-green-plumage",
+    "imagen": "assets/sprites/931.png"
+  },
+  {
+    "numero": 932,
+    "nombre": "nacli",
+    "imagen": "assets/sprites/932.png"
+  },
+  {
+    "numero": 933,
+    "nombre": "naclstack",
+    "imagen": "assets/sprites/933.png"
+  },
+  {
+    "numero": 934,
+    "nombre": "garganacl",
+    "imagen": "assets/sprites/934.png"
+  },
+  {
+    "numero": 935,
+    "nombre": "charcadet",
+    "imagen": "assets/sprites/935.png"
+  },
+  {
+    "numero": 936,
+    "nombre": "armarouge",
+    "imagen": "assets/sprites/936.png"
+  },
+  {
+    "numero": 937,
+    "nombre": "ceruledge",
+    "imagen": "assets/sprites/937.png"
+  },
+  {
+    "numero": 938,
+    "nombre": "tadbulb",
+    "imagen": "assets/sprites/938.png"
+  },
+  {
+    "numero": 939,
+    "nombre": "bellibolt",
+    "imagen": "assets/sprites/939.png"
+  },
+  {
+    "numero": 940,
+    "nombre": "wattrel",
+    "imagen": "assets/sprites/940.png"
+  },
+  {
+    "numero": 941,
+    "nombre": "kilowattrel",
+    "imagen": "assets/sprites/941.png"
+  },
+  {
+    "numero": 942,
+    "nombre": "maschiff",
+    "imagen": "assets/sprites/942.png"
+  },
+  {
+    "numero": 943,
+    "nombre": "mabosstiff",
+    "imagen": "assets/sprites/943.png"
+  },
+  {
+    "numero": 944,
+    "nombre": "shroodle",
+    "imagen": "assets/sprites/944.png"
+  },
+  {
+    "numero": 945,
+    "nombre": "grafaiai",
+    "imagen": "assets/sprites/945.png"
+  },
+  {
+    "numero": 946,
+    "nombre": "bramblin",
+    "imagen": "assets/sprites/946.png"
+  },
+  {
+    "numero": 947,
+    "nombre": "brambleghast",
+    "imagen": "assets/sprites/947.png"
+  },
+  {
+    "numero": 948,
+    "nombre": "toedscool",
+    "imagen": "assets/sprites/948.png"
+  },
+  {
+    "numero": 949,
+    "nombre": "toedscruel",
+    "imagen": "assets/sprites/949.png"
+  },
+  {
+    "numero": 950,
+    "nombre": "klawf",
+    "imagen": "assets/sprites/950.png"
+  },
+  {
+    "numero": 951,
+    "nombre": "capsakid",
+    "imagen": "assets/sprites/951.png"
+  },
+  {
+    "numero": 952,
+    "nombre": "scovillain",
+    "imagen": "assets/sprites/952.png"
+  },
+  {
+    "numero": 953,
+    "nombre": "rellor",
+    "imagen": "assets/sprites/953.png"
+  },
+  {
+    "numero": 954,
+    "nombre": "rabsca",
+    "imagen": "assets/sprites/954.png"
+  },
+  {
+    "numero": 955,
+    "nombre": "flittle",
+    "imagen": "assets/sprites/955.png"
+  },
+  {
+    "numero": 956,
+    "nombre": "espathra",
+    "imagen": "assets/sprites/956.png"
+  },
+  {
+    "numero": 957,
+    "nombre": "tinkatink",
+    "imagen": "assets/sprites/957.png"
+  },
+  {
+    "numero": 958,
+    "nombre": "tinkatuff",
+    "imagen": "assets/sprites/958.png"
+  },
+  {
+    "numero": 959,
+    "nombre": "tinkaton",
+    "imagen": "assets/sprites/959.png"
+  },
+  {
+    "numero": 960,
+    "nombre": "wiglett",
+    "imagen": "assets/sprites/960.png"
+  },
+  {
+    "numero": 961,
+    "nombre": "wugtrio",
+    "imagen": "assets/sprites/961.png"
+  },
+  {
+    "numero": 962,
+    "nombre": "bombirdier",
+    "imagen": "assets/sprites/962.png"
+  },
+  {
+    "numero": 963,
+    "nombre": "finizen",
+    "imagen": "assets/sprites/963.png"
+  },
+  {
+    "numero": 964,
+    "nombre": "palafin-zero",
+    "imagen": "assets/sprites/964.png"
+  },
+  {
+    "numero": 965,
+    "nombre": "varoom",
+    "imagen": "assets/sprites/965.png"
+  },
+  {
+    "numero": 966,
+    "nombre": "revavroom",
+    "imagen": "assets/sprites/966.png"
+  },
+  {
+    "numero": 967,
+    "nombre": "cyclizar",
+    "imagen": "assets/sprites/967.png"
+  },
+  {
+    "numero": 968,
+    "nombre": "orthworm",
+    "imagen": "assets/sprites/968.png"
+  },
+  {
+    "numero": 969,
+    "nombre": "glimmet",
+    "imagen": "assets/sprites/969.png"
+  },
+  {
+    "numero": 970,
+    "nombre": "glimmora",
+    "imagen": "assets/sprites/970.png"
+  },
+  {
+    "numero": 971,
+    "nombre": "greavard",
+    "imagen": "assets/sprites/971.png"
+  },
+  {
+    "numero": 972,
+    "nombre": "houndstone",
+    "imagen": "assets/sprites/972.png"
+  },
+  {
+    "numero": 973,
+    "nombre": "flamigo",
+    "imagen": "assets/sprites/973.png"
+  },
+  {
+    "numero": 974,
+    "nombre": "cetoddle",
+    "imagen": "assets/sprites/974.png"
+  },
+  {
+    "numero": 975,
+    "nombre": "cetitan",
+    "imagen": "assets/sprites/975.png"
+  },
+  {
+    "numero": 976,
+    "nombre": "veluza",
+    "imagen": "assets/sprites/976.png"
+  },
+  {
+    "numero": 977,
+    "nombre": "dondozo",
+    "imagen": "assets/sprites/977.png"
+  },
+  {
+    "numero": 978,
+    "nombre": "tatsugiri-curly",
+    "imagen": "assets/sprites/978.png"
+  },
+  {
+    "numero": 979,
+    "nombre": "annihilape",
+    "imagen": "assets/sprites/979.png"
+  },
+  {
+    "numero": 980,
+    "nombre": "clodsire",
+    "imagen": "assets/sprites/980.png"
+  },
+  {
+    "numero": 981,
+    "nombre": "farigiraf",
+    "imagen": "assets/sprites/981.png"
+  },
+  {
+    "numero": 982,
+    "nombre": "dudunsparce-two-segment",
+    "imagen": "assets/sprites/982.png"
+  },
+  {
+    "numero": 983,
+    "nombre": "kingambit",
+    "imagen": "assets/sprites/983.png"
+  },
+  {
+    "numero": 984,
+    "nombre": "great-tusk",
+    "imagen": "assets/sprites/984.png"
+  },
+  {
+    "numero": 985,
+    "nombre": "scream-tail",
+    "imagen": "assets/sprites/985.png"
+  },
+  {
+    "numero": 986,
+    "nombre": "brute-bonnet",
+    "imagen": "assets/sprites/986.png"
+  },
+  {
+    "numero": 987,
+    "nombre": "flutter-mane",
+    "imagen": "assets/sprites/987.png"
+  },
+  {
+    "numero": 988,
+    "nombre": "slither-wing",
+    "imagen": "assets/sprites/988.png"
+  },
+  {
+    "numero": 989,
+    "nombre": "sandy-shocks",
+    "imagen": "assets/sprites/989.png"
+  },
+  {
+    "numero": 990,
+    "nombre": "iron-treads",
+    "imagen": "assets/sprites/990.png"
+  },
+  {
+    "numero": 991,
+    "nombre": "iron-bundle",
+    "imagen": "assets/sprites/991.png"
+  },
+  {
+    "numero": 992,
+    "nombre": "iron-hands",
+    "imagen": "assets/sprites/992.png"
+  },
+  {
+    "numero": 993,
+    "nombre": "iron-jugulis",
+    "imagen": "assets/sprites/993.png"
+  },
+  {
+    "numero": 994,
+    "nombre": "iron-moth",
+    "imagen": "assets/sprites/994.png"
+  },
+  {
+    "numero": 995,
+    "nombre": "iron-thorns",
+    "imagen": "assets/sprites/995.png"
+  },
+  {
+    "numero": 996,
+    "nombre": "frigibax",
+    "imagen": "assets/sprites/996.png"
+  },
+  {
+    "numero": 997,
+    "nombre": "arctibax",
+    "imagen": "assets/sprites/997.png"
+  },
+  {
+    "numero": 998,
+    "nombre": "baxcalibur",
+    "imagen": "assets/sprites/998.png"
+  },
+  {
+    "numero": 999,
+    "nombre": "gimmighoul",
+    "imagen": "assets/sprites/999.png"
+  },
+  {
+    "numero": 1000,
+    "nombre": "gholdengo",
+    "imagen": "assets/sprites/1000.png"
+  },
+  {
+    "numero": 1001,
+    "nombre": "wo-chien",
+    "imagen": "assets/sprites/1001.png"
+  },
+  {
+    "numero": 1002,
+    "nombre": "chien-pao",
+    "imagen": "assets/sprites/1002.png"
+  },
+  {
+    "numero": 1003,
+    "nombre": "ting-lu",
+    "imagen": "assets/sprites/1003.png"
+  },
+  {
+    "numero": 1004,
+    "nombre": "chi-yu",
+    "imagen": "assets/sprites/1004.png"
+  },
+  {
+    "numero": 1005,
+    "nombre": "roaring-moon",
+    "imagen": "assets/sprites/1005.png"
+  },
+  {
+    "numero": 1006,
+    "nombre": "iron-valiant",
+    "imagen": "assets/sprites/1006.png"
+  },
+  {
+    "numero": 1007,
+    "nombre": "koraidon",
+    "imagen": "assets/sprites/1007.png"
+  },
+  {
+    "numero": 1008,
+    "nombre": "miraidon",
+    "imagen": "assets/sprites/1008.png"
+  },
+  {
+    "numero": 1009,
+    "nombre": "walking-wake",
+    "imagen": "assets/sprites/1009.png"
+  },
+  {
+    "numero": 1010,
+    "nombre": "iron-leaves",
+    "imagen": "assets/sprites/1010.png"
+  },
+  {
+    "numero": 1011,
+    "nombre": "dipplin",
+    "imagen": "assets/sprites/1011.png"
+  },
+  {
+    "numero": 1012,
+    "nombre": "poltchageist",
+    "imagen": "assets/sprites/1012.png"
+  },
+  {
+    "numero": 1013,
+    "nombre": "sinistcha",
+    "imagen": "assets/sprites/1013.png"
+  },
+  {
+    "numero": 1014,
+    "nombre": "okidogi",
+    "imagen": "assets/sprites/1014.png"
+  },
+  {
+    "numero": 1015,
+    "nombre": "munkidori",
+    "imagen": "assets/sprites/1015.png"
+  },
+  {
+    "numero": 1016,
+    "nombre": "fezandipiti",
+    "imagen": "assets/sprites/1016.png"
+  },
+  {
+    "numero": 1017,
+    "nombre": "ogerpon",
+    "imagen": "assets/sprites/1017.png"
+  },
+  {
+    "numero": 1018,
+    "nombre": "archaludon",
+    "imagen": "assets/sprites/1018.png"
+  },
+  {
+    "numero": 1019,
+    "nombre": "hydrapple",
+    "imagen": "assets/sprites/1019.png"
+  },
+  {
+    "numero": 1020,
+    "nombre": "gouging-fire",
+    "imagen": "assets/sprites/1020.png"
+  },
+  {
+    "numero": 1021,
+    "nombre": "raging-bolt",
+    "imagen": "assets/sprites/1021.png"
+  },
+  {
+    "numero": 1022,
+    "nombre": "iron-boulder",
+    "imagen": "assets/sprites/1022.png"
+  },
+  {
+    "numero": 1023,
+    "nombre": "iron-crown",
+    "imagen": "assets/sprites/1023.png"
+  },
+  {
+    "numero": 1024,
+    "nombre": "terapagos",
+    "imagen": "assets/sprites/1024.png"
+  },
+  {
+    "numero": 1025,
+    "nombre": "pecharunt",
+    "imagen": "assets/sprites/1025.png"
+  }
+]

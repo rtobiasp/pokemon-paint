@@ -7,6 +7,8 @@
     "node": ">=22.0.0"
   },
   "scripts": {
+    "assets": "node scripts/download-assets.mjs",
+    "assets:check": "node scripts/download-assets.mjs --check",
     "build": "node scripts/build-web.mjs",
     "cap:add:android": "npm run build && cap add android",
     "android": "npm run build && cap sync android",

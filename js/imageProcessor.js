@@ -4,7 +4,6 @@ import { state, reiniciarEstado } from "./state.js";
 export function cargarImagen(origen) {
   return new Promise((resolver, rechazar) => {
     const imagen = new Image();
-    imagen.crossOrigin = "anonymous";
     imagen.onload = () => resolver(imagen);
     imagen.onerror = rechazar;
     imagen.src = origen;
