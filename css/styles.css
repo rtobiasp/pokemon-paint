@@ -811,19 +811,164 @@ canvas {
 .victoria { background: #308371; }
 .aviso-juego { background: #252941; }
 
-@media (max-width: 760px) {
-  .barra-superior { border-bottom-width: 3px; }
-  .marca h1 { font-size: 8px; }
+/* ============================================================
+   Sistema responsive consolidado (sobrescribe duplicados previos)
+   ============================================================ */
+
+/* Layout base: footer visible y sin solapes */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh;
+  overflow: hidden;
+}
+.home-view {
+  position: relative;
+  inset: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
+}
+.game-view {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+}
+.home-footer {
+  flex: none;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: #f4f3ec;
+  border-top: 1px solid #d5d9e4;
 }
 
-@media (max-width: 430px) {
-  .barra-superior {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "marca" "zoom" "controles";
+/* Grids fluidos: adiós al fijo de 3 columnas */
+.coleccion-opciones {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.pokemon-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  align-items: stretch;
+}
+
+/* Tabs con scroll táctil y fijos al hacer scroll */
+.home-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.home-tabs::-webkit-scrollbar { display: none; }
+.home-tab {
+  scroll-snap-align: start;
+  min-height: 48px;
+  min-width: 44px;
+}
+
+/* Paleta con scroll táctil */
+.paleta {
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.color-btn { scroll-snap-align: start; }
+
+/* Avisos sin desbordamiento */
+.aviso-juego {
+  max-width: min(92vw, 560px);
+  white-space: normal;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 760px) {
+  .barra-superior { border-bottom-width: 3px; }
+  .marca h1 { font-size: 9px; }
+  .coleccion-opciones { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); }
+  .pokemon-grid { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .home-header {
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-top, 0px));
+    padding-top: max(12px, env(safe-area-inset-top));
   }
-  .toolbar-acciones { justify-content: space-between; }
-  .marca h1 { font-size: 7px; white-space: nowrap; }
-  canvas { border-width: 4px; }
+  .home-marca { font-size: 9px; line-height: 1.6; }
+  .pokemon-search { width: 100%; max-width: none; flex: 1 1 200px; }
+  .pokemon-search input { min-height: 44px; font-size: 16px; }
+  .coleccion-resumen { flex-wrap: wrap; align-items: flex-start; }
+  .coleccion-resumen > span { width: 100%; }
+  .coleccion-opciones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .pokemon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .pokemon-name { font-size: 13px; }
+  .coleccion-datos { min-height: 0; }
+
+  /* Barra de juego en 1 fila compacta y tocable */
+  .barra-superior {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "marca toolbar";
+    align-items: center;
+    gap: 8px 10px;
+    padding: 10px 12px;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+  .marca { grid-area: marca; min-width: 0; gap: 8px; }
+  .marca-icono { width: 30px; height: 30px; }
+  .marca h1 { font-size: 9px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .info-pokemon { font-size: 11px; }
+  .progreso-general { margin-top: 2px; }
+  .progreso-general progress { width: 100%; max-width: 220px; }
+  .controles { display: contents; }
+  .toolbar-acciones {
+    grid-area: toolbar;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 6px;
+    overflow-x: auto;
+    max-width: 52vw;
+    padding: 2px;
+    scrollbar-width: none;
+  }
+  .toolbar-acciones::-webkit-scrollbar { display: none; }
+  .historial-controles button,
+  .toolbar-acciones > button,
+  .zoom button {
+    min-width: 40px;
+    min-height: 40px;
+    height: 40px;
+  }
+  .zoom span { min-width: 40px; }
+  #btnZoomAjustar { white-space: nowrap; }
+
+  .paleta-dock { padding: 8px 10px calc(10px + env(safe-area-inset-bottom)); }
+  .paleta-acciones button { min-height: 40px; font-size: 12px; }
+  .color-btn { width: 60px; height: 68px; flex-basis: 60px; }
+  canvas { border-width: 4px; max-width: calc(100vw - 24px); }
+  .aviso-juego { bottom: calc(120px + env(safe-area-inset-bottom)); font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+  .home-marca { font-size: 8px; }
+  .pokemon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .coleccion-opciones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .coleccion-nombre { font-size: 12px; }
+  .pokemon-name { font-size: 12px; }
+  .toolbar-acciones { max-width: 100%; }
+  .zoom span { display: none; }
+}
+
+@media (min-width: 1024px) {
+  .coleccion-opciones { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .pokemon-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
