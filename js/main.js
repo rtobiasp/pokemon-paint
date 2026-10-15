@@ -32,6 +32,7 @@ import {
 } from "./palette.js";
 import { resaltarSeleccion } from "./board.js";
 import { PASO_ZOOM } from "./config.js";
+import { initBotonPantallaCompleta } from "./fullscreen.js";
 
 const lienzo = document.getElementById("lienzoJuego");
 const contenedorPaleta = document.getElementById("paleta");
@@ -58,6 +59,11 @@ const avisoJuego = document.getElementById("avisoJuego");
 const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
 const btnVolverHome = document.getElementById("btnVolverHome");
+const btnPantallaCompleta = document.getElementById("btnPantallaCompleta");
+
+initBotonPantallaCompleta(btnPantallaCompleta, {
+  alFallar: (texto) => mostrarAviso(texto),
+});
 
 let paneo = null;
 let espacioPulsado = false;

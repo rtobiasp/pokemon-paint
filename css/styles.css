@@ -976,3 +976,50 @@ canvas {
   .pokemon-card { transition: none; }
 }
 
+/* Botón de pantalla completa */
+#btnPantallaCompleta {
+  font-size: 18px;
+  line-height: 1;
+}
+#btnPantallaCompleta.activo {
+  border-color: var(--water);
+  background: #e6f4f6;
+}
+#btnPantallaCompleta:focus-visible {
+  outline: 3px solid #f3c84b;
+  outline-offset: 2px;
+}
+.btn-pantalla-home {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.btn-pantalla-home:hover { background: rgba(255, 255, 255, 0.22); }
+.btn-pantalla-home.activo {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* Fondo correcto al entrar en fullscreen nativo */
+:fullscreen,
+::backdrop {
+  background: #e9edf4;
+}
+.app-shell:fullscreen {
+  width: 100%;
+  height: 100%;
+}
+:-webkit-full-screen {
+  background: #e9edf4;
+}
+

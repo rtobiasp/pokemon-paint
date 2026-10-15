@@ -3,6 +3,7 @@ import {
   obtenerPaginaPokemon,
   TOTAL_POKEMON,
 } from "./pokeApi.js";
+import { initBotonPantallaCompleta } from "./fullscreen.js";
 
 const grid = document.getElementById("pokemonGrid");
 const errorHome = document.getElementById("errorHome");
@@ -686,3 +687,5 @@ renderizarColecciones();
 actualizarPestanas(vistaActual);
 actualizarInterfazColecciones();
 if (!esPortadaColecciones()) cargarMasPokemon();
+
+initBotonPantallaCompleta(document.getElementById("btnPantallaCompleta"));
