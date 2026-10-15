@@ -41,6 +41,24 @@ En Android Studio, compila desde **Build > Build Bundle(s) / APK(s) > Build
 APK(s)**. Para sincronizar cambios posteriores de la web con Android, ejecuta
 `npm run android` antes de abrir o compilar el proyecto.
 
+### Iconos
+
+El icono de la app se genera desde `favicon.svg` (Pokéball píxel sobre
+`#174733`): los PNG legacy/adaptive (`mipmap-*`) y monocromo para themed
+icons de Android 13+ viven en `android/app/src/main/res/`, y los PNG
+`icons/icon-*.png` alimentan el `site.webmanifest` y el `apple-touch-icon`.
+Si cambias el logo, regenera ambos lados y reinstala el APK (el debug usa el
+mismo `applicationId`, así que reemplaza a la versión anterior en el launcher).
+
+### Release
+
+El `buildType release` lleva `minifyEnabled false` a propósito (la lógica está
+en `www/` y R8 aporta poco frente al riesgo con plugins). Para publicar en
+Play: genera el keystore fuera del repo, configura `signingConfig` en
+`android/app/build.gradle` vía `local.properties` o variables de entorno (no
+commitear el `.jks`), sube `versionCode`/`versionName` y compila
+**Build Bundle(s) / APK(s) > Build App Bundle(s)**.
+
 ## Créditos
 
 Proyecto de fans sin afiliación oficial con Pokémon o Nintendo. Los datos y sprites están congelados de PokéAPI / PokeAPI/sprites (ver `scripts/download-assets.mjs`) para funcionar sin conexión.

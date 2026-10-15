@@ -17,9 +17,22 @@ android {
         }
     }
     buildTypes {
+        debug {
+            // Sin applicationIdSuffix a propósito: el debug reemplaza a la
+            // app instalada y evita iconos duplicados en el launcher.
+            versionNameSuffix "-debug"
+        }
         release {
+            // Minify desactivado a propósito: la app es una WebView Capacitor
+            // y el grueso del código vive en www/; activar R8 aquí apenas
+            // reduce el APK y puede romper plugins. Si se activa en el futuro,
+            // validar antes: minifyEnabled true + shrinkResources true.
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // Firma release: crear el keystore fuera del repo y referenciarlo
+            // vía local.properties o variables de entorno, nunca commitearlo.
+            // signingConfig signingConfigs.release
         }
     }
 }
