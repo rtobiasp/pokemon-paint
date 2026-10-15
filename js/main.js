@@ -11,6 +11,13 @@ import {
   dibujarTablero,
   celdaEsPintable,
   intentarPintar,
+  intentarPintarTeclado,
+  iniciarTrazo,
+  terminarTrazo,
+  moverCursorTeclado,
+  posicionTecladoActual,
+  reiniciarCursorTeclado,
+  completarColorSeleccionado,
   deshacerPintado,
   rehacerPintado,
   zoomAnclado,
@@ -23,6 +30,7 @@ import {
   actualizarProgreso,
   sincronizarActivos,
 } from "./palette.js";
+import { resaltarSeleccion } from "./board.js";
 import { PASO_ZOOM } from "./config.js";
 
 const lienzo = document.getElementById("lienzoJuego");
@@ -39,6 +47,13 @@ const progresoTexto = document.getElementById("progresoTexto");
 const btnDeshacer = document.getElementById("btnDeshacer");
 const btnRehacer = document.getElementById("btnRehacer");
 const btnReiniciar = document.getElementById("btnReiniciar");
+const btnCompletarColor = document.getElementById("btnCompletarColor");
+const btnExportarDibujo = document.getElementById("btnExportarDibujo");
+const btnCompartirDibujo = document.getElementById("btnCompartirDibujo");
+const btnExportarProgreso = document.getElementById("btnExportarProgreso");
+const btnImportarProgreso = document.getElementById("btnImportarProgreso");
+const archivoProgreso = document.getElementById("archivoProgreso");
+const anuncioTablero = document.getElementById("anuncioTablero");
 const avisoJuego = document.getElementById("avisoJuego");
 const efectoVictoria = document.getElementById("efectoVictoria");
 const contenedorTablero = lienzo.closest(".tablero-contenedor");
@@ -64,6 +79,7 @@ let temporizadorGuardado = null;
 const CLAVE_PROGRESO = "pokemon-paint-progreso";
 
 configurarLienzo(lienzo);
+btnCompartirDibujo.hidden = typeof navigator.share !== "function";
 
 function pintarInfo(texto) {
   infoPokemon.textContent = texto;
@@ -76,7 +92,10 @@ function pintarError(texto) {
 
 function leerProgresosGuardados() {
   try {
-    return JSON.parse(localStorage.getItem(CLAVE_PROGRESO) || "{}");
+    const progreso = JSON.parse(localStorage.getItem(CLAVE_PROGRESO) || "{}");
+    return progreso && typeof progreso === "object" && !Array.isArray(progreso)
+      ? progreso
+      : {};
   } catch {
     return {};
   }
@@ -119,6 +138,144 @@ function guardarProgresoActual() {
   }
 }
 
+function descargarBlob(nombre, blob) {
+  const enlace = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  enlace.href = url;
+  enlace.download = nombre;
+  enlace.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportarProgreso() {
+  guardarProgresoActual();
+  const respaldo = {
+    format: "pintadex-progress",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    progress: leerProgresosGuardados(),
+  };
+  descargarBlob(
+    "pintadex-progreso.json",
+    new Blob([JSON.stringify(respaldo, null, 2)], {
+      type: "application/json",
+    }),
+  );
+}
+
+function normalizarProgresoImportado(respaldo) {
+  if (
+    respaldo?.format !== "pintadex-progress" ||
+    respaldo.version !== 1 ||
+    !respaldo.progress ||
+    typeof respaldo.progress !== "object" ||
+    Array.isArray(respaldo.progress)
+  ) {
+    throw new Error("El archivo no es un respaldo de PintaDex válido.");
+  }
+
+  const normalizado = {};
+  for (const [clave, registro] of Object.entries(respaldo.progress)) {
+    const numero = Number(clave);
+    const ancho = Number(registro?.ancho);
+    const alto = Number(registro?.alto);
+    const total = Number(registro?.total);
+    if (
+      !Number.isInteger(numero) ||
+      numero < 1 ||
+      numero > TOTAL_POKEMON ||
+      !Number.isInteger(ancho) ||
+      !Number.isInteger(alto) ||
+      ancho < 1 ||
+      alto < 1 ||
+      ancho * alto > 1000000 ||
+      !Number.isInteger(total) ||
+      total < 1 ||
+      total > ancho * alto ||
+      !Array.isArray(registro.pintadas)
+    ) {
+      continue;
+    }
+    const pintadas = [
+      ...new Set(
+        registro.pintadas.filter(
+          (indice) =>
+            Number.isInteger(indice) && indice >= 0 && indice < ancho * alto,
+        ),
+      ),
+    ];
+    if (!pintadas.length) continue;
+    normalizado[numero] = {
+      ancho,
+      alto,
+      total,
+      pintadas,
+      completado: pintadas.length >= total,
+    };
+  }
+  if (!Object.keys(normalizado).length) {
+    throw new Error("El respaldo no contiene progreso válido.");
+  }
+  return normalizado;
+}
+
+async function importarProgreso(archivo) {
+  guardarProgresoActual();
+  const importado = normalizarProgresoImportado(
+    JSON.parse(await archivo.text()),
+  );
+  const combinado = leerProgresosGuardados();
+  for (const [numero, registro] of Object.entries(importado)) {
+    const anterior = combinado[numero];
+    const coincide =
+      anterior?.ancho === registro.ancho && anterior?.alto === registro.alto;
+    const pintadas = coincide
+      ? [...new Set([...(anterior.pintadas || []), ...registro.pintadas])]
+      : registro.pintadas;
+    const total = coincide
+      ? Math.max(anterior.total || 0, registro.total)
+      : registro.total;
+    combinado[numero] = {
+      ...registro,
+      total,
+      pintadas,
+      completado: pintadas.length >= total,
+    };
+  }
+  localStorage.setItem(CLAVE_PROGRESO, JSON.stringify(combinado));
+
+  if (pokemonActual !== null) {
+    const pokemon = await obtenerPokemon(pokemonActual);
+    await mostrarSprite(pokemon.imagen, pokemon);
+  }
+  mostrarAviso(
+    `Respaldo importado: ${Object.keys(importado).length} Pokémon actualizados.`,
+  );
+}
+
+function crearBlobDibujo() {
+  const escalaSalida = 8;
+  const salida = document.createElement("canvas");
+  salida.width = state.ancho * escalaSalida;
+  salida.height = state.alto * escalaSalida;
+  const contexto = salida.getContext("2d");
+  contexto.imageSmoothingEnabled = false;
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      const celda = state.matriz[y][x];
+      if (celda.numero === 0 || !celda.pintado) continue;
+      contexto.fillStyle = celda.color;
+      contexto.fillRect(
+        x * escalaSalida,
+        y * escalaSalida,
+        escalaSalida,
+        escalaSalida,
+      );
+    }
+  }
+  return new Promise((resolver) => salida.toBlob(resolver, "image/png"));
+}
+
 function programarGuardadoProgreso() {
   clearTimeout(temporizadorGuardado);
   temporizadorGuardado = setTimeout(guardarProgresoActual, 220);
@@ -154,7 +311,12 @@ async function mostrarSprite(origen, pokemon) {
   victoriaEnCurso = false;
   const imagen = await cargarImagen(origen);
   extraerMatriz(imagen);
+  reiniciarCursorTeclado();
   pokemonActual = pokemon.numero;
+  lienzo.setAttribute(
+    "aria-label",
+    `Tablero de ${pokemon.nombre}. Usa las flechas para moverte por las casillas.`,
+  );
   btnReiniciar.disabled = false;
   btnVolverHome.href = `index.html?pokemon=${pokemonActual}`;
   restaurarProgreso(pokemonActual);
@@ -217,6 +379,10 @@ function actualizarProgresoGlobal() {
 function actualizarControlesHistorial() {
   btnDeshacer.disabled = state.historialPintado.length === 0;
   btnRehacer.disabled = state.historialRehacer.length === 0;
+  btnCompletarColor.disabled = !hayDibujo() || state.colorSeleccionado === null;
+  btnExportarDibujo.disabled = mensajeVictoria.hidden;
+  btnCompartirDibujo.disabled =
+    mensajeVictoria.hidden || btnCompartirDibujo.hidden;
 }
 
 function reiniciarProgresoPokemon() {
@@ -228,6 +394,7 @@ function reiniciarProgresoPokemon() {
     return;
   }
   clearTimeout(temporizadorGuardado);
+  terminarTrazo();
   for (const fila of state.matriz) {
     for (const celda of fila) {
       celda.pintado = false;
@@ -369,6 +536,59 @@ function celebrarVictoria() {
 btnDeshacer.addEventListener("click", () => aplicarHistorial(deshacerPintado));
 btnRehacer.addEventListener("click", () => aplicarHistorial(rehacerPintado));
 btnReiniciar.addEventListener("click", reiniciarProgresoPokemon);
+btnExportarDibujo.addEventListener("click", async () => {
+  const blob = await crearBlobDibujo();
+  if (!blob) {
+    mostrarAviso("No se pudo generar la imagen PNG.");
+    return;
+  }
+  descargarBlob(`pintadex-${pokemonActual}.png`, blob);
+});
+btnCompartirDibujo.addEventListener("click", async () => {
+  const blob = await crearBlobDibujo();
+  if (!blob) {
+    mostrarAviso("No se pudo generar la imagen PNG.");
+    return;
+  }
+  const archivo = new File([blob], `pintadex-${pokemonActual}.png`, {
+    type: "image/png",
+  });
+  if (!navigator.canShare?.({ files: [archivo] })) {
+    descargarBlob(archivo.name, blob);
+    mostrarAviso(
+      "Este dispositivo no permite compartir archivos; se descargó el PNG.",
+    );
+    return;
+  }
+  try {
+    await navigator.share({
+      files: [archivo],
+      title: "Mi dibujo de PintaDex",
+      text: `Pokémon #${pokemonActual}`,
+    });
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      mostrarAviso("No se pudo compartir el dibujo.");
+    }
+  }
+});
+btnExportarProgreso.addEventListener("click", exportarProgreso);
+btnImportarProgreso.addEventListener("click", () => archivoProgreso.click());
+archivoProgreso.addEventListener("change", async () => {
+  const archivo = archivoProgreso.files?.[0];
+  if (!archivo) return;
+  try {
+    await importarProgreso(archivo);
+  } catch (error) {
+    mostrarAviso(error.message || "No se pudo importar el respaldo.");
+  } finally {
+    archivoProgreso.value = "";
+  }
+});
+btnCompletarColor.addEventListener("click", () => {
+  const pintadas = completarColorSeleccionado();
+  if (pintadas > 0) refrescarTrasPintar();
+});
 
 window.addEventListener("keydown", (evento) => {
   if (escribiendo(evento) || (!evento.ctrlKey && !evento.metaKey)) {
@@ -389,6 +609,50 @@ function escribiendo(evento) {
     destino && (destino.tagName === "INPUT" || destino.tagName === "TEXTAREA")
   );
 }
+
+function anunciarCasilla(posicion) {
+  if (!posicion) return;
+  const celda = state.matriz[posicion.y][posicion.x];
+  anuncioTablero.textContent =
+    `Fila ${posicion.y + 1}, columna ${posicion.x + 1}, ` +
+    `${celda.numero === 0 ? "sin color" : `color ${celda.numero}`}, ` +
+    `${celda.pintado ? "coloreada" : "sin colorear"}.`;
+}
+
+lienzo.addEventListener("keydown", (evento) => {
+  const desplazamientos = {
+    ArrowUp: [0, -1],
+    ArrowDown: [0, 1],
+    ArrowLeft: [-1, 0],
+    ArrowRight: [1, 0],
+  };
+  if (desplazamientos[evento.key]) {
+    evento.preventDefault();
+    anunciarCasilla(moverCursorTeclado(...desplazamientos[evento.key]));
+    return;
+  }
+  if (evento.key === "Enter" || evento.key === " ") {
+    evento.preventDefault();
+    iniciarTrazo();
+    const pintada = intentarPintarTeclado();
+    terminarTrazo();
+    if (pintada) refrescarTrasPintar();
+    anunciarCasilla(posicionTecladoActual());
+    actualizarControlesHistorial();
+    return;
+  }
+  if (/^[1-9]$/.test(evento.key)) {
+    const numero = Number(evento.key);
+    if (state.paletaInversa[numero]) {
+      evento.preventDefault();
+      state.colorSeleccionado = numero;
+      sincronizarActivos(contenedorPaleta);
+      resaltarSeleccion();
+      actualizarControlesHistorial();
+      anuncioTablero.textContent = `Color ${numero} seleccionado.`;
+    }
+  }
+});
 
 function centroVisible() {
   const rect = contenedorTablero.getBoundingClientRect();
@@ -451,7 +715,11 @@ lienzo.addEventListener(
 window.addEventListener(
   "keydown",
   (evento) => {
-    if (evento.code !== "Space" || escribiendo(evento)) {
+    if (
+      evento.code !== "Space" ||
+      escribiendo(evento) ||
+      evento.target === lienzo
+    ) {
       return;
     }
     evento.preventDefault();
@@ -505,6 +773,7 @@ lienzo.addEventListener("pointerdown", (evento) => {
         inicioPintado: false,
       };
       state.pintando = inicioToque.modo === "pintar";
+      if (state.pintando) iniciarTrazo();
     }
     return;
   }
@@ -524,8 +793,10 @@ lienzo.addEventListener("pointerdown", (evento) => {
   if (evento.button !== 0) {
     return;
   }
+  lienzo.focus({ preventScroll: true });
   lienzo.setPointerCapture(evento.pointerId);
   state.pintando = true;
+  iniciarTrazo();
   if (intentarPintar(evento)) {
     refrescarTrasPintar();
   }
@@ -542,6 +813,7 @@ function obtenerGestoMultidedo() {
 }
 
 function iniciarGestoMultidedo() {
+  terminarTrazo();
   const gesto = obtenerGestoMultidedo();
   gestoMultidedo = {
     ...gesto,
@@ -662,6 +934,8 @@ function finalizarPuntero(evento) {
     ) {
       refrescarTrasPintar();
     }
+    terminarTrazo();
+    actualizarControlesHistorial();
     punterosTactiles.delete(evento.pointerId);
     if (punterosTactiles.size === 0) {
       state.pintando = false;
@@ -679,6 +953,8 @@ function finalizarPuntero(evento) {
     actualizarCursor();
     return;
   }
+  terminarTrazo();
+  actualizarControlesHistorial();
   state.pintando = false;
   paneo = null;
   actualizarCursor();

@@ -10,7 +10,12 @@
     />
     <title>Colorear Pokémon | PintaDex</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png" />
+    <link
+      rel="icon"
+      href="icons/icon-192.png"
+      sizes="192x192"
+      type="image/png"
+    />
     <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <link rel="manifest" href="site.webmanifest" />
     <link rel="stylesheet" href="fonts/fonts.css" />
@@ -106,7 +111,10 @@
           <div class="tablero-superficie">
             <canvas
               id="lienzoJuego"
+              role="application"
+              tabindex="0"
               aria-label="Imagen Pokémon para colorear"
+              aria-describedby="ayudaTeclado"
             ></canvas>
           </div>
         </main>
@@ -117,9 +125,62 @@
           aria-hidden="true"
         ></div>
         <section class="paleta-dock" aria-label="Paleta de colores">
+          <div class="paleta-acciones">
+            <button type="button" id="btnCompletarColor" disabled>
+              Rellenar color
+            </button>
+            <div class="acciones-progreso">
+              <button
+                type="button"
+                id="btnExportarDibujo"
+                aria-label="Descargar dibujo terminado en PNG"
+                title="Descargar dibujo terminado en PNG"
+                disabled
+              >
+                PNG
+              </button>
+              <button
+                type="button"
+                id="btnCompartirDibujo"
+                aria-label="Compartir dibujo terminado"
+                title="Compartir dibujo terminado"
+                hidden
+                disabled
+              >
+                Compartir
+              </button>
+              <button
+                type="button"
+                id="btnExportarProgreso"
+                aria-label="Exportar progreso"
+                title="Exportar progreso"
+              >
+                ↓ Progreso
+              </button>
+              <button
+                type="button"
+                id="btnImportarProgreso"
+                aria-label="Importar progreso"
+                title="Importar progreso"
+              >
+                ↑ Progreso
+              </button>
+              <input
+                id="archivoProgreso"
+                type="file"
+                accept="application/json,.json"
+                hidden
+              />
+            </div>
+          </div>
           <div id="paleta" class="paleta"></div>
           <div id="mensaje-victoria" class="victoria" hidden>¡Completado!</div>
         </section>
+        <p id="ayudaTeclado" class="visually-hidden">
+          Usa las flechas para moverte por las casillas. Pulsa Intro o espacio
+          para colorear. Pulsa del 1 al 9 para seleccionar un color.
+        </p>
+        <p id="anuncioTablero" class="visually-hidden" aria-live="polite"></p>
         <div
           id="avisoJuego"
           class="aviso-juego"
@@ -129,6 +190,7 @@
         ></div>
       </section>
     </div>
+    <script src="js/offline.js" defer></script>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

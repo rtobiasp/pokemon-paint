@@ -546,6 +546,29 @@ canvas {
   background: var(--paper);
   box-shadow: 0 -5px 18px rgba(33, 54, 42, 0.06);
 }
+.paleta-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 3px 2px;
+}
+.acciones-progreso { display: flex; flex-wrap: wrap; gap: 6px; }
+.paleta-acciones button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.paleta-acciones button:hover:not(:disabled) { border-color: #aebdb3; background: #f5f8f6; }
+.paleta-acciones button:disabled { opacity: 0.55; cursor: not-allowed; }
+.paleta-acciones button:focus-visible, canvas:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .victoria {
   position: absolute;
   right: 18px;
@@ -687,6 +710,9 @@ canvas {
   .pokeapi label { font-size: 11px; }
   .pokeapi input { width: 64px; height: 34px; padding: 0 6px; }
   .paleta-dock { padding: 6px 10px calc(6px + env(safe-area-inset-bottom)); }
+  .paleta-acciones { align-items: flex-start; flex-wrap: wrap; gap: 6px; }
+  .acciones-progreso { gap: 4px; }
+  .paleta-acciones button { min-height: 30px; padding: 0 7px; font-size: 10px; }
   .victoria { right: 10px; font-size: 10px; }
   .paleta { gap: 7px; }
   .color-btn { width: 64px; height: 66px; flex-basis: 64px; }

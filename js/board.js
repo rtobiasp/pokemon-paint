@@ -14,10 +14,25 @@ let lienzo = null;
 let ctx = null;
 const cacheGris = new Map();
 let temporizadorRedibujado = null;
+let trazoActual = null;
+let posicionTeclado = null;
 
 export function configurarLienzo(elemento) {
   lienzo = elemento;
   ctx = elemento.getContext("2d");
+}
+
+export function iniciarTrazo() {
+  if (trazoActual === null) trazoActual = [];
+}
+
+export function terminarTrazo() {
+  if (trazoActual?.length) state.historialPintado.push(trazoActual);
+  trazoActual = null;
+}
+
+export function reiniciarCursorTeclado() {
+  posicionTeclado = null;
 }
 
 export function grisDe(rgb, factor) {
@@ -130,6 +145,43 @@ export function dibujarTablero() {
   }
 }
 
+function dibujarCursorEnCelda(x, y) {
+  if (posicionTeclado?.x !== x || posicionTeclado?.y !== y) return;
+  const e = state.escala;
+  ctx.save();
+  ctx.strokeStyle = "#d13f36";
+  ctx.lineWidth = Math.max(1, Math.min(3, e * 0.12));
+  ctx.strokeRect(
+    x * e + ctx.lineWidth / 2,
+    y * e + ctx.lineWidth / 2,
+    e - ctx.lineWidth,
+    e - ctx.lineWidth,
+  );
+  ctx.restore();
+}
+
+export function moverCursorTeclado(dx, dy) {
+  if (!state.matriz.length) return null;
+  const anterior = posicionTeclado;
+  if (!posicionTeclado) {
+    posicionTeclado = {
+      x: Math.floor(state.ancho / 2),
+      y: Math.floor(state.alto / 2),
+    };
+  }
+  posicionTeclado = {
+    x: Math.max(0, Math.min(state.ancho - 1, posicionTeclado.x + dx)),
+    y: Math.max(0, Math.min(state.alto - 1, posicionTeclado.y + dy)),
+  };
+  if (anterior) dibujarCelda(anterior.x, anterior.y);
+  dibujarCelda(posicionTeclado.x, posicionTeclado.y);
+  return { ...posicionTeclado };
+}
+
+export function posicionTecladoActual() {
+  return posicionTeclado ? { ...posicionTeclado } : null;
+}
+
 export function dibujarCelda(x, y) {
   const celda = state.matriz[y][x];
   const e = state.escala;
@@ -138,12 +190,14 @@ export function dibujarCelda(x, y) {
 
   if (celda.numero === 0) {
     ctx.clearRect(posX, posY, e, e);
+    dibujarCursorEnCelda(x, y);
     return;
   }
 
   if (celda.pintado) {
     ctx.fillStyle = celda.color;
     ctx.fillRect(posX, posY, e, e);
+    dibujarCursorEnCelda(x, y);
     return;
   }
 
@@ -170,6 +224,7 @@ export function dibujarCelda(x, y) {
     ctx.font = `${e * 0.45}px sans-serif`;
     ctx.fillText(celda.numero, posX + e / 2, posY + e / 2);
   }
+  dibujarCursorEnCelda(x, y);
 }
 
 export function resaltarSeleccion() {
@@ -216,7 +271,15 @@ export function intentarPintar(evento) {
     return false;
   }
   const posicion = celdaDesdeEvento(evento);
-  if (!posicion) {
+  return posicion ? intentarPintarPosicion(posicion) : false;
+}
+
+export function intentarPintarTeclado() {
+  return posicionTeclado ? intentarPintarPosicion(posicionTeclado) : false;
+}
+
+function intentarPintarPosicion(posicion) {
+  if (state.colorSeleccionado === null || state.matriz.length === 0) {
     return false;
   }
   const celda = state.matriz[posicion.y][posicion.x];
@@ -225,10 +288,31 @@ export function intentarPintar(evento) {
   }
   celda.pintado = true;
   state.pintados[celda.numero]++;
-  state.historialPintado.push(posicion);
+  if (trazoActual) trazoActual.push(posicion);
+  else state.historialPintado.push([posicion]);
   state.historialRehacer = [];
   dibujarCelda(posicion.x, posicion.y);
   return true;
+}
+
+export function completarColorSeleccionado() {
+  if (state.colorSeleccionado === null) return 0;
+  const posiciones = [];
+  for (let y = 0; y < state.alto; y++) {
+    for (let x = 0; x < state.ancho; x++) {
+      const celda = state.matriz[y][x];
+      if (celda.numero !== state.colorSeleccionado || celda.pintado) continue;
+      celda.pintado = true;
+      state.pintados[celda.numero]++;
+      posiciones.push({ x, y });
+      dibujarCelda(x, y);
+    }
+  }
+  if (posiciones.length) {
+    state.historialPintado.push(posiciones);
+    state.historialRehacer = [];
+  }
+  return posiciones.length;
 }
 
 function cambiarPintado(posicion, pintado) {
@@ -243,20 +327,28 @@ function cambiarPintado(posicion, pintado) {
 }
 
 export function deshacerPintado() {
-  const posicion = state.historialPintado.pop();
-  if (!posicion || !cambiarPintado(posicion, false)) {
-    return false;
+  terminarTrazo();
+  const posiciones = state.historialPintado.pop();
+  if (!posiciones?.length) return false;
+  let modificadas = false;
+  for (const posicion of posiciones) {
+    modificadas = cambiarPintado(posicion, false) || modificadas;
   }
-  state.historialRehacer.push(posicion);
-  state.colorSeleccionado = state.matriz[posicion.y][posicion.x].numero;
+  if (!modificadas) return false;
+  state.historialRehacer.push(posiciones);
+  const ultima = posiciones.at(-1);
+  state.colorSeleccionado = state.matriz[ultima.y][ultima.x].numero;
   return true;
 }
 
 export function rehacerPintado() {
-  const posicion = state.historialRehacer.pop();
-  if (!posicion || !cambiarPintado(posicion, true)) {
-    return false;
+  const posiciones = state.historialRehacer.pop();
+  if (!posiciones?.length) return false;
+  let modificadas = false;
+  for (const posicion of posiciones) {
+    modificadas = cambiarPintado(posicion, true) || modificadas;
   }
-  state.historialPintado.push(posicion);
+  if (!modificadas) return false;
+  state.historialPintado.push(posiciones);
   return true;
 }
